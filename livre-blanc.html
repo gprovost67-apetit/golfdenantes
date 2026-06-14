@@ -457,7 +457,7 @@
   </div>
   <div class="nav-actions">
     <a href="livre-blanc-golf-55ans.pdf" download class="nav-dl">⬇ Télécharger le PDF</a>
-    <a href="golf-vigneux-landing-v2.html" class="nav-cta">Journée Découverte →</a>
+    <a href="index.html" class="nav-cta">← Retour à l'accueil</a>
   </div>
 </nav>
 
@@ -664,7 +664,7 @@
           <p style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--or-clair);margin-bottom:12px;">Passez à l'action</p>
           <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--blanc);margin-bottom:12px;">Votre prochain chapitre <em style="color:var(--or-clair);font-style:italic;">commence ici</em></h2>
           <p style="font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7;">Journée Portes Ouvertes gratuite · Initiation sur le practice · Visite du parcours · Formule senior dédiée</p>
-          <a href="golf-vigneux-landing-v2.html" style="display:inline-block;background:var(--or);color:var(--blanc);font-weight:600;font-size:1rem;padding:15px 40px;border-radius:7px;text-decoration:none;letter-spacing:0.02em;">→ Je réserve ma place gratuite</a>
+          <a href="index.html" style="display:inline-block;background:var(--or);color:var(--blanc);font-weight:600;font-size:1rem;padding:15px 40px;border-radius:7px;text-decoration:none;letter-spacing:0.02em;">→ Je réserve ma place gratuite</a>
           <p style="font-size:0.76rem;color:rgba(255,255,255,0.3);margin-top:12px;">Aucun engagement · Annulation libre · Équipement prêté</p>
         </div>
       </div>
@@ -1336,68 +1336,82 @@ function copyLink() {
 }
 
 /* ══════════════════════════════════════════
-   PLAYER AUDIO — Web Speech API
+   PLAYER AUDIO — Web Speech API (corrigé)
 ══════════════════════════════════════════ */
+(function() {
+
 const CHAPTERS = [
-  {
-    label: "Chapitre 1",
-    title: "Pourquoi le golf est fait pour vous",
-    dur: "~3 min",
-    text: `Pourquoi le golf est fait pour vous. Le golf souffre d'une réputation qui ne lui ressemble plus. Né dans l'Écosse des Highlands au quinzième siècle comme loisir populaire, il est devenu le sport de plein air le plus pratiqué en France par les plus de cinquante ans. La vérité est plus simple et plus belle : le golf est l'un des rares sports où vous pouvez commencer à soixante ans et devenir compétitif en deux ans. Cinq idées reçues à briser. Première : ce serait élitiste. Faux. Les formules modernes ont profondément démocratisé le golf. Deuxième : il faudrait être en forme. Une partie représente quatre à six kilomètres de marche douce, moins intense qu'un footing. Troisième : ce serait long et ennuyeux. Neuf trous durent moins de deux heures, et chaque trou est différent. Quatrième : ce serait solitaire. On joue toujours en groupe, générant des conversations naturelles pendant des heures. Cinquième : ce serait trop technique pour commencer tard. L'âge est un avantage — patience, discipline, et concentration.`
+  { label:"Chapitre 1", title:"Pourquoi le golf est fait pour vous", dur:"~3 min",
+    text:"Pourquoi le golf est fait pour vous. Le golf souffre d'une réputation qui ne lui ressemble plus. Né dans l'Écosse des Highlands au quinzième siècle comme loisir populaire, il est devenu le sport de plein air le plus pratiqué en France par les plus de cinquante ans. La vérité est plus simple et plus belle : le golf est l'un des rares sports où vous pouvez commencer à soixante ans et devenir compétitif en deux ans. Cinq idées reçues à briser. Première : ce serait élitiste. Faux. Les formules modernes ont profondément démocratisé le golf. Deuxième : il faudrait être en forme. Une partie représente quatre à six kilomètres de marche douce, moins intense qu'un footing. Troisième : ce serait long et ennuyeux. Neuf trous durent moins de deux heures, et chaque trou est différent. Quatrième : ce serait solitaire. On joue toujours en groupe, générant des conversations naturelles pendant des heures. Cinquième : ce serait trop technique pour commencer tard. L'âge est un avantage — patience, discipline, et concentration."
   },
-  {
-    label: "Chapitre 2",
-    title: "Les bienfaits prouvés après 55 ans",
-    dur: "~3 min",
-    text: `Les bienfaits prouvés après cinquante-cinq ans. Ce n'est pas qu'une question de plaisir. La science confirme ce que les golfeurs savent depuis longtemps. Pour le corps, une partie de dix-huit trous représente entre huit mille et douze mille pas. Le swing de golf mobilise plus de trente groupes musculaires distincts. Des recherches scandinaves ont montré une espérance de vie supérieure de cinq ans chez les golfeurs réguliers. Le risque cardiovasculaire est réduit de quarante pour cent pour ceux qui jouent deux fois par semaine. Pour l'esprit, le golf est un sport cognitif autant qu'athlétique. Chaque coup requiert analyse du terrain, évaluation du vent, calcul de distance, décision stratégique. Cette stimulation mentale continue est un facteur reconnu de prévention du déclin cognitif. Pour les liens sociaux, trente pour cent des hommes retraités se sentent isolés dans les dix-huit mois suivant leur départ. Le golf est l'un des antidotes les plus efficaces à ce phénomène.`
+  { label:"Chapitre 2", title:"Les bienfaits prouvés après 55 ans", dur:"~3 min",
+    text:"Les bienfaits prouvés après cinquante-cinq ans. Ce n'est pas qu'une question de plaisir. La science confirme ce que les golfeurs savent depuis longtemps. Pour le corps, une partie de dix-huit trous représente entre huit mille et douze mille pas. Le swing de golf mobilise plus de trente groupes musculaires distincts. Des recherches scandinaves ont montré une espérance de vie supérieure de cinq ans chez les golfeurs réguliers. Le risque cardiovasculaire est réduit de quarante pour cent pour ceux qui jouent deux fois par semaine. Pour l'esprit, le golf est un sport cognitif autant qu'athlétique. Chaque coup requiert analyse du terrain, évaluation du vent, calcul de distance, décision stratégique. Cette stimulation mentale continue est un facteur reconnu de prévention du déclin cognitif. Pour les liens sociaux, trente pour cent des hommes retraités se sentent isolés dans les dix-huit mois suivant leur départ. Le golf est l'un des antidotes les plus efficaces à ce phénomène."
   },
-  {
-    label: "Chapitre 3",
-    title: "Le golf, art de vivre à la française",
-    dur: "~2 min",
-    text: `Le golf, art de vivre à la française. Il y a dans le golf quelque chose qui dépasse le sport. Une façon d'habiter le temps, de cultiver le soin du détail, d'apprécier ce qui est lent et beau. Le golf est un art de vivre social, dans la grande tradition française qui mêle nature, table et conversation. Le club-house est un lieu à part, ni restaurant ordinaire, ni café, ni salle de sport. C'est un espace de décompression où se construisent les amitiés durables. Le parcours du Golf Club de Nantes, dessiné par l'architecte Franck Pennink et entretenu depuis plus de cinquante ans, serpente entre arbres centenaires, étangs et vallons dans un équilibre parfait entre défi technique et contemplation. Le restaurant du club, ouvert du mardi au dimanche, propose une cuisine traditionnelle de qualité. Le menu homard du dernier vendredi du mois est devenu un rendez-vous gastronomique incontournable de la région nantaise.`
+  { label:"Chapitre 3", title:"Le golf, art de vivre à la française", dur:"~2 min",
+    text:"Le golf, art de vivre à la française. Il y a dans le golf quelque chose qui dépasse le sport. Une façon d'habiter le temps, de cultiver le soin du détail, d'apprécier ce qui est lent et beau. Le golf est un art de vivre social, dans la grande tradition française qui mêle nature, table et conversation. Le club-house est un lieu à part, ni restaurant ordinaire, ni café, ni salle de sport. C'est un espace de décompression où se construisent les amitiés durables. Le parcours du Golf Club de Nantes, dessiné par l'architecte Franck Pennink et entretenu depuis plus de cinquante ans, serpente entre arbres centenaires, étangs et vallons dans un équilibre parfait entre défi technique et contemplation. Le restaurant du club propose une cuisine traditionnelle de qualité, et le menu homard du dernier vendredi du mois est devenu un rendez-vous gastronomique incontournable de la région nantaise."
   },
-  {
-    label: "Chapitre 4",
-    title: "Votre première année au club",
-    dur: "~3 min",
-    text: `Votre première année au club. De la première balle frappée sur le practice à votre premier scorecard rempli avec fierté. Les premières séances se déroulent sur le practice, un espace sécurisé où vous frappez des balles à votre rythme, encadré par un professionnel. Le Golf Club de Nantes propose une Adult Golf Academy spécifiquement conçue pour les nouveaux membres adultes. Après une dizaine d'heures de cours, vous êtes prêt pour votre première sortie sur le parcours. Tous les membres se rappellent ce moment avec précision. Vous jouez généralement neuf trous, accompagné d'un membre expérimenté. Entre six mois et un an, vous serez prêt pour votre première compétition. Le club propose un calendrier riche, du Trophée des Familles aux Coupes de l'Été.`
+  { label:"Chapitre 4", title:"Votre première année au club", dur:"~3 min",
+    text:"Votre première année au club. De la première balle frappée sur le practice à votre premier scorecard rempli avec fierté. Les premières séances se déroulent sur le practice, un espace sécurisé où vous frappez des balles à votre rythme, encadré par un professionnel. Le Golf Club de Nantes propose une Adult Golf Academy spécifiquement conçue pour les nouveaux membres adultes. Après une dizaine d'heures de cours, vous êtes prêt pour votre première sortie sur le parcours. Tous les membres se rappellent ce moment avec précision. Vous jouez généralement neuf trous, accompagné d'un membre expérimenté. Entre six mois et un an, vous serez prêt pour votre première compétition. Le club propose un calendrier riche, du Trophée des Familles aux Coupes de l'Été."
   },
-  {
-    label: "Chapitre 5",
-    title: "Le Golf Club de Nantes, votre maison",
-    dur: "~2 min",
-    text: `Le Golf Club de Nantes, votre maison. Fondé en mil neuf cent vingt et un, le Golf Club de Nantes est le premier golf de la région nantaise. Un club à taille humaine, où l'on se connaît par prénom, où les anciennes et les nouvelles générations se retrouvent autour de l'amour du jeu. Le parcours s'étend sur cinquante-six hectares de nature préservée à Vigneux de Bretagne. Dessiné par l'architecte Franck Pennink, il offre un défi technique constant tout en restant accessible. Greens soigneusement entretenus, fairways bordés d'arbres centenaires, allées de pins et de cèdres. Le club propose également un restaurant gastronomique, un proshop complet, un simulateur Trackman, et le Nantes Business Club pour les dirigeants souhaitant développer leur réseau.`
+  { label:"Chapitre 5", title:"Le Golf Club de Nantes, votre maison", dur:"~2 min",
+    text:"Le Golf Club de Nantes, votre maison. Fondé en mil neuf cent vingt et un, le Golf Club de Nantes est le premier golf de la région nantaise. Un club à taille humaine, où l'on se connaît par prénom, où les anciennes et les nouvelles générations se retrouvent autour de l'amour du jeu. Le parcours s'étend sur cinquante-six hectares de nature préservée à Vigneux de Bretagne. Dessiné par l'architecte Franck Pennink, il offre un défi technique constant tout en restant accessible. Greens soigneusement entretenus, fairways bordés d'arbres centenaires, allées de pins et de cèdres. Le club propose également un restaurant gastronomique, un proshop complet, un simulateur Trackman, et le Nantes Business Club pour les dirigeants souhaitant développer leur réseau."
   },
-  {
-    label: "Chapitre 6",
-    title: "Ils ont franchi le pas — Témoignages",
-    dur: "~3 min",
-    text: `Témoignages. Trois membres racontent comment ils ont commencé le golf après cinquante-cinq ans. Michel D., soixante-trois ans, ancien chef d'entreprise : j'ai attendu la retraite pour commencer. Ma femme m'avait offert un cours pour mes soixante ans. Je pensais faire ça une fois, par politesse. Deux ans plus tard, je joue trois fois par semaine et j'ai trouvé mes meilleurs amis ici. Brigitte L., cinquante-huit ans, ancienne directrice commerciale : ce qui m'a surprise, c'est la dimension intellectuelle. Je pensais que le golf c'était frapper une balle. En fait c'est un jeu d'échecs en plein air. Chaque trou est un problème à résoudre. Hervé T., soixante-sept ans, ancien médecin hospitalier : je suis arrivé au club six mois après ma retraite, au moment où je me demandais ce que j'allais faire de mes journées. Le golf m'a donné une structure, des rendez-vous, des progrès à suivre. Il m'a redonné un projet.`
+  { label:"Chapitre 6", title:"Ils ont franchi le pas — Témoignages", dur:"~3 min",
+    text:"Témoignages. Trois membres racontent comment ils ont commencé le golf après cinquante-cinq ans. Michel D., soixante-trois ans, ancien chef d'entreprise : j'ai attendu la retraite pour commencer. Ma femme m'avait offert un cours pour mes soixante ans. Je pensais faire ça une fois, par politesse. Deux ans plus tard, je joue trois fois par semaine et j'ai trouvé mes meilleurs amis ici. Brigitte L., cinquante-huit ans, ancienne directrice commerciale : ce qui m'a surprise, c'est la dimension intellectuelle. Je pensais que le golf c'était frapper une balle. En fait c'est un jeu d'échecs en plein air. Chaque trou est un problème à résoudre. Hervé T., soixante-sept ans, ancien médecin hospitalier : je suis arrivé au club six mois après ma retraite, au moment où je me demandais ce que j'allais faire de mes journées. Le golf m'a donné une structure, des rendez-vous, des progrès à suivre. Il m'a redonné un projet."
   },
-  {
-    label: "Chapitre 7",
-    title: "Votre guide pratique pour commencer",
-    dur: "~2 min",
-    text: `Votre guide pratique pour commencer. Concernant le budget, un demi-set d'occasion de huit clubs coûte entre quatre-vingts et cent cinquante euros. Le budget total réaliste est de huit cents à quinze cents euros la première année, puis cinq cents à huit cents euros les années suivantes. En ce qui concerne les questions fréquentes. Faut-il passer un permis ? Oui, un index de départ est nécessaire pour jouer seul, obtenu en six à dix heures de cours. À quelle fréquence joue-t-on ? Deux sorties par semaine est optimal, mais une seule suffit pour progresser. Le golf s'adapte à votre rythme de vie. Pour rejoindre le club ou en savoir plus, contactez le Golf Club de Nantes au zéro deux quarante soixante-trois vingt-cinq quatre-vingt-deux. La Journée Portes Ouvertes est gratuite et sans engagement. Nous avons hâte de vous accueillir.`
+  { label:"Chapitre 7", title:"Votre guide pratique pour commencer", dur:"~2 min",
+    text:"Votre guide pratique pour commencer. Concernant le budget, un demi-set d'occasion de huit clubs coûte entre quatre-vingts et cent cinquante euros. Le budget total réaliste est de huit cents à quinze cents euros la première année, puis cinq cents à huit cents euros les années suivantes. Faut-il passer un permis ? Oui, un index de départ est nécessaire pour jouer seul, obtenu en six à dix heures de cours. À quelle fréquence joue-t-on ? Deux sorties par semaine est optimal, mais une seule suffit pour progresser. Le golf s'adapte à votre rythme de vie. Pour rejoindre le club ou en savoir plus, contactez le Golf Club de Nantes au zéro deux quarante soixante-trois vingt-cinq quatre-vingt-deux. La Journée Portes Ouvertes est gratuite et sans engagement. Nous avons hâte de vous accueillir."
   }
 ];
 
-let currentChapter = 0;
-let isPlaying = false;
-let utterance = null;
-let startTime = 0;
-let elapsed = 0;
-let timerInterval = null;
-let playbackRate = 1;
-const EST_DURATIONS = [180, 180, 120, 180, 120, 180, 120]; // secondes estimées
+const EST_DURATIONS = [180,180,120,180,120,180,120];
 
-function speechSupported() {
-  return 'speechSynthesis' in window;
+let currentChapter = 0;
+let isPlaying      = false;
+let utterance      = null;
+let elapsed        = 0;
+let timerInterval  = null;
+let playbackRate   = 1;
+let frVoice        = null;
+let voicesLoaded   = false;
+
+// ── Chargement des voix (asynchrone, nécessite un délai sur Chrome) ──
+function loadVoices() {
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length > 0) {
+    frVoice = voices.find(v => v.lang.startsWith('fr')) || voices[0];
+    voicesLoaded = true;
+    updateUnsupportedMsg();
+  }
 }
 
+function updateUnsupportedMsg() {
+  const el = document.getElementById('speech-unsupported');
+  if (!el) return;
+  if (!('speechSynthesis' in window)) {
+    el.style.display = 'block';
+    el.textContent = '⚠️ Synthèse vocale non supportée. Essayez Chrome ou Edge.';
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+if ('speechSynthesis' in window) {
+  // Chrome charge les voix de façon asynchrone
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+  loadVoices(); // tentative immédiate (Firefox/Safari)
+  // Relance après 500ms si non chargées
+  setTimeout(loadVoices, 500);
+  setTimeout(loadVoices, 1500);
+} else {
+  const el = document.getElementById('speech-unsupported');
+  if (el) { el.style.display = 'block'; }
+}
+
+// ── Construction de la liste des chapitres ──
 function buildChaptersList() {
   const container = document.getElementById('chapters-list-container');
+  if (!container) return;
   container.innerHTML = CHAPTERS.map((ch, i) => `
     <div class="ch-item ${i===0?'active':''}" id="ch-item-${i}" onclick="goToChapter(${i})">
       <div class="ch-num-badge">${i+1}</div>
@@ -1408,91 +1422,137 @@ function buildChaptersList() {
 }
 
 function updateChapterUI(idx) {
-  document.getElementById('player-chapter-label').textContent = CHAPTERS[idx].label;
-  document.getElementById('player-title').textContent = CHAPTERS[idx].title;
-  document.getElementById('time-tot').textContent = '~' + Math.floor(EST_DURATIONS[idx]/60) + ':' + String(EST_DURATIONS[idx]%60).padStart(2,'0');
+  const lbl = document.getElementById('player-chapter-label');
+  const tit = document.getElementById('player-title');
+  const tot = document.getElementById('time-tot');
+  const cur = document.getElementById('time-cur');
+  const pf  = document.getElementById('progress-fill');
+  if (lbl) lbl.textContent = CHAPTERS[idx].label;
+  if (tit) tit.textContent = CHAPTERS[idx].title;
+  if (tot) tot.textContent = '~' + Math.floor(EST_DURATIONS[idx]/60) + ':' + String(EST_DURATIONS[idx]%60).padStart(2,'0');
+  if (cur) cur.textContent = '0:00';
+  if (pf)  pf.style.width  = '0%';
   document.querySelectorAll('.ch-item').forEach((el,i) => el.classList.toggle('active', i===idx));
-  document.getElementById('progress-fill').style.width = '0%';
-  document.getElementById('time-cur').textContent = '0:00';
 }
 
 function startTimer() {
-  startTime = Date.now() - elapsed * 1000;
+  const start = Date.now() - elapsed * 1000;
   timerInterval = setInterval(() => {
-    elapsed = (Date.now() - startTime) / 1000;
+    elapsed = (Date.now() - start) / 1000;
     const tot = EST_DURATIONS[currentChapter];
     const pct = Math.min(100, (elapsed / tot) * 100);
-    document.getElementById('progress-fill').style.width = pct + '%';
-    const s = Math.floor(elapsed);
-    document.getElementById('time-cur').textContent = Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
-    if (elapsed >= tot) { clearInterval(timerInterval); }
+    const pf  = document.getElementById('progress-fill');
+    const cur = document.getElementById('time-cur');
+    if (pf)  pf.style.width  = pct + '%';
+    if (cur) { const s = Math.floor(elapsed); cur.textContent = Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
   }, 500);
 }
 
-function stopTimer() { clearInterval(timerInterval); }
+function stopTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
 
-function togglePlay() {
-  if (!speechSupported()) {
-    document.getElementById('speech-unsupported').style.display = 'block';
+function setPlayBtn(playing) {
+  const btn = document.getElementById('play-btn');
+  const wf  = document.getElementById('waveform');
+  if (btn) btn.textContent = playing ? '⏸' : '▶';
+  if (wf)  wf.classList.toggle('playing', playing);
+}
+
+// ── Lecture d'un chapitre ──
+function playChapter(idx) {
+  if (!('speechSynthesis' in window)) return;
+
+  // Annuler tout ce qui joue
+  window.speechSynthesis.cancel();
+  stopTimer();
+  elapsed = 0;
+
+  currentChapter = idx;
+  updateChapterUI(idx);
+
+  utterance = new SpeechSynthesisUtterance(CHAPTERS[idx].text);
+  utterance.lang  = 'fr-FR';
+  utterance.rate  = playbackRate;
+  utterance.pitch = 1;
+  utterance.volume = 1;
+
+  // Appliquer la voix FR si disponible
+  if (frVoice) {
+    utterance.voice = frVoice;
+  } else {
+    // Dernier essai de chargement
+    loadVoices();
+    if (frVoice) utterance.voice = frVoice;
+  }
+
+  utterance.onstart = () => {
+    isPlaying = true;
+    setPlayBtn(true);
+    startTimer();
+  };
+
+  utterance.onend = () => {
+    isPlaying = false;
+    stopTimer();
+    setPlayBtn(false);
+    // Passer au chapitre suivant automatiquement
+    if (currentChapter < CHAPTERS.length - 1) {
+      setTimeout(() => playChapter(currentChapter + 1), 600);
+    } else {
+      const pf = document.getElementById('progress-fill');
+      if (pf) pf.style.width = '100%';
+    }
+  };
+
+  utterance.onerror = (e) => {
+    console.warn('SpeechSynthesis error:', e.error);
+    isPlaying = false;
+    stopTimer();
+    setPlayBtn(false);
+    // 'interrupted' est normal lors d'un changement de chapitre — ignorer
+    if (e.error !== 'interrupted' && e.error !== 'canceled') {
+      const el = document.getElementById('speech-unsupported');
+      if (el) {
+        el.style.display = 'block';
+        el.textContent = '⚠️ Erreur audio (' + e.error + '). Essayez Chrome ou Edge.';
+      }
+    }
+  };
+
+  // Workaround Chrome : la synthèse vocale s'arrête parfois après ~15s
+  // On relance périodiquement si nécessaire
+  window.speechSynthesis.speak(utterance);
+
+  // Keepalive Chrome (bug connu : la synthèse se met en pause après 15s)
+  const keepalive = setInterval(() => {
+    if (!isPlaying) { clearInterval(keepalive); return; }
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+    }
+  }, 10000);
+}
+
+// ── Contrôles publics ──
+window.togglePlay = function() {
+  if (!('speechSynthesis' in window)) {
+    const el = document.getElementById('speech-unsupported');
+    if (el) { el.style.display = 'block'; }
     return;
   }
+
   if (isPlaying) {
     window.speechSynthesis.cancel();
     isPlaying = false;
     stopTimer();
-    document.getElementById('play-btn').textContent = '▶';
-    document.getElementById('waveform').classList.remove('playing');
+    setPlayBtn(false);
   } else {
     playChapter(currentChapter);
   }
-}
+};
 
-function playChapter(idx) {
-  if (!speechSupported()) return;
-  window.speechSynthesis.cancel();
-  stopTimer();
-  currentChapter = idx;
-  elapsed = 0;
-  updateChapterUI(idx);
-
-  utterance = new SpeechSynthesisUtterance(CHAPTERS[idx].text);
-  utterance.lang = 'fr-FR';
-  utterance.rate = playbackRate;
-  utterance.pitch = 1;
-
-  // Choisir une voix française si disponible
-  const voices = window.speechSynthesis.getVoices();
-  const frVoice = voices.find(v => v.lang.startsWith('fr') && v.localService);
-  if (frVoice) utterance.voice = frVoice;
-
-  utterance.onstart = () => {
-    isPlaying = true;
-    document.getElementById('play-btn').textContent = '⏸';
-    document.getElementById('waveform').classList.add('playing');
-    startTimer();
-  };
-  utterance.onend = () => {
-    isPlaying = false;
-    stopTimer();
-    document.getElementById('play-btn').textContent = '▶';
-    document.getElementById('waveform').classList.remove('playing');
-    if (currentChapter < CHAPTERS.length - 1) {
-      setTimeout(() => playChapter(currentChapter + 1), 800);
-    } else {
-      document.getElementById('progress-fill').style.width = '100%';
-    }
-  };
-  utterance.onerror = () => {
-    isPlaying = false;
-    stopTimer();
-    document.getElementById('play-btn').textContent = '▶';
-    document.getElementById('waveform').classList.remove('playing');
-  };
-
-  window.speechSynthesis.speak(utterance);
-}
-
-function goToChapter(idx) {
+window.goToChapter = function(idx) {
   const wasPlaying = isPlaying;
   window.speechSynthesis.cancel();
   isPlaying = false;
@@ -1500,19 +1560,21 @@ function goToChapter(idx) {
   elapsed = 0;
   currentChapter = idx;
   updateChapterUI(idx);
-  document.getElementById('play-btn').textContent = '▶';
-  document.getElementById('waveform').classList.remove('playing');
-  if (wasPlaying) playChapter(idx);
-}
+  setPlayBtn(false);
+  if (wasPlaying) {
+    setTimeout(() => playChapter(idx), 150);
+  }
+};
 
-function prevChapter() {
-  if (currentChapter > 0) goToChapter(currentChapter - 1);
-}
-function nextChapter() {
-  if (currentChapter < CHAPTERS.length - 1) goToChapter(currentChapter + 1);
-}
+window.prevChapter = function() {
+  if (currentChapter > 0) window.goToChapter(currentChapter - 1);
+};
 
-function setSpeed(rate) {
+window.nextChapter = function() {
+  if (currentChapter < CHAPTERS.length - 1) window.goToChapter(currentChapter + 1);
+};
+
+window.setSpeed = function(rate) {
   playbackRate = rate;
   document.querySelectorAll('.speed-btn').forEach(btn => {
     btn.classList.toggle('active', parseFloat(btn.textContent) === rate);
@@ -1521,29 +1583,26 @@ function setSpeed(rate) {
     window.speechSynthesis.cancel();
     isPlaying = false;
     stopTimer();
-    playChapter(currentChapter);
+    setTimeout(() => playChapter(currentChapter), 150);
   }
-}
+};
 
-function seekAudio(e) {
+window.seekAudio = function(e) {
   const wrap = document.getElementById('progress-wrap');
-  const pct = e.offsetX / wrap.offsetWidth;
+  if (!wrap) return;
+  const pct = Math.max(0, Math.min(1, e.offsetX / wrap.offsetWidth));
   elapsed = pct * EST_DURATIONS[currentChapter];
-  document.getElementById('progress-fill').style.width = (pct * 100) + '%';
-  const s = Math.floor(elapsed);
-  document.getElementById('time-cur').textContent = Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
-  // Note: Web Speech API ne supporte pas le seek réel — on repart du début du chapitre
-  if (isPlaying) { goToChapter(currentChapter); }
-}
+  const pf = document.getElementById('progress-fill');
+  const cur = document.getElementById('time-cur');
+  if (pf) pf.style.width = (pct * 100) + '%';
+  if (cur) { const s = Math.floor(elapsed); cur.textContent = Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
+};
 
-// Charger les voix (asynchrone sur certains navigateurs)
-if (speechSupported()) {
-  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-  buildChaptersList();
-  updateChapterUI(0);
-} else {
-  document.getElementById('speech-unsupported').style.display = 'block';
-}
+// ── Init ──
+buildChaptersList();
+updateChapterUI(0);
+
+})();
 </script>
 </body>
 </html>
