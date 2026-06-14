@@ -1,4 +1,4 @@
-# Golf Club de Nantes — Toolkit Digital APETIT 2026
+# Golf Club de Nantes — Toolkit Digital APETIT 2026 
 
 Site web de recrutement seniors pour le Golf Club de Nantes × APETIT.
 
