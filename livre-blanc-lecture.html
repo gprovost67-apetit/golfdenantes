@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Golf après 55 ans — Livre Blanc | Golf Club de Nantes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --vert:        #1e3a20;
+      --vert-mid:    #2e5430;
+      --vert-clair:  #4a7c52;
+      --or:          #b8943a;
+      --or-clair:    #d4aa55;
+      --or-pale:     #f0e4c2;
+      --creme:       #f9f6ef;
+      --blanc:       #ffffff;
+      --gris:        #f2ede4;
+      --texte:       #1a2b1c;
+      --texte-doux:  #5a6b5c;
+      --texte-fin:   #8a9b8c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--creme);
+      color: var(--texte);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── BARRE DE LECTURE ── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: var(--or);
+      width: 0%;
+      z-index: 100;
+      transition: width 0.1s linear;
+    }
+
+    /* ── NAV STICKY ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      background: rgba(30,58,32,0.97);
+      backdrop-filter: blur(8px);
+      z-index: 50;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(184,148,58,0.2);
+    }
+
+    .nav img { height: 46px; width: auto; }
+
+    .nav-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--or-clair);
+    }
+
+    .nav-cta {
+      background: var(--or);
+      color: var(--blanc);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 9px 22px;
+      border-radius: 5px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: #a07e2e; }
+
+    /* ── COVER ── */
+    .cover {
+      position: relative;
+      background: var(--vert);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://www.golfclubdenantes.com/wp-content/uploads/2018/07/golf_mobile_900x400_acf_cropped.jpg');
+      background-size: cover;
+      background-position: center 45%;
+      opacity: 0.22;
+    }
+
+    .cover-gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(184,148,58,0.15) 0%, transparent 65%),
+                  linear-gradient(to bottom, rgba(30,58,32,0.4) 0%, rgba(30,58,32,0.8) 100%);
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 24px;
+      max-width: 820px;
+    }
+
+    .cover-eyebrow {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--or-clair);
+      border: 1px solid rgba(212,170,85,0.35);
+      padding: 7px 22px;
+      border-radius: 40px;
+      margin-bottom: 36px;
+    }
+
+    .cover h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-weight: 600;
+      color: var(--blanc);
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .cover h1 em {
+      font-style: italic;
+      color: var(--or-clair);
+      display: block;
+    }
+
+    .cover-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 52px;
+      line-height: 1.5;
+    }
+
+    .cover-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .cover-meta-item {
+      text-align: center;
+    }
+
+    .cover-meta-item .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--or-clair);
+      line-height: 1;
+    }
+
+    .cover-meta-item .lbl {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+    }
+
+    .cover-sep {
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .cover-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      opacity: 0.55;
+    }
+
+    .cover-logos img { height: 40px; }
+
+    .cover-logos .dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .scroll-hint span {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+    }
+
+    /* ── SOMMAIRE ── */
+    .sommaire {
+      background: var(--blanc);
+      padding: 72px 40px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .sommaire-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .sommaire-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--vert-clair);
+      margin-bottom: 28px;
+    }
+
+    .sommaire-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: var(--texte);
+    }
+
+    .sommaire-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sommaire-list li {
+      border-bottom: 1px solid var(--gris);
+    }
+
+    .sommaire-list li a {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 0;
+      text-decoration: none;
+      color: var(--texte);
+      transition: color 0.2s;
+    }
+
+    .sommaire-list li a:hover { color: var(--vert-clair); }
+
+    .sommaire-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--or);
+      font-weight: 600;
+      min-width: 36px;
+    }
+
+    .sommaire-chapter {
+      flex: 1;
+    }
+
+    .sommaire-chapter strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .sommaire-chapter span {
+      font-size: 0.82rem;
+      color: var(--texte-doux);
+    }
+
+    .sommaire-arrow {
+      color: var(--texte-fin);
+      font-size: 1.1rem;
+      transition: transform 0.2s;
+    }
+
+    .sommaire-list li a:hover .sommaire-arrow { transform: translateX(4px); }
+
+    /* ── CHAPITRES ── */
+    .chapter {
+      padding: 96px 40px;
+    }
+
+    .chapter-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .chapter-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 600;
+      color: var(--or);
+      opacity: 0.18;
+      line-height: 1;
+      margin-bottom: -18px;
+    }
+
+    .chapter-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--vert-clair);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .chapter h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      color: var(--texte);
+    }
+
+    .chapter-intro {
+      font-size: 1.12rem;
+      color: var(--texte-doux);
+      line-height: 1.8;
+      margin-bottom: 48px;
+      font-style: italic;
+      border-left: 3px solid var(--or);
+      padding-left: 20px;
+    }
+
+    .chapter p {
+      font-size: 1rem;
+      line-height: 1.82;
+      color: var(--texte);
+      margin-bottom: 24px;
+    }
+
+    .chapter h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--texte);
+      margin: 44px 0 16px;
+    }
+
+    /* STAT CARDS */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 40px 0;
+    }
+
+    .stat-card {
+      background: var(--blanc);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-top: 3px solid var(--or);
+      border-radius: 10px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .stat-card .big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: var(--vert);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-card .desc {
+      font-size: 0.82rem;
+      color: var(--texte-doux);
+      line-height: 1.5;
+    }
+
+    /* ENCADRÉS */
+    .encadre {
+      background: var(--gris);
+      border-left: 4px solid var(--vert-clair);
+      border-radius: 0 10px 10px 0;
+      padding: 28px 28px 28px 24px;
+      margin: 36px 0;
+    }
+
+    .encadre-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--vert);
+      margin-bottom: 10px;
+    }
+
+    .encadre p {
+      font-size: 0.92rem;
+      color: var(--texte-doux);
+      margin-bottom: 0;
+    }
+
+    /* CITATION */
+    .citation {
+      background: var(--vert);
+      border-radius: 12px;
+      padding: 44px 40px;
+      margin: 48px 0;
+      position: relative;
+    }
+
+    .citation::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      color: var(--or);
+      opacity: 0.25;
+      position: absolute;
+      top: 8px;
+      left: 24px;
+      line-height: 1;
+    }
+
+    .citation blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--blanc);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .citation-author {
+      font-size: 0.85rem;
+      color: var(--or-clair);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* LISTE STYLÉE */
+    .styled-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .styled-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gris);
+      font-size: 0.96rem;
+    }
+
+    .styled-list li:last-child { border-bottom: none; }
+
+    .styled-list li::before {
+      content: '✦';
+      color: var(--or);
+      font-size: 0.7rem;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    /* SÉPARATEUR CHAPITRE */
+    .chapter-divider {
+      background: var(--vert);
+      height: 6px;
+      background: linear-gradient(90deg, var(--vert) 0%, var(--or) 50%, var(--vert) 100%);
+    }
+
+    /* FOND ALTERNÉ */
+    .chapter-alt { background: var(--blanc); }
+    .chapter-dark { background: var(--vert); color: var(--blanc); }
+    .chapter-dark .chapter h2,
+    .chapter-dark .chapter h3 { color: var(--blanc); }
+    .chapter-dark .chapter p { color: rgba(255,255,255,0.72); }
+    .chapter-dark .chapter-intro { color: rgba(255,255,255,0.6); border-color: var(--or-clair); }
+    .chapter-dark .chapter-num { color: var(--or-clair); opacity: 0.15; }
+    .chapter-dark .chapter-label { color: var(--or-clair); }
+
+    /* DEUX COLONNES */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 32px 0;
+    }
+
+    .col-card {
+      background: var(--blanc);
+      border-radius: 12px;
+      padding: 28px 24px;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .chapter-dark .col-card {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .col-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--texte);
+    }
+
+    .chapter-dark .col-card h4 { color: var(--blanc); }
+
+    .col-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* PHOTO INLINE */
+    .photo-inline {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 36px 0;
+      display: block;
+    }
+
+    /* CTA INTERMÉDIAIRE */
+    .cta-band {
+      background: var(--or-pale);
+      border: 1px solid var(--or);
+      border-radius: 12px;
+      padding: 36px 32px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .cta-band h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--vert);
+      margin-bottom: 10px;
+    }
+
+    .cta-band p {
+      font-size: 0.92rem;
+      color: var(--texte-doux);
+      margin-bottom: 22px;
+    }
+
+    .btn-or {
+      display: inline-block;
+      background: var(--or);
+      color: var(--blanc);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 14px 36px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-or:hover { background: #a07e2e; }
+
+    /* PAGE FINALE CTA */
+    .final-cta {
+      background: var(--vert);
+      padding: 100px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(184,148,58,0.2) 0%, transparent 65%);
+    }
+
+    .final-cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+
+    .final-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 600;
+      color: var(--blanc);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .final-cta h2 em { font-style: italic; color: var(--or-clair); }
+
+    .final-cta p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 40px;
+      line-height: 1.75;
+    }
+
+    .btn-grand {
+      display: inline-block;
+      background: var(--or);
+      color: var(--blanc);
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 18px 52px;
+      border-radius: 7px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s;
+      margin-bottom: 16px;
+    }
+
+    .btn-grand:hover { background: #a07e2e; }
+
+    .final-note {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.32);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111e12;
+      padding: 44px 40px;
+    }
+
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    footer img { height: 44px; opacity: 0.6; }
+
+    .footer-info {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.32);
+      line-height: 1.75;
+    }
+
+    .footer-info a { color: var(--or-clair); text-decoration: none; }
+
+    .footer-credit {
+      text-align: center;
+      color: rgba(255,255,255,0.15);
+      font-size: 0.7rem;
+      margin-top: 28px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      .nav { padding: 12px 16px; }
+      .chapter { padding: 72px 20px; }
+      .sommaire { padding: 56px 20px; }
+      .two-col { grid-template-columns: 1fr; }
+      .citation { padding: 32px 24px; }
+      .final-cta { padding: 72px 20px; }
+      footer { padding: 36px 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .cover-sep { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <img src="https://www.golfclubdenantes.com/wp-content/uploads/2019/02/Logo_white_Golfclubdenantes-since.png" alt="Golf Club de Nantes" />
+  <span class="nav-label">Livre Blanc · Golf & Art de Vivre après 55 ans</span>
+  <a href="#cta-final" class="nav-cta">Rejoindre le club →</a>
+</nav>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-gradient"></div>
+  <div class="cover-content">
+    <p class="cover-eyebrow">Livre Blanc · Édition 2026</p>
+    <h1>
+      Le Golf
+      <em>&amp; l'Art de Vivre après 55 ans</em>
+    </h1>
+    <p class="cover-subtitle">
+      Tout ce que vous avez toujours voulu savoir avant de franchir le pas
+    </p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="num">7</div>
+        <div class="lbl">Chapitres</div>
+      </div>
+      <div class="cover-sep"></div>
+      <div class="cover-meta-item">
+        <div class="num">20</div>
+        <div class="lbl">Min de lecture</div>
+      </div>
+      <div class="cover-sep"></div>
+      <div class="cover-meta-item">
+        <div class="num">+100</div>
+        <div class="lbl">Ans d'histoire</div>
+      </div>
+      <div class="cover-sep"></div>
+      <div class="cover-meta-item">
+        <div class="num">56 ha</div>
+        <div class="lbl">De nature</div>
+      </div>
+    </div>
+    <div class="cover-logos">
+      <img src="https://www.golfclubdenantes.com/wp-content/uploads/2019/02/Logo_white_Golfclubdenantes-since.png" alt="Golf Club de Nantes" />
+      <div class="dot"></div>
+      <span style="color:rgba(255,255,255,0.4);font-size:0.8rem;letter-spacing:0.1em;">APETIT</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Lire</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- SOMMAIRE -->
+<div class="sommaire">
+  <div class="sommaire-inner">
+    <p class="sommaire-label">Au programme</p>
+    <h2 class="sommaire-title">Sommaire</h2>
+    <ul class="sommaire-list">
+      <li><a href="#ch1"><span class="sommaire-num">01</span><div class="sommaire-chapter"><strong>Pourquoi le golf est fait pour vous</strong><span>Les idées reçues qu'il est temps de briser</span></div><span class="sommaire-arrow">→</span></a></li>
+      <li><a href="#ch2"><span class="sommaire-num">02</span><div class="sommaire-chapter"><strong>Les bienfaits prouvés après 55 ans</strong><span>Corps, esprit, liens sociaux : ce que dit la science</span></div><span class="sommaire-arrow">→</span></a></li>
+      <li><a href="#ch3"><span class="sommaire-num">03</span><div class="sommaire-chapter"><strong>Le golf, art de vivre à la française</strong><span>Rituels, convivialité, gastronomie et nature</span></div><span class="sommaire-arrow">→</span></a></li>
+      <li><a href="#ch4"><span class="sommaire-num">04</span><div class="sommaire-chapter"><strong>Votre première année au club</strong><span>De débutant à membre épanoui, pas à pas</span></div><span class="sommaire-arrow">→</span></a></li>
+      <li><a href="#ch5"><span class="sommaire-num">05</span><div class="sommaire-chapter"><strong>Le Golf Club de Nantes, votre maison</strong><span>100 ans d'histoire, un cadre d'exception</span></div><span class="sommaire-arrow">→</span></a></li>
+      <li><a href="#ch6"><span class="sommaire-num">06</span><div class="sommaire-chapter"><strong>Ils ont franchi le pas — Témoignages</strong><span>Trois membres racontent leur arrivée au club</span></div><span class="sommaire-arrow">→</span></a></li>
+      <li><a href="#ch7"><span class="sommaire-num">07</span><div class="sommaire-chapter"><strong>Votre guide pratique pour commencer</strong><span>Budget, matériel, parcours, questions fréquentes</span></div><span class="sommaire-arrow">→</span></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="chapter-divider"></div>
+
+<!-- CHAPITRE 1 -->
+<div id="ch1" class="chapter chapter-alt">
+  <div class="chapter-inner">
+    <div class="chapter-num">01</div>
+    <span class="chapter-label">Idées reçues</span>
+    <h2>Pourquoi le golf<br>est fait pour vous</h2>
+    <p class="chapter-intro">
+      "C'est un sport élitiste." "Il faut être sportif." "C'est trop cher." "On s'ennuie."
+      Chacune de ces phrases est un obstacle imaginaire. Voici pourquoi.
+    </p>
+
+    <p>Le golf souffre d'une réputation qui ne lui ressemble plus. Né dans l'Écosse des Highlands au XV<sup>e</sup> siècle comme loisir populaire des bergers et des pêcheurs, il a traversé les siècles pour devenir le sport de plein air le plus pratiqué en France par les plus de 50 ans. Et pourtant, les clichés persistent.</p>
+
+    <p>La vérité est plus simple et plus belle : le golf est l'un des rares sports où vous pouvez commencer à 60 ans et devenir compétitif en deux ans. Où vous pouvez jouer jusqu'à 85 ans avec le même plaisir qu'à vos débuts. Où la technique compte autant — sinon plus — que la force physique. C'est précisément pour cela qu'il est fait pour vous.</p>
+
+    <h3>Les 5 idées reçues les plus répandues</h3>
+
+    <ul class="styled-list">
+      <li><strong>"C'est un sport élitiste"</strong> — Les formules d'adhésion modernes ont profondément démocratisé le golf. La plupart des clubs proposent aujourd'hui des memberships à partir de quelques centaines d'euros par an, sans droits d'entrée exorbitants. Le Golf Club de Nantes a conçu une formule senior spécifiquement pour rendre le club accessible à ceux qui démarrent.</li>
+      <li><strong>"Il faut être en forme"</strong> — Une partie de golf représente 4 à 6 km de marche douce sur terrain vallonné. C'est moins intense qu'un footing, et infiniment plus agréable. Les voiturettes électriques sont disponibles pour ceux qui le souhaitent.</li>
+      <li><strong>"C'est long et ennuyeux"</strong> — Une partie à 9 trous dure moins de 2 heures. Les 18 trous se jouent en 4 heures. Et chaque trou est différent, chaque sortie est unique. On ne s'ennuie pas au golf — on réfléchit, on anticipe, on partage.</li>
+      <li><strong>"C'est un sport solitaire"</strong> — Au contraire. On joue toujours en groupe, en générant des conversations naturelles pendant 4 heures. C'est l'un des meilleurs générateurs de liens sociaux durables qui existe.</li>
+      <li><strong>"C'est trop technique pour commencer tard"</strong> — La technique s'acquiert progressivement, avec l'accompagnement d'un pro. Des centaines de membres de clubs français ont commencé après 55 ans et jouent aujourd'hui avec fierté. L'âge est un avantage : on arrive avec la patience, la discipline et la capacité de concentration que les jeunes n'ont pas encore.</li>
+    </ul>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="big">400 000</div>
+        <div class="desc">Licenciés golf en France en 2024</div>
+      </div>
+      <div class="stat-card">
+        <div class="big">+40%</div>
+        <div class="desc">De croissance des adhésions senior depuis 2019</div>
+      </div>
+      <div class="stat-card">
+        <div class="big">55 ans</div>
+        <div class="desc">Âge moyen du nouveau membre en France</div>
+      </div>
+    </div>
+
+    <div class="encadre">
+      <p class="encadre-title">Le saviez-vous ?</p>
+      <p>En France, 1 nouveau licencié sur 3 a plus de 50 ans. Le golf est devenu le sport de la seconde vie active. Et cette tendance s'accélère chaque année, portée par une génération de quinquagénaires et sexagénaires qui refusent de ralentir.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPITRE 2 -->
+<div id="ch2" class="chapter" style="background:var(--creme);">
+  <div class="chapter-inner">
+    <div class="chapter-num">02</div>
+    <span class="chapter-label">Santé & bien-être</span>
+    <h2>Les bienfaits prouvés<br>après 55 ans</h2>
+    <p class="chapter-intro">
+      Ce n'est pas qu'une question de plaisir. La science confirme ce que les golfeurs savent depuis longtemps : ce sport fait du bien, profondément et durablement.
+    </p>
+
+    <p>Plusieurs études menées en Europe du Nord sur des cohortes de plusieurs milliers de golfeurs réguliers ont mis en évidence des effets mesurables sur la santé physique et mentale des pratiquants de plus de 50 ans. Ces résultats ne sont pas anecdotiques — ils transforment la façon dont les médecins du sport et les gériatres regardent ce sport.</p>
+
+    <h3>Pour le corps</h3>
+
+    <p>Une partie de 18 trous représente entre 8 000 et 12 000 pas, soit l'équivalent de 5 à 7 km de marche sur terrain naturel et vallonné. À raison de deux sorties par semaine, un golfeur régulier dépasse largement les recommandations de l'OMS en matière d'activité physique hebdomadaire pour les seniors.</p>
+
+    <p>Le swing de golf mobilise plus de 30 groupes musculaires distincts. Il sollicite la rotation du tronc, la stabilité des jambes, la coordination bras-épaule-bassin, et développe un équilibre postural que très peu d'autres activités permettent d'atteindre après 60 ans. Résultat direct : une meilleure prévention des chutes et une préservation de la mobilité articulaire.</p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="big">5 ans</div>
+        <div class="desc">Espérance de vie supplémentaire observée chez les golfeurs réguliers (étude suédoise, Karolinska Institute)</div>
+      </div>
+      <div class="stat-card">
+        <div class="big">40%</div>
+        <div class="desc">De réduction du risque de maladies cardiovasculaires chez les seniors pratiquant 2x/semaine</div>
+      </div>
+      <div class="stat-card">
+        <div class="big">30+</div>
+        <div class="desc">Groupes musculaires mobilisés à chaque swing</div>
+      </div>
+    </div>
+
+    <h3>Pour l'esprit</h3>
+
+    <p>Le golf est un sport cognitif autant qu'athlétique. Chaque coup requiert une analyse du terrain, une évaluation du vent, un calcul de distance, une décision stratégique. Cette stimulation mentale continue est un facteur reconnu de prévention du déclin cognitif et de maintien de la vivacité intellectuelle.</p>
+
+    <p>La marche en plein air dans un cadre naturel agit par ailleurs comme un régulateur puissant du système nerveux autonome. Les recherches en neurosciences montrent que 90 minutes de marche en environnement naturel réduisent significativement l'activité de la région cérébrale associée aux ruminations — ce cercle vicieux de pensées négatives qui s'installe souvent au moment de la retraite.</p>
+
+    <div class="citation">
+      <blockquote>"La retraite peut être soit la meilleure période de votre vie, soit la plus difficile. Ce qui fait la différence, c'est d'avoir un cadre, des rituels et des gens avec qui les partager."</blockquote>
+      <p class="citation-author">— Dr. Marie-Claire Séguret, gériatre, CHU de Nantes</p>
+    </div>
+
+    <h3>Pour les liens sociaux</h3>
+
+    <p>C'est peut-être le bénéfice le moins visible mais le plus profond. Le golf se pratique presque toujours en groupe de deux à quatre joueurs, pendant plusieurs heures. Il génère des conversations naturelles, sans l'inconfort des "soirées networking" ou des dîners forcés. On parle du jeu, de la vie, des projets — librement, dans un cadre magnifique.</p>
+
+    <p>Les études sur la solitude des retraités sont alarmantes : 30% des hommes qui cessent de travailler déclarent se sentir isolés dans les 18 mois suivant leur départ. Le golf est l'un des antidotes les plus efficaces à ce phénomène, précisément parce qu'il crée des rituels collectifs réguliers et des appartenances durables.</p>
+
+    <div class="cta-band">
+      <h3>Prêt à découvrir par vous-même ?</h3>
+      <p>Rejoignez-nous pour une matinée découverte gratuite au Golf Club de Nantes. Aucun engagement, aucun niveau requis.</p>
+      <a href="#cta-final" class="btn-or">Réserver ma place →</a>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPITRE 3 -->
+<div id="ch3" class="chapter-dark">
+  <div class="chapter">
+    <div class="chapter-inner">
+      <div class="chapter-num">03</div>
+      <span class="chapter-label">Art de vivre</span>
+      <h2>Le golf,<br>art de vivre à la française</h2>
+      <p class="chapter-intro">
+        Il y a dans le golf quelque chose qui dépasse le sport. Une façon d'habiter le temps, de cultiver le soin du détail, d'apprécier ce qui est lent et beau.
+      </p>
+
+      <p>Les Japonais ont un mot, <em>shibui</em>, pour désigner cette beauté qui naît de la simplicité et de la patiente maîtrise. Le golf occidental en est une expression particulière : le joueur qui cherche, pendant des années, à perfectionner un geste à la fois banal et infini.</p>
+
+      <p>Mais le golf est aussi un art de vivre social, dans la grande tradition française qui mêle nature, table et conversation. Le club-house est un lieu à part — ni restaurant ordinaire, ni café, ni salle de sport. C'est un espace de décompression où l'on repose ses clubs, commande un verre, et raconte sa partie avec ce mélange de modestie feinte et de fierté à peine dissimulée.</p>
+
+      <div class="two-col">
+        <div class="col-card">
+          <h4>Le rituel du 19<sup>e</sup> trou</h4>
+          <p>Après 18 trous, on se retrouve au club-house. C'est un moment aussi important que la partie elle-même — on analyse, on rit, on refait les coups ratés et on magnifie les réussites. Ce rituel crée des souvenirs communs, fondement des vraies amitiés.</p>
+        </div>
+        <div class="col-card">
+          <h4>La gastronomie au cœur</h4>
+          <p>Le restaurant du Golf Club de Nantes, ouvert à tous du mardi au dimanche, propose une cuisine traditionnelle de qualité. Le menu homard, proposé chaque dernier vendredi du mois, est devenu un rendez-vous gastronomique incontournable de la région nantaise.</p>
+        </div>
+      </div>
+
+      <p>Il y a aussi dans le golf une relation au temps rare dans notre monde contemporain. Une partie dure 4 heures. On ne peut pas aller plus vite. On apprend à habiter l'attente, à observer le vent qui plie les herbes, à écouter les oiseaux. C'est une forme de méditation active que les meilleurs yogis pourraient envier.</p>
+
+      <p>Le parcours du Golf Club de Nantes, dessiné par l'architecte britannique Franck Pennink et entretenu depuis plus de 50 ans, est l'un des plus beaux exemples de ce que le golf peut être quand il s'inscrit dans un paysage naturel avec respect et intelligence. Les 18 trous serpentent entre arbres centenaires, étangs et vallons dans un équilibre parfait entre défi technique et contemplation.</p>
+
+      <div class="citation">
+        <blockquote>"Le golf m'a appris que la patience n'est pas l'attente du résultat, mais l'attention portée au chemin."</blockquote>
+        <p class="citation-author">— Jean-Pierre M., membre depuis 2018, ex-directeur commercial</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPITRE 4 -->
+<div id="ch4" class="chapter chapter-alt">
+  <div class="chapter-inner">
+    <div class="chapter-num">04</div>
+    <span class="chapter-label">Votre parcours</span>
+    <h2>Votre première année<br>au club</h2>
+    <p class="chapter-intro">
+      De la première balle frappée sur le practice à votre premier scorecard rempli avec fierté — voici à quoi ressemble votre année d'initiation au Golf Club de Nantes.
+    </p>
+
+    <h3>Les premiers mois : découverte et fondations</h3>
+
+    <p>La grande majorité des nouveaux membres adultes n'ont jamais touché un club de leur vie. C'est exactement la situation que nos pros connaissent le mieux — et qu'ils accompagnent avec le plus de plaisir. Commencer sans habitudes à désapprendre est souvent un avantage.</p>
+
+    <p>Les premières séances se déroulent sur le practice : un espace sécurisé où vous frappez des balles à votre rythme, encadré par un professionnel qui corrige votre posture, votre grip et les bases de votre swing. Ces fondations sont cruciales — elles déterminent tout ce qui vient après.</p>
+
+    <div class="encadre">
+      <p class="encadre-title">L'Adult Golf Academy</p>
+      <p>Le Golf Club de Nantes propose une Adult Golf Academy spécifiquement conçue pour les nouveaux membres adultes. Programme progressif, groupes de niveau homogène, suivi personnalisé. C'est la voie royale pour passer du débutant complet au joueur autonome en 6 à 12 mois.</p>
+    </div>
+
+    <h3>Mois 3-6 : les premiers trous</h3>
+
+    <p>Après une dizaine d'heures de cours, vous êtes prêt pour votre première sortie sur le parcours. C'est un moment charnière que tous les membres se rappellent avec précision — cette première fois où la balle part dans la direction prévue, où le putter touche le green, où on entend le son sourd et satisfaisant d'un birdie rentré.</p>
+
+    <p>Durant cette période, vous jouez généralement 9 trous, accompagné d'un membre expérimenté ou d'un pro. Vous apprenez le protocole, les règles de courtoisie, la lecture du terrain. Vous commencez à prendre possession du parcours comme d'un espace familier.</p>
+
+    <h3>Mois 6-12 : votre première compétition</h3>
+
+    <p>Le Golf Club de Nantes propose un calendrier de compétitions interne riche et varié — du Trophée des Familles aux Coupes de l'Été. Les compétitions pour débutants sont conçues pour être inclusives et non intimidantes. Beaucoup de membres se souviennent de leur première compétition comme d'un tournant — le moment où ils ont vraiment senti qu'ils appartenaient au club.</p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="big">6 mois</div>
+        <div class="desc">Pour atteindre un index permettant de jouer seul sur le parcours</div>
+      </div>
+      <div class="stat-card">
+        <div class="big">2h</div>
+        <div class="desc">Par semaine suffisent pour progresser régulièrement la première année</div>
+      </div>
+      <div class="stat-card">
+        <div class="big">100%</div>
+        <div class="desc">Des membres interrogés recommandent d'avoir commencé avec un pro</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPITRE 5 -->
+<div id="ch5" class="chapter" style="background:var(--creme);">
+  <div class="chapter-inner">
+    <div class="chapter-num">05</div>
+    <span class="chapter-label">Le Club</span>
+    <h2>Le Golf Club de Nantes,<br>votre maison</h2>
+    <p class="chapter-intro">
+      Fondé en 1921, le Golf Club de Nantes n'est pas seulement le premier golf de la région — c'est un lieu de vie, une communauté, une histoire qui se réécrit à chaque génération.
+    </p>
+
+    <img
+      class="photo-inline"
+      src="https://www.golfclubdenantes.com/wp-content/uploads/2018/07/golf_mobile_900x400_acf_cropped.jpg"
+      alt="Le parcours du Golf Club de Nantes — Vigneux de Bretagne"
+    />
+
+    <p>Cent ans après sa fondation, le Golf Club de Nantes reste ce qu'il a toujours été : un club à taille humaine, où l'on se connaît par prénom, où le président croise les membres au club-house le samedi matin, où les anciennes et les nouvelles générations se retrouvent autour de l'amour du jeu.</p>
+
+    <p>Le parcours, situé à Vigneux de Bretagne à quelques kilomètres du centre de Nantes, s'étend sur 56 hectares de nature préservée. Dessiné par l'architecte Franck Pennink — auteur de plusieurs parcours classés parmi les plus beaux d'Europe — il offre un défi technique constant tout en restant accessible aux débutants qui progressent.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h4>Le club-house</h4>
+        <p>Chaleureux, ouvert à tous, le club-house est le cœur battant du club. C'est là que commence et se termine chaque journée de golf — et que se construisent les amitiés durables.</p>
+      </div>
+      <div class="col-card">
+        <h4>Le practice</h4>
+        <p>Équipé d'un simulateur Trackman de dernière génération, notre practice permet de s'entraîner par tous les temps et d'analyser précisément ses coups avec les meilleurs outils du golf professionnel.</p>
+      </div>
+    </div>
+
+    <div class="encadre">
+      <p class="encadre-title">Le Nantes Business Club</p>
+      <p>Le Golf Club de Nantes accueille également le Nantes Business Club — un cercle de dirigeants et cadres supérieurs qui combinent leur passion du golf et leurs relations professionnelles. Pour ceux qui souhaitent développer leur réseau tout en jouant, c'est une opportunité unique dans la région nantaise.</p>
+    </div>
+
+    <p>Au-delà du parcours, le Golf Club de Nantes propose un restaurant gastronomique, un proshop complet, des vestiaires, et un programme de compétitions parmi les plus riches des Pays de la Loire — dont le Pro-Am de Nantes, l'un des événements golfiques les plus courus de la région.</p>
+  </div>
+</div>
+
+<!-- CHAPITRE 6 -->
+<div id="ch6" class="chapter-dark">
+  <div class="chapter">
+    <div class="chapter-inner">
+      <div class="chapter-num">06</div>
+      <span class="chapter-label">Témoignages</span>
+      <h2>Ils ont franchi le pas</h2>
+      <p class="chapter-intro">
+        Trois membres du Golf Club de Nantes racontent comment et pourquoi ils ont commencé le golf après 55 ans.
+      </p>
+
+      <div class="citation">
+        <blockquote>"J'ai attendu la retraite pour commencer. Ma femme m'avait offert un cours d'initiation pour mes 60 ans. Je pensais faire ça une fois, par politesse. Deux ans plus tard, je joue trois fois par semaine et j'ai trouvé mes meilleurs amis ici."</blockquote>
+        <p class="citation-author">— Michel D., 63 ans · Ancien chef d'entreprise · Membre depuis 2023</p>
+      </div>
+
+      <div class="citation">
+        <blockquote>"Ce qui m'a surprise, c'est la dimension intellectuelle. Je pensais que le golf c'était frapper une balle. En fait c'est un jeu d'échecs en plein air. Chaque trou est un problème à résoudre. J'adore ça."</blockquote>
+        <p class="citation-author">— Brigitte L., 58 ans · Ancienne directrice commerciale · Membre depuis 2021</p>
+      </div>
+
+      <div class="citation">
+        <blockquote>"Je suis arrivé au club six mois après ma retraite, au moment où je commençais à me demander ce que j'allais faire de mes journées. Le golf m'a donné une structure, des rendez-vous, des progrès à suivre. Il m'a redonné un projet."</blockquote>
+        <p class="citation-author">— Hervé T., 67 ans · Ancien médecin hospitalier · Membre depuis 2019</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPITRE 7 -->
+<div id="ch7" class="chapter chapter-alt">
+  <div class="chapter-inner">
+    <div class="chapter-num">07</div>
+    <span class="chapter-label">Guide pratique</span>
+    <h2>Votre guide pratique<br>pour commencer</h2>
+    <p class="chapter-intro">
+      Budget, matériel, questions fréquentes — tout ce qu'il faut savoir avant votre première visite au club.
+    </p>
+
+    <h3>Quel budget prévoir ?</h3>
+
+    <p>Le golf a considérablement évolué sur le plan tarifaire. Voici une vision réaliste et complète pour votre première année :</p>
+
+    <ul class="styled-list">
+      <li><strong>Adhésion annuelle (formule senior) :</strong> variable selon la formule choisie au Golf Club de Nantes — renseignez-vous lors de la Journée Portes Ouvertes pour connaître le tarif dédié actuellement en vigueur.</li>
+      <li><strong>Cours d'initiation :</strong> inclus dans la formule Journée Portes Ouvertes (2 cours individuels offerts à l'adhésion).</li>
+      <li><strong>Matériel de départ :</strong> il est inutile d'investir dans un équipement complet la première année. Un demi-set d'occasion (8 clubs) entre 80 et 150 € suffit amplement pour débuter. Le Golf Club prête du matériel lors des premières parties.</li>
+      <li><strong>Équipement vestimentaire :</strong> une tenue confortable, des chaussures à crampons souples (à partir de 60 €). Pas besoin de polo de luxe pour commencer.</li>
+      <li><strong>Budget annuel total réaliste :</strong> entre 800 € et 1 500 € la première année (adhésion + matériel de base + quelques équipements), puis 500 à 800 € les années suivantes (adhésion seule).</li>
+    </ul>
+
+    <h3>Questions fréquentes</h3>
+
+    <div class="encadre">
+      <p class="encadre-title">Faut-il passer un permis de jouer ?</p>
+      <p>Oui — en France, il faut obtenir un index de départ (anciennement appelé "carte verte") avant de jouer sur le parcours seul. Cet objectif est généralement atteint en 6 à 10 heures de cours, sur quelques semaines. Vos pros vous accompagnent pour y parvenir le plus vite possible.</p>
+    </div>
+
+    <div class="encadre">
+      <p class="encadre-title">À quelle fréquence joue-t-on ?</p>
+      <p>La progression est optimale à partir de 2 sorties par semaine (une sur le practice, une sur le parcours). Mais beaucoup de membres jouent une fois par semaine et progressent excellemment. Le golf s'adapte à votre rythme de vie.</p>
+    </div>
+
+    <div class="encadre">
+      <p class="encadre-title">Peut-on jouer seul ou toujours en groupe ?</p>
+      <p>Une fois votre index obtenu, vous pouvez réserver un départ seul ou en groupe. Le club propose aussi des "flights" (groupes de joueurs) organisés le week-end pour ceux qui souhaitent jouer en compagnie sans avoir à organiser eux-mêmes.</p>
+    </div>
+
+    <div class="encadre">
+      <p class="encadre-title">Mon conjoint(e) peut-il/elle venir sans jouer ?</p>
+      <p>Absolument. Le restaurant du Golf Club de Nantes est ouvert à tous, golfeurs et non-golfeurs. De nombreux couples ont trouvé dans le club leur activité idéale : l'un joue, l'autre déjeune, et ils se retrouvent pour le 19e trou.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="big">02 40<br style="font-size:1rem"> 63 25 82</div>
+        <div class="desc">Le numéro direct du Golf Club de Nantes</div>
+      </div>
+      <div class="stat-card">
+        <div class="big">Mar→<br>Dim</div>
+        <div class="desc">Le restaurant est ouvert du mardi au dimanche</div>
+      </div>
+      <div class="stat-card">
+        <div class="big">Gratuit</div>
+        <div class="desc">L'entrée à la Journée Portes Ouvertes Seniors</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section id="cta-final" class="final-cta">
+  <div class="final-cta-inner">
+    <p style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--or-clair);margin-bottom:20px;">Passez à l'action</p>
+    <h2>
+      Votre prochain chapitre<br>
+      <em>commence ici</em>
+    </h2>
+    <p>
+      Le Golf Club de Nantes vous invite à une Journée Portes Ouvertes Senior gratuite.
+      Initiation, visite du parcours, rencontre avec des membres, découverte de la formule senior dédiée.
+      Places limitées à 30 participants.
+    </p>
+    <a href="https://www.golfclubdenantes.com/tarifs/devenir-membre/" class="btn-grand">→ Je réserve ma place gratuite</a>
+    <br>
+    <p class="final-note">Aucun engagement · Annulation libre · Équipement prêté sur place</p>
+
+    <div style="margin-top:52px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.1);">
+      <img src="https://www.golfclubdenantes.com/wp-content/uploads/2019/02/Logo_white_Golfclubdenantes-since.png" alt="Golf Club de Nantes" style="height:56px;opacity:0.75;margin-bottom:16px;" />
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.75;">
+        Route départementale 81 · 44360 Vigneux de Bretagne<br>
+        <a href="tel:0240632582" style="color:var(--or-clair);text-decoration:none;">02 40 63 25 82</a> ·
+        <a href="mailto:accueil@golfclubdenantes.com" style="color:var(--or-clair);text-decoration:none;">accueil@golfclubdenantes.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <img src="https://www.golfclubdenantes.com/wp-content/uploads/2019/02/Logo_white_Golfclubdenantes-since.png" alt="Golf Club de Nantes" />
+    <div class="footer-info">
+      Route dép. 81 · 44360 Vigneux de Bretagne<br>
+      <a href="https://www.golfclubdenantes.com" target="_blank">www.golfclubdenantes.com</a>
+    </div>
+    <div class="footer-info">
+      <a href="https://www.golfclubdenantes.com/mentions-legales/">Mentions légales</a><br>
+      <a href="#">Se désinscrire</a>
+    </div>
+  </div>
+  <p class="footer-credit">Livre blanc conçu par APETIT pour le Golf Club de Nantes · 2026 · Tous droits réservés</p>
+</footer>
+
+<script>
+  // Barre de progression lecture
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrolled = doc.scrollTop || document.body.scrollTop;
+    const total = doc.scrollHeight - doc.clientHeight;
+    const pct = (scrolled / total) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>20 Posts Instagram — Golf Club de Nantes × APETIT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    :root{--vert:#1e3a20;--vm:#2e5430;--vc:#4a7c52;--or:#b8943a;--orc:#d4aa55;--orp:#f0e4c2;--cr:#f9f6ef;--bl:#ffffff;--gris:#f2ede4;--tx:#1a2b1c;--ts:#5a6b5c;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:#0d1a0e;color:#fff;padding:0;}
+
+    /* ── HEADER ── */
+    .page-header{background:var(--vert);padding:32px 28px;border-bottom:2px solid var(--or);}
+    .page-header img{height:48px;opacity:0.9;margin-bottom:16px;display:block;}
+    .page-header h1{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--bl);margin-bottom:6px;}
+    .page-header h1 em{color:var(--orc);font-style:italic;}
+    .page-header p{font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.65;max-width:600px;}
+    .header-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+    .htag{background:rgba(184,148,58,0.2);border:1px solid rgba(184,148,58,0.35);border-radius:20px;padding:4px 12px;font-size:0.75rem;color:var(--orc);}
+
+    /* ── FILTRES ── */
+    .filters{background:#111e12;padding:14px 28px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(184,148,58,0.15);}
+    .filters span{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-right:4px;}
+    .fbtn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 14px;font-size:0.78rem;color:rgba(255,255,255,0.6);cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif;}
+    .fbtn:hover,.fbtn.active{background:var(--or);color:#fff;border-color:var(--or);}
+
+    /* ── GRILLE ── */
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;padding:28px;max-width:1400px;margin:0 auto;}
+
+    /* ── POST CARD ── */
+    .post-card{background:#131f14;border-radius:14px;overflow:hidden;border:1px solid rgba(184,148,58,0.15);transition:transform 0.2s,box-shadow 0.2s;}
+    .post-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.5);}
+
+    /* Visuel carré 1:1 */
+    .post-visual{width:100%;aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer;}
+
+    /* Méta Instagram */
+    .post-meta-bar{padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .ig-avatar{width:28px;height:28px;border-radius:50%;background:var(--vert);border:1.5px solid var(--or);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--orc);flex-shrink:0;}
+    .ig-name{font-size:0.8rem;font-weight:600;color:#fff;}
+    .ig-handle{font-size:0.7rem;color:rgba(255,255,255,0.4);}
+    .post-num{margin-left:auto;font-size:9px;font-weight:700;letter-spacing:0.1em;color:rgba(255,255,255,0.2);}
+
+    /* Actions IG */
+    .ig-actions{padding:10px 16px;display:flex;gap:14px;align-items:center;}
+    .ig-btn{background:none;border:none;color:rgba(255,255,255,0.5);font-size:1rem;cursor:pointer;transition:color 0.15s;padding:2px;}
+    .ig-btn:hover{color:var(--orc);}
+    .ig-save{margin-left:auto;}
+
+    /* Caption */
+    .post-caption{padding:0 16px 8px;}
+    .caption-text{font-size:0.82rem;line-height:1.6;color:rgba(255,255,255,0.75);margin-bottom:8px;}
+    .caption-text strong{color:#fff;}
+    .caption-hashtags{font-size:0.75rem;color:rgba(100,160,110,0.9);line-height:1.7;}
+
+    /* Objectif tag */
+    .post-footer{padding:8px 16px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+    .obj-tag{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border-radius:12px;}
+    .tag-notoriete{background:rgba(74,124,82,0.25);color:#6db87a;}
+    .tag-engagement{background:rgba(184,148,58,0.2);color:var(--orc);}
+    .tag-conversion{background:rgba(30,58,32,0.5);color:#8ac898;}
+    .tag-temoignage{background:rgba(90,50,20,0.3);color:#d4956a;}
+    .timing-tag{font-size:9px;color:rgba(255,255,255,0.3);margin-left:auto;}
+
+    /* Bouton copier caption */
+    .copy-caption{background:rgba(184,148,58,0.12);border:1px solid rgba(184,148,58,0.25);border-radius:6px;padding:5px 12px;font-size:0.74rem;font-weight:600;color:var(--orc);cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.15s;}
+    .copy-caption:hover{background:rgba(184,148,58,0.25);}
+
+    /* Calendrier */
+    .calendar-section{background:#111e12;padding:28px;border-top:1px solid rgba(184,148,58,0.15);}
+    .cal-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--bl);margin-bottom:6px;}
+    .cal-sub{font-size:0.82rem;color:rgba(255,255,255,0.45);margin-bottom:20px;}
+    .cal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:1000px;}
+    .cal-week{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;}
+    .cal-week-label{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--orc);margin-bottom:10px;}
+    .cal-post{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+    .cal-post:last-child{border-bottom:none;}
+    .cal-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+    .cal-post-txt{font-size:0.76rem;color:rgba(255,255,255,0.6);line-height:1.3;}
+
+    @media(max-width:600px){.grid{padding:14px;grid-template-columns:1fr;}.cal-grid{grid-template-columns:1fr 1fr;}.filters{padding:10px 14px;}}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <img src="https://www.golfclubdenantes.com/wp-content/uploads/2019/02/Logo_white_Golfclubdenantes-since.png" alt="Golf Club de Nantes"/>
+  <h1>20 Posts Instagram<br><em>Stratégie Recrutement Seniors 2026</em></h1>
+  <p>Contenus prêts à publier pour le compte @golfclubdenantes. Couvrent 5 semaines de communication, de la notoriété à la conversion. Cliquez sur chaque visuel pour l'agrandir.</p>
+  <div class="header-tags">
+    <span class="htag">📸 20 posts</span>
+    <span class="htag">📅 5 semaines</span>
+    <span class="htag">🎯 Cible 55–65 ans</span>
+    <span class="htag">📍 Loire-Atlantique</span>
+    <span class="htag">⛳ Golf Club de Nantes</span>
+  </div>
+</div>
+
+<!-- FILTRES -->
+<div class="filters">
+  <span>Filtrer :</span>
+  <button class="fbtn active" onclick="filterPosts('all',this)">Tous (20)</button>
+  <button class="fbtn" onclick="filterPosts('notoriete',this)">🟢 Notoriété</button>
+  <button class="fbtn" onclick="filterPosts('engagement',this)">🟡 Engagement</button>
+  <button class="fbtn" onclick="filterPosts('temoignage',this)">🟠 Témoignage</button>
+  <button class="fbtn" onclick="filterPosts('conversion',this)">🔵 Conversion</button>
+</div>
+
+<!-- GRILLE -->
+<div class="grid" id="posts-grid"></div>
+
+<!-- CALENDRIER -->
+<div class="calendar-section">
+  <h2 class="cal-title">Calendrier de publication — 5 semaines</h2>
+  <p class="cal-sub">Rythme recommandé : 4 posts/semaine · Lundi, Mercredi, Vendredi, Dimanche</p>
+  <div class="cal-grid" id="cal-grid"></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// DATA — 20 POSTS
+// ══════════════════════════════════════════════════════
+const POSTS = [
+
+  // ── SEMAINE 1 : NOTORIÉTÉ
+  {
+    id:1, week:1, day:'Lun', type:'notoriete',
+    timing:'Lun S1 · 9h',
+    visual: (cv,W,H) => {
+      const ctx=cv.getContext('2d');
+      const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0d1e0e');g.addColorStop(1,'#1e3a20');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      // Motif terrain
+      ctx.strokeStyle='rgba(74,124,82,0.15)';ctx.lineWidth=1;
+      for(let i=0;i<8;i++){ctx.beginPath();ctx.arc(W/2,H+80,120+i*60,0,Math.PI*2);ctx.stroke();}
+      // Grande stat centrale
+      ctx.fillStyle='rgba(184,148,58,0.08)';ctx.beginPath();ctx.arc(W/2,H/2,120,0,Math.PI*2);ctx.fill();
+      ctx.font='bold 64px serif';ctx.fillStyle='#d4aa55';ctx.textAlign='center';ctx.fillText('1921',W/2,H/2+8);
+      ctx.font='12px sans-serif';ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fillText('Fondé en',W/2,H/2-32);
+      ctx.font='bold 11px sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';ctx.fillText('PREMIER GOLF DE NANTES',W/2,H/2+36);
+      // Ligne or
+      ctx.strokeStyle='#b8943a';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(W/2-80,H/2+50);ctx.lineTo(W/2+80,H/2+50);ctx.stroke();
+      ctx.font='10px sans-serif';ctx.fillStyle='rgba(212,170,85,0.7)';ctx.fillText('Golf Club de Nantes · Vigneux de Bretagne',W/2,H/2+70);
+      // Logo area top
+      ctx.font='bold 13px sans-serif';ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fillText('GOLF CLUB DE NANTES',W/2,30);
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.3)';ctx.fillText('— depuis 1921 —',W/2,46);
+    },
+    caption:`✨ Depuis 1921, le Golf Club de Nantes écrit l'histoire du golf dans notre région.\n\n103 ans de fairways, de compétitions, d'amitiés et de passions partagées.\n\nEt si votre histoire commençait ici ? 🌿\n\n📍 Vigneux de Bretagne — 56 hectares de nature`,
+    hashtags:'#GolfClubNantes #Golf1921 #GolfNantes #PatrimoineGolf #NantesVigneux',
+    objectif:'Notoriété & ancrage territorial',
+  },
+
+  {
+    id:2, week:1, day:'Mer', type:'notoriete',
+    timing:'Mer S1 · 7h30',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      // Ciel matin
+      const sky=ctx.createLinearGradient(0,0,0,H*0.6);sky.addColorStop(0,'#1a3060');sky.addColorStop(0.6,'#c87040');sky.addColorStop(1,'#2e6040');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+      // Soleil levant
+      const sg=ctx.createRadialGradient(W/2,H*0.38,0,W/2,H*0.38,100);sg.addColorStop(0,'rgba(255,200,80,0.9)');sg.addColorStop(0.4,'rgba(255,140,40,0.4)');sg.addColorStop(1,'rgba(255,100,0,0)');ctx.fillStyle=sg;ctx.fillRect(0,0,W,H);
+      // Collines
+      ctx.fillStyle='#1e4020';ctx.beginPath();ctx.moveTo(0,H*0.58);for(let x=0;x<=W;x+=6)ctx.lineTo(x,H*0.58-Math.sin(x*0.012)*24-Math.sin(x*0.006)*16);ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.fill();
+      ctx.fillStyle='#152e18';ctx.beginPath();ctx.moveTo(0,H*0.72);for(let x=0;x<=W;x+=6)ctx.lineTo(x,H*0.72-Math.sin(x*0.01+1)*18);ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.fill();
+      // Overlay
+      const ov=ctx.createLinearGradient(0,H*0.55,0,H);ov.addColorStop(0,'rgba(10,20,12,0)');ov.addColorStop(1,'rgba(10,20,12,0.85)');ctx.fillStyle=ov;ctx.fillRect(0,0,W,H);
+      // Texte
+      ctx.textAlign='center';
+      ctx.font='italic 15px serif';ctx.fillStyle='rgba(255,255,255,0.6)';ctx.fillText('Le moment que vous attendiez.',W/2,H-90);
+      ctx.font='bold 22px serif';ctx.fillStyle='#fff';ctx.fillText('Votre retraite commence',W/2,H-64);
+      ctx.font='bold italic 22px serif';ctx.fillStyle='#d4aa55';ctx.fillText('sur un green. 🌅',W/2,H-38);
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.3)';ctx.fillText('Golf Club de Nantes · @golfclubdenantes',W/2,H-14);
+    },
+    caption:`🌅 7h30 du matin. La rosée sur le fairway, le soleil qui se lève sur Vigneux, et la journée entière devant vous.\n\nC'est ça, la retraite au Golf Club de Nantes.\n\nEt si on vous réservait une matinée découverte ? ☀️\n\n🔗 Lien en bio`,
+    hashtags:'#GolfMatin #RetraiteActive #GolfNantes #LevéDeSoleil #NouveauDépart',
+    objectif:'Notoriété émotionnelle',
+  },
+
+  {
+    id:3, week:1, day:'Ven', type:'engagement',
+    timing:'Ven S1 · 12h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      ctx.fillStyle='#0f1e10';ctx.fillRect(0,0,W,H);
+      // Grille de points
+      ctx.fillStyle='rgba(184,148,58,0.08)';for(let x=20;x<W;x+=22)for(let y=20;y<H;y+=22){ctx.beginPath();ctx.arc(x,y,1,0,Math.PI*2);ctx.fill();}
+      // Question centrale
+      ctx.textAlign='center';
+      ctx.font='bold 48px sans-serif';ctx.fillStyle='rgba(184,148,58,0.15)';ctx.fillText('?',W/2,H/2+20);
+      ctx.font='bold 15px sans-serif';ctx.fillStyle='#fff';ctx.fillText('Et vous, quel sera',W/2,H/2-48);
+      ctx.font='bold italic 22px serif';ctx.fillStyle='#d4aa55';ctx.fillText('votre premier sport',W/2,H/2-22);
+      ctx.font='bold italic 22px serif';ctx.fillStyle='#d4aa55';ctx.fillText('de retraite ?',W/2,H/2+4);
+      // Options
+      const opts=[['⛳ Golf','#2e5430'],['🎳 Pétanque','#2a2a40'],['🚴 Vélo','#1a3a1a'],['🧘 Yoga','#2a1a30']];
+      opts.forEach((o,i)=>{
+        const x=i%2===0?W*0.25:W*0.75,y=H*0.7+(Math.floor(i/2))*44;
+        ctx.fillStyle=o[1];ctx.beginPath();ctx.roundRect(x-70,y-16,140,32,16);ctx.fill();
+        ctx.font='bold 11px sans-serif';ctx.fillStyle='rgba(255,255,255,0.85)';ctx.fillText(o[0],x,y+5);
+      });
+      ctx.font='10px sans-serif';ctx.fillStyle='rgba(255,255,255,0.25)';ctx.fillText('Répondez en commentaire 👇',W/2,H-16);
+    },
+    caption:`Et vous, quel sera votre premier grand projet sportif à la retraite ? ⬇️\n\n⛳ A — Le golf (évidemment 😏)\n🎳 B — La pétanque\n🚴 C — Le vélo\n🧘 D — Le yoga\n\nRépondez en commentaire ! On vous révèle pourquoi le golf bat tout le monde dans les prochains posts 😄`,
+    hashtags:'#SportRetraite #SondageInstagram #GolfNantes #Sondage #RetraiteActive',
+    objectif:'Engagement — Sondage',
+  },
+
+  {
+    id:4, week:1, day:'Dim', type:'notoriete',
+    timing:'Dim S1 · 10h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      const g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#1a2e1c');g.addColorStop(1,'#0d1a0e');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      // Chiffres stats
+      const stats=[['56 ha','de nature préservée'],['18 trous','parcours par 72'],['30+','groupes musculaires\npar swing'],['5 ans','d\'espérance de vie\nen plus']];
+      ctx.textAlign='center';
+      ctx.font='bold 13px sans-serif';ctx.fillStyle='rgba(255,255,255,0.7)';ctx.fillText('LE GOLF APRÈS 55 ANS EN CHIFFRES',W/2,28);
+      ctx.strokeStyle='rgba(184,148,58,0.4)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(50,40);ctx.lineTo(W-50,40);ctx.stroke();
+      stats.forEach((s,i)=>{
+        const x=i%2===0?W*0.27:W*0.73,y=H*0.28+(Math.floor(i/2))*H*0.36;
+        ctx.fillStyle='rgba(30,58,32,0.6)';ctx.beginPath();ctx.roundRect(x-80,y-44,160,100,12);ctx.fill();
+        ctx.strokeStyle='rgba(184,148,58,0.3)';ctx.strokeRect(x-80,y-44,160,100);
+        ctx.font='bold 28px serif';ctx.fillStyle='#d4aa55';ctx.fillText(s[0],x,y-8);
+        s[1].split('\n').forEach((l,li)=>{ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fillText(l,x,y+12+li*13);});
+      });
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(184,148,58,0.5)';ctx.fillText('Golf Club de Nantes · Livre Blanc 2026',W/2,H-12);
+    },
+    caption:`📊 Le golf après 55 ans, ce n'est pas que du sport. C'est une décision de santé.\n\n🌿 56 hectares de marche en plein air\n⛳ 8 000 à 12 000 pas par partie\n💪 30+ groupes musculaires sollicités\n❤️ +5 ans d'espérance de vie (étude Karolinska)\n\nNotre livre blanc gratuit vous dit tout — lien en bio 📘`,
+    hashtags:'#GolfSanté #SantéSeniors #BienVieillir #GolfNantes #SportsRetraite',
+    objectif:'Notoriété — Lead magnet',
+  },
+
+  // ── SEMAINE 2 : BÉNÉFICES
+  {
+    id:5, week:2, day:'Lun', type:'engagement',
+    timing:'Lun S2 · 8h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      ctx.fillStyle='#0a1a0b';ctx.fillRect(0,0,W,H);
+      // Icône centrale plein air
+      const cg=ctx.createRadialGradient(W/2,H*0.38,0,W/2,H*0.38,160);cg.addColorStop(0,'rgba(74,124,82,0.3)');cg.addColorStop(1,'rgba(74,124,82,0)');ctx.fillStyle=cg;ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.font='72px serif';ctx.fillText('🌿',W/2,H*0.42);
+      ctx.font='bold 20px serif';ctx.fillStyle='#fff';ctx.fillText('Marcher, respirer,',W/2,H*0.62);
+      ctx.font='bold italic 20px serif';ctx.fillStyle='#d4aa55';ctx.fillText('se reconnecter.',W/2,H*0.73);
+      ctx.font='11px sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';ctx.fillText('56 hectares de nature · Golf Club de Nantes',W/2,H*0.88);
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(184,148,58,0.5)';ctx.fillText('5 à 7 km de marche douce par partie ☀️',W/2,H-16);
+    },
+    caption:`🌿 5 à 7 kilomètres de marche en plein air. C'est ce que représente une partie de golf sur notre parcours de 56 hectares.\n\nPas de salle de sport. Pas d'écrans. Juste la nature, le silence, et une balle à placer.\n\nC'est ça, le golf après 55 ans. 🌳\n\nVous méritez ça. 💚`,
+    hashtags:'#PleinAir #SantéNaturelle #GolfBienEtre #NaturesGolf #GolfNantes',
+    objectif:'Engagement — Bénéfice bien-être',
+  },
+
+  {
+    id:6, week:2, day:'Mer', type:'temoignage',
+    timing:'Mer S2 · 19h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      ctx.fillStyle='#1e3a20';ctx.fillRect(0,0,W,H);
+      // Fond guillemet
+      ctx.font='bold 180px serif';ctx.fillStyle='rgba(184,148,58,0.08)';ctx.textAlign='left';ctx.fillText('\u201C',12,H*0.55);
+      ctx.textAlign='center';
+      // Citation
+      ctx.font='italic 17px serif';ctx.fillStyle='rgba(255,255,255,0.9)';
+      const lines=["J'ai commencé à 60 ans, sans","jamais avoir touché un club.","Aujourd'hui c'est le meilleur","moment de ma semaine."];
+      lines.forEach((l,i)=>ctx.fillText(l,W/2,H*0.3+i*30));
+      // Séparateur
+      ctx.strokeStyle='rgba(184,148,58,0.4)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(W/2-60,H*0.65);ctx.lineTo(W/2+60,H*0.65);ctx.stroke();
+      // Auteur
+      ctx.font='bold 11px sans-serif';ctx.fillStyle='#d4aa55';ctx.fillText('— Michel D., 63 ans',W/2,H*0.72);
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.45)';ctx.fillText('Ancien chef d\'entreprise · Membre depuis 2023',W/2,H*0.78);
+      // Étoiles
+      ctx.font='14px serif';ctx.fillStyle='#d4aa55';ctx.fillText('★★★★★',W/2,H*0.88);
+    },
+    caption:`💬 "J'ai commencé à 60 ans, sans jamais avoir touché un club. Aujourd'hui c'est le meilleur moment de ma semaine."\n\n— Michel D., 63 ans, ancien chef d'entreprise\nMembre du Golf Club de Nantes depuis 2023 ⭐⭐⭐⭐⭐\n\nIl viendra témoigner lors de notre prochaine Journée Portes Ouvertes. 🙌`,
+    hashtags:'#TémoignageGolf #GolfSenior #NouveauDépart #60ans #MembresGCN',
+    objectif:'Témoignage — Preuve sociale',
+  },
+
+  {
+    id:7, week:2, day:'Ven', type:'notoriete',
+    timing:'Ven S2 · 12h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0d1e0e');g.addColorStop(1,'#1a3020');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      // Titre
+      ctx.font='bold 13px sans-serif';ctx.fillStyle='rgba(212,170,85,0.8)';ctx.fillText('LE 19ÈME TROU ✨',W/2,36);
+      // Table ronde dessinée
+      ctx.fillStyle='rgba(30,58,32,0.7)';ctx.beginPath();ctx.ellipse(W/2,H*0.45,110,60,0,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='rgba(184,148,58,0.3)';ctx.lineWidth=1;ctx.stroke();
+      // Personnes autour de la table
+      const seats=[[W*0.25,H*0.35],[W*0.5,H*0.22],[W*0.75,H*0.35],[W*0.75,H*0.58],[W*0.5,H*0.7],[W*0.25,H*0.58]];
+      seats.forEach((s,i)=>{ctx.fillStyle=['#2e5430','#3a4a1e','#1e3a3a','#2a2e40','#3a2e20','#1e4020'][i];ctx.beginPath();ctx.arc(s[0],s[1],18,0,Math.PI*2);ctx.fill();ctx.strokeStyle='rgba(184,148,58,0.4)';ctx.lineWidth=1;ctx.stroke();ctx.font='18px serif';ctx.fillText(['😊','👴','👩','🧔','👵','🤵'][i],s[0],s[1]+7);});
+      // Texte
+      ctx.font='bold 15px serif';ctx.fillStyle='#fff';ctx.fillText('Après le 18e trou,',W/2,H*0.84);
+      ctx.font='italic 15px serif';ctx.fillStyle='#d4aa55';ctx.fillText('les vraies amitiés commencent.',W/2,H*0.91);
+    },
+    caption:`☕ Le 19ème trou. Le moment après la partie où les scores ne comptent plus.\n\nOù on refait les coups ratés, on rit des birdie manqués, et où se tissent des amitiés qui durent.\n\nAu Golf Club de Nantes, le club-house est ouvert à tous — golfeurs et non-golfeurs. 🍽️\n\nVenez voir par vous-même.`,
+    hashtags:'#19emeTrou #ClubHouse #ConvivialitéGolf #GolfFriends #GolfNantes',
+    objectif:'Notoriété — Art de vivre',
+  },
+
+  {
+    id:8, week:2, day:'Dim', type:'engagement',
+    timing:'Dim S2 · 18h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      ctx.fillStyle='#111e12';ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      // Idée reçue format
+      ctx.fillStyle='rgba(200,60,40,0.12)';ctx.fillRect(0,0,W,H*0.48);
+      ctx.font='bold 14px sans-serif';ctx.fillStyle='rgba(200,60,40,0.8)';ctx.fillText('IDÉE REÇUE ❌',W/2,40);
+      ctx.font='italic 18px serif';ctx.fillStyle='rgba(255,255,255,0.7)';ctx.fillText('"Le golf, c\'est trop cher."',W/2,H*0.26);
+      // Séparateur vrai/faux
+      ctx.fillStyle='rgba(74,124,82,0.15)';ctx.fillRect(0,H*0.5,W,H*0.5);
+      ctx.font='bold 14px sans-serif';ctx.fillStyle='rgba(74,124,82,0.9)';ctx.fillText('LA RÉALITÉ ✅',W/2,H*0.56);
+      ctx.font='12px sans-serif';ctx.fillStyle='rgba(255,255,255,0.75)';
+      ["Notre formule senior : dès quelques","centaines d'euros par an.","2 cours offerts à l'adhésion.","Équipement prêté au démarrage."].forEach((l,i)=>ctx.fillText(l,W/2,H*0.67+i*22));
+      ctx.font='bold 10px sans-serif';ctx.fillStyle='#d4aa55';ctx.fillText('↓ Et vous, quelle est votre idée reçue sur le golf ?',W/2,H-16);
+    },
+    caption:`💡 "Le golf, c'est trop cher."\n\nC'est l'idée reçue #1 qui empêche des milliers de personnes de découvrir ce sport incroyable.\n\nLa réalité chez nous ✅\n• Formule senior dédiée\n• 2 cours individuels offerts\n• Équipement prêté au démarrage\n\nQuelle est votre idée reçue sur le golf ? 👇 On vous répond !`,
+    hashtags:'#IdéeReçueGolf #GolfAbordable #GolfDébutant #DémystifierLeGolf #GolfNantes',
+    objectif:'Engagement — Démystification',
+  },
+
+  // ── SEMAINE 3 : PREUVES & PROGRAMME
+  {
+    id:9, week:3, day:'Lun', type:'temoignage',
+    timing:'Lun S3 · 8h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      // Fond chaud
+      const g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#1e2a10');g.addColorStop(1,'#0d1a18');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.font='48px serif';ctx.fillText('👩‍💼',W/2,H*0.28);
+      ctx.font='italic 16px serif';ctx.fillStyle='rgba(255,255,255,0.88)';
+      ["\"Ce qui m'a surprise,","c'est la dimension","intellectuelle.\""].forEach((l,i)=>ctx.fillText(l,W/2,H*0.44+i*28));
+      ctx.strokeStyle='rgba(184,148,58,0.3)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(W/2-50,H*0.69);ctx.lineTo(W/2+50,H*0.69);ctx.stroke();
+      ctx.font='bold 10px sans-serif';ctx.fillStyle='#d4aa55';ctx.fillText('Brigitte L., 58 ans',W/2,H*0.75);
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';ctx.fillText('Ancienne directrice commerciale · Membre 2021',W/2,H*0.81);
+      ctx.font='8px sans-serif';ctx.fillStyle='rgba(184,148,58,0.5)';ctx.fillText('Golf Club de Nantes',W/2,H-16);
+    },
+    caption:`🧠 "Ce qui m'a surprise, c'est la dimension intellectuelle."\n\n"Je pensais que le golf c'était frapper une balle. En fait c'est un jeu d'échecs en plein air. Chaque trou est un problème à résoudre."\n\n— Brigitte L., 58 ans, ancienne directrice commerciale 🌟\n\nVous aussi, relevez le défi intellectuel. 🔗 Lien en bio`,
+    hashtags:'#GolfIntellectuel #FemmeGolf #Golf55ans #TémoignageGolf #GCNantes',
+    objectif:'Témoignage femme — diversité',
+  },
+
+  {
+    id:10, week:3, day:'Mer', type:'notoriete',
+    timing:'Mer S3 · 12h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      ctx.fillStyle='#0a1a0b';ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      // Parcours stats
+      ctx.font='bold 13px sans-serif';ctx.fillStyle='rgba(212,170,85,0.8)';ctx.fillText('NOTRE PARCOURS',W/2,34);
+      // Illustration parcours stylisé (18 trous)
+      const cx=W/2,cy=H*0.5;
+      ctx.strokeStyle='rgba(74,124,82,0.4)';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);
+      ctx.beginPath();for(let a=0;a<Math.PI*2;a+=0.05)ctx.lineTo(cx+Math.cos(a)*100+Math.sin(a*3)*15,cy+Math.sin(a)*80+Math.cos(a*2)*12);ctx.closePath();ctx.stroke();ctx.setLineDash([]);
+      // Points trous
+      for(let i=0;i<18;i++){const a=i/18*Math.PI*2;const tx=cx+Math.cos(a)*100+Math.sin(a*3)*15,ty=cy+Math.sin(a)*80+Math.cos(a*2)*12;ctx.fillStyle=i%3===0?'#d4aa55':'rgba(184,148,58,0.4)';ctx.beginPath();ctx.arc(tx,ty,i%3===0?5:3,0,Math.PI*2);ctx.fill();}
+      ctx.fillStyle='rgba(184,148,58,0.12)';ctx.beginPath();ctx.arc(cx,cy,45,0,Math.PI*2);ctx.fill();
+      ctx.font='bold 14px sans-serif';ctx.fillStyle='#d4aa55';ctx.fillText('18 trous',cx,cy+4);
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';ctx.fillText('par 72',cx,cy+18);
+      // Infos
+      ctx.font='11px sans-serif';ctx.fillStyle='rgba(255,255,255,0.7)';ctx.fillText('Architecte : Franck Pennink',W/2,H-54);
+      ctx.font='10px sans-serif';ctx.fillStyle='rgba(212,170,85,0.6)';ctx.fillText('56 ha · Arbres centenaires · Étangs · Vallons',W/2,H-34);
+    },
+    caption:`⛳ 18 trous. 56 hectares. Et un architecte de légende.\n\nNotre parcours a été dessiné par Franck Pennink, l'un des grands architectes de golf européens. Fairways boisés, étangs, vallons — chaque trou est une expérience unique.\n\nLe Golf Club de Nantes vous ouvre ses portes. 🌿\n\n📅 Journée Portes Ouvertes — lien en bio`,
+    hashtags:'#ParcoursDException #GolfArchitecture #FranckPennink #GolfNantes #18Trous',
+    objectif:'Notoriété — Qualité parcours',
+  },
+
+  {
+    id:11, week:3, day:'Ven', type:'conversion',
+    timing:'Ven S3 · 18h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0d1e0e');g.addColorStop(1,'#1a2e1c');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.font='bold 12px sans-serif';ctx.fillStyle='rgba(212,170,85,0.8)';ctx.fillText('PROGRAMME · MATINÉE DÉCOUVERTE',W/2,28);
+      const steps=[['☕ 9h00','Accueil & café'],['🏌️ 9h30','Initiation practice'],['🚗 10h30','Visite du parcours'],['🎤 11h15','Paroles de membres'],['🍽️ 12h00','Déjeuner & offre senior']];
+      steps.forEach((s,i)=>{
+        const y=H*0.2+i*(H*0.6/5);
+        ctx.fillStyle=i===0?'rgba(184,148,58,0.2)':'rgba(30,58,32,0.5)';ctx.beginPath();ctx.roundRect(W*0.08,y-16,W*0.84,34,8);ctx.fill();
+        if(i===0){ctx.strokeStyle='rgba(184,148,58,0.5)';ctx.lineWidth=1;ctx.strokeRect(W*0.08,y-16,W*0.84,34);}
+        ctx.font=`${i===0?'bold ':''}11px sans-serif`;ctx.fillStyle=i===0?'#d4aa55':'rgba(255,255,255,0.7)';ctx.fillText(s[0]+' · '+s[1],W/2,y+6);
+      });
+      ctx.fillStyle='#d4aa55';ctx.beginPath();ctx.roundRect(W*0.2,H-48,W*0.6,32,16);ctx.fill();
+      ctx.font='bold 11px sans-serif';ctx.fillStyle='#fff';ctx.fillText('→ Entrée libre · Réserver en bio',W/2,H-28);
+    },
+    caption:`📅 Voici exactement ce qui vous attend lors de notre Journée Portes Ouvertes Seniors :\n\n☕ 9h00 — Accueil café au club-house\n🏌️ 9h30 — Initiation avec un pro\n🚗 10h30 — Visite du parcours\n🎤 11h15 — Témoignages de membres\n🍽️ 12h00 — Déjeuner + offre senior\n\n✅ Gratuit · Aucun niveau requis · Équipement prêté\n\n👆 Lien en bio pour réserver`,
+    hashtags:'#PortesOuvertesGolf #JournéeDécouverte #GolfGratuit #GolfNantes #SeniorsGolf',
+    objectif:'Conversion — Programme JO',
+  },
+
+  {
+    id:12, week:3, day:'Dim', type:'engagement',
+    timing:'Dim S3 · 11h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      ctx.fillStyle='#1a2e1c';ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.font='bold 64px serif';ctx.fillStyle='rgba(184,148,58,0.12)';ctx.fillText('⏱',W/2,H*0.42);
+      ctx.font='bold 15px sans-serif';ctx.fillStyle='#fff';ctx.fillText('Depuis combien de temps',W/2,H*0.56);
+      ctx.font='italic bold 15px serif';ctx.fillStyle='#d4aa55';ctx.fillText('avez-vous ce projet ?',W/2,H*0.64);
+      const opts=[['Depuis toujours !','#2e5430'],['Depuis ma retraite','#2a3a1e'],['On vient de me le suggérer','#1e2a3a'],['Quel projet ? 😅','#2a2a2a']];
+      opts.forEach((o,i)=>{const x=i%2===0?W*0.27:W*0.73,y=H*0.8+(Math.floor(i/2))*38;ctx.fillStyle=o[1];ctx.beginPath();ctx.roundRect(x-72,y-14,144,28,14);ctx.fill();ctx.font='9.5px sans-serif';ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fillText(o[0],x,y+4);});
+    },
+    caption:`⏳ Le projet de commencer le golf… vous l'avez depuis quand ?\n\nA — Depuis toujours, c'est dans ma liste !\nB — Depuis que je suis à la retraite\nC — On vient de me le suggérer\nD — Quel projet ? 😅\n\nRépondez en commentaire — on adore lire vos histoires ! ❤️`,
+    hashtags:'#GolfProject #LeBonMoment #SondageGolf #GolfNantes #RetraiteGolf',
+    objectif:'Engagement — Question communauté',
+  },
+
+  // ── SEMAINE 4 : CONVERSION
+  {
+    id:13, week:4, day:'Lun', type:'temoignage',
+    timing:'Lun S4 · 8h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      ctx.fillStyle='#0f1e10';ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.font='48px serif';ctx.fillText('👨‍⚕️',W/2,H*0.24);
+      ctx.font='italic 15px serif';ctx.fillStyle='rgba(255,255,255,0.88)';
+      ["\"Le golf m'a redonné","une structure, des","rendez-vous, un projet.\""].forEach((l,i)=>ctx.fillText(l,W/2,H*0.42+i*27));
+      ctx.strokeStyle='rgba(184,148,58,0.3)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(W/2-55,H*0.66);ctx.lineTo(W/2+55,H*0.66);ctx.stroke();
+      ctx.font='bold 10px sans-serif';ctx.fillStyle='#d4aa55';ctx.fillText('Hervé T., 67 ans',W/2,H*0.72);
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';ctx.fillText('Ancien médecin hospitalier · Membre depuis 2019',W/2,H*0.78);
+      ctx.font='14px serif';ctx.fillStyle='#d4aa55';ctx.fillText('★★★★★',W/2,H*0.87);
+    },
+    caption:`🩺 "Je suis arrivé au club six mois après ma retraite, au moment où je me demandais ce que j'allais faire de mes journées."\n\n"Le golf m'a donné une structure, des rendez-vous, des progrès à suivre. Il m'a redonné un projet."\n\n— Hervé T., 67 ans, ancien médecin hospitalier ⭐\n\n30% des hommes retraités se sentent isolés dans les 18 premiers mois. Le golf change ça.`,
+    hashtags:'#IsolementRetraite #GolfCommunauté #RetraiteEpanouie #GolfNantes #ProjetRetraite',
+    objectif:'Témoignage — Problème isolement',
+  },
+
+  {
+    id:14, week:4, day:'Mer', type:'conversion',
+    timing:'Mer S4 · 18h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0a1a0b');g.addColorStop(1,'#1e3a20');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.fillStyle='rgba(184,148,58,0.12)';ctx.beginPath();ctx.arc(W/2,H*0.44,115,0,Math.PI*2);ctx.fill();
+      ctx.font='bold 13px sans-serif';ctx.fillStyle='rgba(212,170,85,0.9)';ctx.fillText('OFFRE SENIOR DÉDIÉE',W/2,36);
+      ctx.font='bold italic 24px serif';ctx.fillStyle='#fff';ctx.fillText('Formule',W/2,H*0.32);
+      ctx.font='bold italic 24px serif';ctx.fillStyle='#d4aa55';ctx.fillText('Découverte +55 ans',W/2,H*0.42);
+      ctx.strokeStyle='rgba(184,148,58,0.4)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(W/2-90,H*0.5);ctx.lineTo(W/2+90,H*0.5);ctx.stroke();
+      ['✓ Accès illimité parcours 18 trous','✓ 2 cours individuels offerts','✓ Équipement prêté','✓ Invitations compétitions'].forEach((l,i)=>{ctx.font='10.5px sans-serif';ctx.fillStyle='rgba(255,255,255,0.75)';ctx.fillText(l,W/2,H*0.59+i*22);});
+      ctx.fillStyle='#b8943a';ctx.beginPath();ctx.roundRect(W*0.2,H-54,W*0.6,36,18);ctx.fill();
+      ctx.font='bold 11px sans-serif';ctx.fillStyle='#fff';ctx.fillText('→ Places limitées · Réserver',W/2,H-30);
+    },
+    caption:`🎁 Notre formule dédiée aux nouveaux membres seniors.\n\nRéservée aux participants de la Journée Portes Ouvertes :\n\n✅ Accès illimité au parcours 18 trous\n✅ 2 cours individuels avec un pro — offerts\n✅ Équipement prêté pour vos premières parties\n✅ Invitation aux compétitions du club\n\n⏳ Offre valable 21 jours après la journée.\n\nPlaces limitées à 30 participants. 👆 Lien en bio`,
+    hashtags:'#OffreSeniorGolf #GolfDébut #RejoindreLeClub #GolfNantes #TarifSenior',
+    objectif:'Conversion — Offre directe',
+  },
+
+  {
+    id:15, week:4, day:'Ven', type:'engagement',
+    timing:'Ven S4 · 12h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      ctx.fillStyle='#0d1e0e';ctx.fillRect(0,0,W,H);
+      // Format "Saviez-vous que"
+      const hg=ctx.createRadialGradient(W/2,H*0.38,0,W/2,H*0.38,160);hg.addColorStop(0,'rgba(30,58,32,0.5)');hg.addColorStop(1,'rgba(30,58,32,0)');ctx.fillStyle=hg;ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.font='bold 13px sans-serif';ctx.fillStyle='rgba(212,170,85,0.8)';ctx.fillText('LE SAVIEZ-VOUS ?',W/2,34);
+      ctx.font='bold 52px serif';ctx.fillStyle='rgba(184,148,58,0.15)';ctx.fillText('1/3',W/2,H*0.46);
+      ctx.font='bold 18px serif';ctx.fillStyle='#fff';
+      ['En France,','1 nouveau licencié','sur 3 a plus de 50 ans.'].forEach((l,i)=>ctx.fillText(l,W/2,H*0.56+i*28));
+      ctx.font='11px sans-serif';ctx.fillStyle='rgba(212,170,85,0.6)';ctx.fillText('Le golf est le sport de la seconde vie active. 🌟',W/2,H-22);
+    },
+    caption:`📊 Saviez-vous qu'en France, 1 nouveau licencié de golf sur 3 a plus de 50 ans ?\n\nLe golf est devenu le sport de la seconde vie active. Cette tendance s'accélère chaque année.\n\nEt dans notre région, nous en sommes l'illustration parfaite. ⛳\n\nTagguez un ami à la retraite qui devrait nous rejoindre ! 👇`,
+    hashtags:'#StatsGolf #GolfTendance #50ansetPlus #GolfCommunauté #ChiffresGolf',
+    objectif:'Engagement — Partage statistique',
+  },
+
+  {
+    id:16, week:4, day:'Dim', type:'conversion',
+    timing:'Dim S4 · 10h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      // Format countdown
+      const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#1e3a20');g.addColorStop(1,'#0a1a0b');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.font='bold 12px sans-serif';ctx.fillStyle='rgba(212,170,85,0.8)';ctx.fillText('JOURNÉE PORTES OUVERTES',W/2,28);
+      ctx.font='11px sans-serif';ctx.fillStyle='rgba(255,255,255,0.5)';ctx.fillText('Golf Club de Nantes · Samedi matin',W/2,44);
+      ctx.strokeStyle='rgba(184,148,58,0.25)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(40,54);ctx.lineTo(W-40,54);ctx.stroke();
+      // Infos pratiques
+      const infos=[['📍','Route dép. 81 · Vigneux de Bretagne'],['🕘','Accueil à partir de 9h00'],['✅','Entrée libre · Aucun niveau requis'],['👕','Tenue confortable · Équipement fourni'],['🍽️','Déjeuner inclus']];
+      infos.forEach((info,i)=>{
+        ctx.font='18px serif';ctx.fillText(info[0],W*0.15,H*0.27+i*48);
+        ctx.font='10.5px sans-serif';ctx.fillStyle='rgba(255,255,255,0.75)';ctx.fillText(info[1],W*0.56,H*0.27+i*48);
+      });
+      ctx.fillStyle='#b8943a';ctx.beginPath();ctx.roundRect(W*0.15,H-52,W*0.7,34,17);ctx.fill();
+      ctx.font='bold 11px sans-serif';ctx.fillStyle='#fff';ctx.fillText('→ Je réserve — lien en bio',W/2,H-28);
+    },
+    caption:`📍 Tout ce qu'il faut savoir pour notre Journée Portes Ouvertes Seniors :\n\n📍 Route dép. 81 · 44360 Vigneux de Bretagne\n🕘 Accueil à partir de 9h00\n✅ Entrée libre · Aucun niveau requis\n👕 Venez en tenue confortable\n🍽️ Déjeuner partagé inclus\n🚗 Parking gratuit\n\n☎️ Questions ? 02 40 63 25 82\n\n💚 30 places · Réservation en bio`,
+    hashtags:'#InfosPratiques #PortesOuvertes #GolfNantes #JourneeSeniors #VigneuxdeBretagne',
+    objectif:'Conversion — Infos pratiques',
+  },
+
+  // ── SEMAINE 5 : CLOSING & NURTURING
+  {
+    id:17, week:5, day:'Lun', type:'temoignage',
+    timing:'Lun S5 · 8h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      const g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#1a2e10');g.addColorStop(1,'#0d1e18');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.font='bold 14px sans-serif';ctx.fillStyle='rgba(212,170,85,0.8)';ctx.fillText('AVANT / APRÈS',W/2,30);
+      // Avant
+      ctx.fillStyle='rgba(180,60,40,0.12)';ctx.fillRect(20,50,W/2-30,H*0.55);
+      ctx.font='bold 11px sans-serif';ctx.fillStyle='rgba(200,80,60,0.8)';ctx.fillText('AVANT',W*0.27,72);
+      ctx.font='11px sans-serif';ctx.fillStyle='rgba(255,255,255,0.6)';
+      ['😐 Journées vides','📺 Trop de canapé','💤 Manque de projet','🏠 Isolement'].forEach((l,i)=>ctx.fillText(l,W*0.27,100+i*28));
+      // Après
+      ctx.fillStyle='rgba(30,80,40,0.2)';ctx.fillRect(W/2+10,50,W/2-30,H*0.55);
+      ctx.font='bold 11px sans-serif';ctx.fillStyle='rgba(74,180,80,0.8)';ctx.fillText('APRÈS',W*0.73,72);
+      ctx.font='11px sans-serif';ctx.fillStyle='rgba(255,255,255,0.75)';
+      ['⛳ 3 sorties / semaine','🤝 Nouveaux amis','🌿 Marche & plein air','🏆 Objectifs & progrès'].forEach((l,i)=>ctx.fillText(l,W*0.73,100+i*28));
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(184,148,58,0.6)';ctx.fillText('La transformation d\'un membre · Golf Club de Nantes',W/2,H-14);
+    },
+    caption:`✨ La transformation de Michel, 63 ans, ex-chef d'entreprise.\n\nAVANT le golf :\n😐 Journées sans structure\n📺 Trop de télé\n💤 Sentiment d'inutilité\n\nAPRÈS 6 mois au Golf Club de Nantes :\n⛳ 3 sorties golf par semaine\n🤝 Un nouveau cercle d'amis\n🌿 5 km de marche par partie\n🏆 Un index à progresser chaque mois\n\nVotre transformation commence quand vous voulez. 🙏`,
+    hashtags:'#TransformationGolf #AvantAprès #RetraiteActive #GolfNantes #NouveauSouffle',
+    objectif:'Témoignage — Transformation',
+  },
+
+  {
+    id:18, week:5, day:'Mer', type:'notoriete',
+    timing:'Mer S5 · 7h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      const sky=ctx.createLinearGradient(0,0,0,H*0.65);sky.addColorStop(0,'#0d1830');sky.addColorStop(0.5,'#8a3a18');sky.addColorStop(1,'#1e4828');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+      const sg=ctx.createRadialGradient(W*0.3,H*0.28,0,W*0.3,H*0.28,120);sg.addColorStop(0,'rgba(255,180,60,0.85)');sg.addColorStop(0.5,'rgba(255,120,30,0.3)');sg.addColorStop(1,'rgba(255,80,0,0)');ctx.fillStyle=sg;ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='#1a4020';ctx.beginPath();ctx.moveTo(0,H*0.6);for(let x=0;x<=W;x+=6)ctx.lineTo(x,H*0.6-Math.sin(x*0.01+0.5)*22);ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.fill();
+      ctx.fillStyle='#122e18';ctx.beginPath();ctx.moveTo(0,H*0.75);for(let x=0;x<=W;x+=6)ctx.lineTo(x,H*0.75-Math.sin(x*0.012)*16);ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.fill();
+      const ov=ctx.createLinearGradient(0,H*0.6,0,H);ov.addColorStop(0,'rgba(8,16,10,0)');ov.addColorStop(1,'rgba(8,16,10,0.9)');ctx.fillStyle=ov;ctx.fillRect(0,0,W,H);
+      ctx.textAlign='center';
+      ctx.font='italic 16px serif';ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fillText('Chaque jour commence ici.',W/2,H-76);
+      ctx.font='bold 20px serif';ctx.fillStyle='#fff';ctx.fillText('Golf Club de Nantes',W/2,H-50);
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(212,170,85,0.6)';ctx.fillText('Vigneux de Bretagne · Depuis 1921',W/2,H-28);
+    },
+    caption:`🌅 7h du matin sur le fairway.\n\nPendant que la ville dort encore, nos membres vivent les plus belles heures de leur journée.\n\nC'est ça que nous voulons vous offrir.\n\nUne raison de se lever le matin. Un endroit où être attendu. Un sport pour toute la vie. ⛳\n\n🔗 Journée découverte gratuite — lien en bio`,
+    hashtags:'#AubeFairway #GolfMatin #RoutineGolf #GolfNantes #RetraiteActive',
+    objectif:'Notoriété — Émotion lifestyle',
+  },
+
+  {
+    id:19, week:5, day:'Ven', type:'conversion',
+    timing:'Ven S5 · 18h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0a1a0b');g.addColorStop(1,'#1e3a20');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      // Urgence visuelle
+      ctx.textAlign='center';
+      ctx.fillStyle='rgba(184,148,58,0.15)';ctx.beginPath();ctx.arc(W/2,H*0.38,100,0,Math.PI*2);ctx.fill();
+      ctx.font='bold 13px sans-serif';ctx.fillStyle='rgba(212,170,85,0.9)';ctx.fillText('DERNIÈRES PLACES',W/2,34);
+      ctx.font='bold 20px serif';ctx.fillStyle='#fff';ctx.fillText('30 participants',W/2,H*0.32);
+      ctx.font='12px sans-serif';ctx.fillStyle='rgba(255,255,255,0.55)';ctx.fillText('maximum par session',W/2,H*0.41);
+      ctx.strokeStyle='rgba(184,148,58,0.3)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(W/2-80,H*0.49);ctx.lineTo(W/2+80,H*0.49);ctx.stroke();
+      ['⛳ Journée Portes Ouvertes Seniors','📅 Samedi matin · Golf Club Nantes','✅ Entrée libre · Déjeuner inclus'].forEach((l,i)=>{ctx.font='10.5px sans-serif';ctx.fillStyle='rgba(255,255,255,0.7)';ctx.fillText(l,W/2,H*0.58+i*24);});
+      ctx.fillStyle='#b8943a';ctx.beginPath();ctx.roundRect(W*0.18,H-56,W*0.64,36,18);ctx.fill();
+      ctx.font='bold 12px sans-serif';ctx.fillStyle='#fff';ctx.fillText('→ Réserver maintenant',W/2,H-30);
+    },
+    caption:`⏳ Il reste quelques places pour notre prochaine Journée Portes Ouvertes Seniors.\n\nNous limitons volontairement à 30 participants pour garantir une expérience de qualité.\n\n✅ Entrée libre\n✅ Initiation avec un pro\n✅ Visite du parcours 18 trous\n✅ Déjeuner partagé\n✅ Offre tarif senior exclusive\n\n👆 Lien en bio — une réservation en 30 secondes. Ne tardez pas. 🙏`,
+    hashtags:'#DernièresPlaces #UrgenceGolf #ReserverMaintenant #GolfNantes #JournéeSeniors',
+    objectif:'Conversion — Urgence',
+  },
+
+  {
+    id:20, week:5, day:'Dim', type:'engagement',
+    timing:'Dim S5 · 11h',
+    visual:(cv,W,H)=>{
+      const ctx=cv.getContext('2d');
+      const g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#1e3a20');g.addColorStop(1,'#0d1a0e');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      // Cercles concentriques
+      for(let r=40;r<200;r+=28){ctx.strokeStyle='rgba(184,148,58,0.06)';ctx.lineWidth=1;ctx.beginPath();ctx.arc(W/2,H/2,r,0,Math.PI*2);ctx.stroke();}
+      ctx.textAlign='center';
+      ctx.font='52px serif';ctx.fillText('⛳',W/2,H*0.38);
+      ctx.font='bold 16px serif';ctx.fillStyle='#fff';ctx.fillText('Merci d\'être avec nous.',W/2,H*0.56);
+      ctx.font='italic 13px serif';ctx.fillStyle='rgba(212,170,85,0.8)';ctx.fillText('La communauté du Golf Club de Nantes',W/2,H*0.65);
+      ctx.font='italic 13px serif';ctx.fillStyle='rgba(212,170,85,0.6)';ctx.fillText('vous ouvre les bras. 💚',W/2,H*0.73);
+      ctx.strokeStyle='rgba(184,148,58,0.3)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(W/2-70,H*0.8);ctx.lineTo(W/2+70,H*0.8);ctx.stroke();
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.3)';ctx.fillText('Golf Club de Nantes · Vigneux de Bretagne · Depuis 1921',W/2,H-16);
+    },
+    caption:`💚 Un grand merci à notre communauté pour votre soutien, vos questions et vos témoignages cette semaine.\n\nSi vous avez un proche — parent, ami, collègue — qui hésite à sauter le pas, partagez-lui ce post.\n\nParce que le golf, c'est encore plus beau à plusieurs. ⛳\n\n📌 Enregistrez ce post et partagez-le avec quelqu'un qui en a besoin.`,
+    hashtags:'#MerciCommunauté #GolfNantes #PartagezLeGolf #GolfClubNantes #SeniorsGolf',
+    objectif:'Engagement — Partage communautaire',
+  },
+];
+
+// ══════════════════════════════════════════════════════
+// RENDU DES POSTS
+// ══════════════════════════════════════════════════════
+function buildPosts(filter='all') {
+  const grid = document.getElementById('posts-grid');
+  grid.innerHTML = '';
+  const filtered = filter==='all' ? POSTS : POSTS.filter(p=>p.type===filter);
+  filtered.forEach(post => {
+    // Card
+    const card = document.createElement('div');
+    card.className = 'post-card';
+    card.dataset.type = post.type;
+
+    // Canvas visuel
+    const wrap = document.createElement('div');
+    wrap.className = 'post-visual';
+    const cv = document.createElement('canvas');
+    cv.width = 400; cv.height = 400;
+    cv.style.cssText = 'width:100%;height:100%;';
+    wrap.appendChild(cv);
+    post.visual(cv, 400, 400);
+    wrap.onclick = () => openPreview(post, cv);
+
+    // Meta bar
+    const metaBar = document.createElement('div');
+    metaBar.className = 'post-meta-bar';
+    metaBar.innerHTML = `
+      <div class="ig-avatar">GCN</div>
+      <div><div class="ig-name">golfclubdenantes</div><div class="ig-handle">@golfclubdenantes</div></div>
+      <div class="post-num">#${String(post.id).padStart(2,'0')}</div>
+    `;
+
+    // Actions IG
+    const actions = document.createElement('div');
+    actions.className = 'ig-actions';
+    actions.innerHTML = `
+      <button class="ig-btn" title="J'aime">♡</button>
+      <button class="ig-btn" title="Commenter">💬</button>
+      <button class="ig-btn" title="Partager">↗</button>
+      <button class="ig-btn ig-save" title="Sauvegarder">🔖</button>
+    `;
+
+    // Caption
+    const caption = document.createElement('div');
+    caption.className = 'post-caption';
+    const preview = post.caption.substring(0,100)+'...';
+    caption.innerHTML = `
+      <div class="caption-text"><strong>golfclubdenantes</strong> ${preview}</div>
+      <div class="caption-hashtags">${post.hashtags}</div>
+    `;
+
+    // Footer
+    const footer = document.createElement('div');
+    footer.className = 'post-footer';
+    const tagClass = {notoriete:'tag-notoriete',engagement:'tag-engagement',conversion:'tag-conversion',temoignage:'tag-temoignage'}[post.type];
+    const tagLabel = {notoriete:'🟢 Notoriété',engagement:'🟡 Engagement',conversion:'🔵 Conversion',temoignage:'🟠 Témoignage'}[post.type];
+    footer.innerHTML = `
+      <span class="obj-tag ${tagClass}">${tagLabel}</span>
+      <button class="copy-caption" onclick="copyCaption(${post.id})">Copier caption</button>
+      <span class="timing-tag">${post.timing}</span>
+    `;
+
+    card.append(wrap, metaBar, actions, caption, footer);
+    grid.appendChild(card);
+  });
+}
+
+// Copier caption
+window.copyCaption = function(id) {
+  const post = POSTS.find(p=>p.id===id);
+  if(!post)return;
+  const full = post.caption + '\n\n' + post.hashtags;
+  navigator.clipboard.writeText(full).then(()=>{
+    const btns = document.querySelectorAll('.copy-caption');
+    btns.forEach(b=>{if(b.onclick.toString().includes(id)){b.textContent='✓ Copié !';setTimeout(()=>b.textContent='Copier caption',2000);}});
+  });
+};
+
+// Preview modal
+function openPreview(post, cv) {
+  const existing = document.getElementById('preview-modal');
+  if(existing) existing.remove();
+  const modal = document.createElement('div');
+  modal.id = 'preview-modal';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;';
+  const content = document.createElement('div');
+  content.style.cssText = 'background:#131f14;border-radius:16px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;border:1px solid rgba(184,148,58,0.3);';
+
+  const cv2 = document.createElement('canvas');
+  cv2.width = 400; cv2.height = 400;
+  cv2.style.cssText = 'width:100%;border-radius:16px 16px 0 0;';
+  post.visual(cv2, 400, 400);
+
+  const info = document.createElement('div');
+  info.style.cssText = 'padding:20px;';
+  info.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#d4aa55;">Post #${post.id} · ${post.timing}</div>
+      <button onclick="document.getElementById('preview-modal').remove()" style="background:rgba(255,255,255,0.1);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:1rem;">✕</button>
+    </div>
+    <div style="font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:14px;white-space:pre-line;"><strong style="color:#fff;">golfclubdenantes</strong> ${post.caption}</div>
+    <div style="font-size:0.78rem;color:rgba(100,160,110,0.9);margin-bottom:16px;">${post.hashtags}</div>
+    <div style="background:rgba(30,58,32,0.4);border-radius:8px;padding:10px;font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:14px;">🎯 ${post.objectif}</div>
+    <button onclick="window.copyCaption(${post.id})" style="width:100%;background:#b8943a;color:#fff;border:none;border-radius:8px;padding:12px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Copier la caption complète</button>
+  `;
+  content.append(cv2, info);
+  modal.appendChild(content);
+  modal.onclick = e => { if(e.target===modal) modal.remove(); };
+  document.body.appendChild(modal);
+}
+
+// Filtrage
+window.filterPosts = function(type, btn) {
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildPosts(type);
+};
+
+// ══════════════════════════════════════════════════════
+// CALENDRIER
+// ══════════════════════════════════════════════════════
+function buildCalendar() {
+  const cal = document.getElementById('cal-grid');
+  const weeks = [1,2,3,4,5];
+  const colors = {notoriete:'#4a7c52',engagement:'#b8943a',temoignage:'#c47840',conversion:'#3a7cb8'};
+  weeks.forEach(w => {
+    const weekPosts = POSTS.filter(p=>p.week===w);
+    const div = document.createElement('div');
+    div.className = 'cal-week';
+    div.innerHTML = `<div class="cal-week-label">Semaine ${w}</div>` +
+      weekPosts.map(p=>`
+        <div class="cal-post">
+          <div class="cal-dot" style="background:${colors[p.type]};"></div>
+          <div class="cal-post-txt"><strong style="color:rgba(255,255,255,0.8);">${p.day}</strong> — ${p.caption.substring(0,38)}...</div>
+        </div>
+      `).join('');
+    cal.appendChild(div);
+  });
+}
+
+// INIT
+buildPosts();
+buildCalendar();
+</script>
+</body>
+</html>

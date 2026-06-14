@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Démo 30s — Golf Club de Nantes × APETIT</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0a0f0b; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Segoe UI', sans-serif; color: #fff; gap: 20px; }
+
+    h1 { font-size: 1rem; color: #d4aa55; letter-spacing: 0.15em; text-transform: uppercase; }
+
+    #canvas-wrap { position: relative; box-shadow: 0 0 60px rgba(0,0,0,0.8); border-radius: 4px; overflow: hidden; }
+    canvas { display: block; }
+
+    .controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      padding: 12px 28px; border: none; border-radius: 6px;
+      font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      letter-spacing: 0.04em; transition: all 0.15s; font-family: inherit;
+    }
+    .btn-play  { background: #2e5430; color: #fff; }
+    .btn-play:hover  { background: #4a7c52; }
+    .btn-record { background: #b8943a; color: #fff; }
+    .btn-record:hover { background: #d4aa55; }
+    .btn-dl    { background: #1e3a20; color: #d4aa55; border: 1px solid #b8943a; }
+    .btn-dl:hover { background: #2e5430; }
+    .btn-dl:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .timeline { width: 540px; max-width: 90vw; }
+    .tl-bar { background: #1e3a20; border-radius: 4px; height: 6px; overflow: hidden; }
+    .tl-fill { height: 100%; background: linear-gradient(90deg, #b8943a, #d4aa55); width: 0%; border-radius: 4px; transition: width 0.1s linear; }
+    .tl-labels { display: flex; justify-content: space-between; font-size: 0.72rem; color: #6a8a6c; margin-top: 5px; }
+
+    .status { font-size: 0.8rem; color: #6a8a6c; min-height: 18px; text-align: center; }
+    .status.rec { color: #e05050; animation: blink 1s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    .scene-indicator { display: flex; gap: 6px; }
+    .sc-dot { width: 8px; height: 8px; border-radius: 50%; background: #2e5430; transition: background 0.3s; }
+    .sc-dot.active { background: #d4aa55; }
+
+    .info { font-size: 0.75rem; color: #4a6a4c; text-align: center; max-width: 460px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<h1>⛳ Démo 30s — Golf Club de Nantes × APETIT</h1>
+
+<div id="canvas-wrap">
+  <canvas id="c" width="540" height="304"></canvas>
+</div>
+
+<div class="scene-indicator" id="scene-dots"></div>
+
+<div class="timeline">
+  <div class="tl-bar"><div class="tl-fill" id="tl"></div></div>
+  <div class="tl-labels">
+    <span>0s</span><span>5s</span><span>10s</span><span>15s</span><span>20s</span><span>25s</span><span>30s</span>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn btn-play" id="btn-play" onclick="startPreview()">▶ Aperçu</button>
+  <button class="btn btn-record" id="btn-rec" onclick="startRecording()">⏺ Enregistrer MP4</button>
+  <button class="btn btn-dl" id="btn-dl" disabled onclick="downloadVideo()">⬇ Télécharger</button>
+</div>
+
+<div class="status" id="status">Cliquez ▶ Aperçu pour visualiser, puis ⏺ pour exporter en MP4</div>
+
+<div class="info">
+  Le bouton <strong style="color:#d4aa55">⏺ Enregistrer MP4</strong> lance l'animation et capture chaque frame via MediaRecorder.
+  À la fin, cliquez <strong style="color:#d4aa55">⬇ Télécharger</strong> pour récupérer le fichier vidéo.
+  Compatible Chrome &amp; Edge. Durée : 30 secondes exactes.
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
+const W = 540, H = 304;
+const TOTAL_MS = 30000;
+const FPS = 30;
+
+// ── PALETTE
+const C = {
+  vert:      '#1e3a20',
+  vertMid:   '#2e5430',
+  vertClair: '#4a7c52',
+  or:        '#b8943a',
+  orClair:   '#d4aa55',
+  orPale:    '#f0e4c2',
+  blanc:     '#ffffff',
+  creme:     '#f9f6ef',
+  texte:     '#1a2b1c',
+  gris:      '#f2ede4',
+};
+
+// ── SCÈNES (durée totale = 30s)
+const SCENES = [
+  { start: 0,    end: 4500,  fn: sceneIntro },       // 0–4.5s  : Intro logo
+  { start: 4500, end: 9000,  fn: sceneHero },        // 4.5–9s  : Parcours + accroche
+  { start: 9000, end: 14000, fn: sceneBenefits },    // 9–14s   : 3 bénéfices
+  { start: 14000,end: 19000, fn: sceneTemoignage },  // 14–19s  : Citation membre
+  { start: 19000,end: 24000, fn: sceneJournee },     // 19–24s  : Programme JO
+  { start: 24000,end: 28000, fn: sceneOffre },       // 24–28s  : Offre senior
+  { start: 28000,end: 30000, fn: sceneOutro },       // 28–30s  : CTA final
+];
+
+// Créer les points de scène
+const dots = document.getElementById('scene-dots');
+SCENES.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'sc-dot'; d.id = 'dot-'+i; dots.appendChild(d);
+});
+
+// ── UTILITAIRES DESSIN
+function clearCanvas(col) {
+  ctx.fillStyle = col || C.vert;
+  ctx.fillRect(0,0,W,H);
+}
+
+function ease(t) { return t<0.5 ? 2*t*t : -1+(4-2*t)*t; }
+function easeOut(t) { return 1-(1-t)*(1-t); }
+function lerp(a,b,t) { return a+(b-a)*t; }
+function clamp01(t) { return Math.max(0,Math.min(1,t)); }
+
+// Avancement local dans une scène [0..1]
+function sceneT(t, scene) {
+  return clamp01((t - scene.start) / (scene.end - scene.start));
+}
+
+function fillText(text, x, y, font, color, align='left', alpha=1) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.font = font;
+  ctx.fillStyle = color;
+  ctx.textAlign = align;
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+
+function roundRect(x,y,w,h,r,fill) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+  ctx.fillStyle = fill;
+  ctx.fill();
+}
+
+function drawGradBg(c1, c2) {
+  const grd = ctx.createLinearGradient(0,0,W,H);
+  grd.addColorStop(0, c1);
+  grd.addColorStop(1, c2);
+  ctx.fillStyle = grd;
+  ctx.fillRect(0,0,W,H);
+}
+
+function drawGrid(alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha * 0.08;
+  ctx.strokeStyle = C.orClair;
+  ctx.lineWidth = 0.5;
+  for(let x=0; x<W; x+=40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for(let y=0; y<H; y+=40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+  ctx.restore();
+}
+
+function drawOrLine(y) {
+  ctx.strokeStyle = C.or; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(40,y); ctx.lineTo(W-40,y); ctx.stroke();
+}
+
+function animBar(x, y, w, h, pct, col) {
+  roundRect(x,y,w,h,3,'rgba(255,255,255,0.08)');
+  if(pct>0) roundRect(x,y,w*pct,h,3,col);
+}
+
+// Particules golf (balles qui tombent)
+function drawParticles(t, n=8) {
+  ctx.save();
+  for(let i=0;i<n;i++) {
+    const px = (i/n)*W + Math.sin(t*0.8+i)*30;
+    const py = ((t*0.05 + i/n*2) % 1.2) * H;
+    const sz = 3 + (i%3)*2;
+    ctx.globalAlpha = 0.12;
+    ctx.fillStyle = C.orClair;
+    ctx.beginPath(); ctx.arc(px,py,sz,0,Math.PI*2); ctx.fill();
+  }
+  ctx.restore();
+}
+
+// Grille de points déco
+function drawDotGrid(alpha) {
+  ctx.save(); ctx.globalAlpha = alpha*0.12; ctx.fillStyle = C.orClair;
+  for(let x=20;x<W;x+=22) for(let y=20;y<H;y+=22) {
+    ctx.beginPath(); ctx.arc(x,y,1,0,Math.PI*2); ctx.fill();
+  }
+  ctx.restore();
+}
+
+// ── SCÈNE 1 : INTRO LOGO
+function sceneIntro(t) {
+  const p = sceneT(t, SCENES[0]);
+  drawGradBg('#0d1e0e','#1e3a20');
+  drawDotGrid(p);
+
+  // Cercle central animé
+  const circR = lerp(0, 90, easeOut(Math.min(p*3,1)));
+  ctx.save();
+  ctx.globalAlpha = lerp(0,0.15,clamp01(p*3));
+  ctx.strokeStyle = C.or; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(W/2,H/2,circR,0,Math.PI*2); ctx.stroke();
+  ctx.beginPath(); ctx.arc(W/2,H/2,circR*0.7,0,Math.PI*2); ctx.stroke();
+  ctx.restore();
+
+  // Logo text
+  const logoA = clamp01((p-0.2)*4);
+  fillText('GOLF CLUB DE NANTES', W/2, H/2-18, 'bold 22px serif', C.blanc, 'center', logoA);
+  fillText('— depuis 1921 —', W/2, H/2+8, '12px sans-serif', C.orClair, 'center', logoA*0.7);
+
+  // Ligne or
+  const lineW = lerp(0, W-80, easeOut(clamp01((p-0.4)*3)));
+  ctx.save(); ctx.globalAlpha = clamp01((p-0.4)*3);
+  ctx.strokeStyle = C.or; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(W/2-lineW/2, H/2+24); ctx.lineTo(W/2+lineW/2, H/2+24); ctx.stroke();
+  ctx.restore();
+
+  // Sous-titre
+  const subA = clamp01((p-0.6)*4);
+  fillText('× APETIT · Opération Seniors 2026', W/2, H/2+48, '10px sans-serif', C.vertClair, 'center', subA);
+
+  // Fade out
+  if(p > 0.85) {
+    ctx.fillStyle = '#0d1e0e';
+    ctx.globalAlpha = (p-0.85)/0.15;
+    ctx.fillRect(0,0,W,H);
+  }
+}
+
+// ── SCÈNE 2 : HERO PARCOURS
+function sceneHero(t) {
+  const p = sceneT(t, SCENES[1]);
+
+  // Fond : simulation paysage golf
+  const sky = ctx.createLinearGradient(0,0,0,H*0.55);
+  sky.addColorStop(0,'#1a3d6e'); sky.addColorStop(1,'#2e6e4a');
+  ctx.fillStyle = sky; ctx.fillRect(0,0,W,H);
+
+  // "Soleil"
+  ctx.save();
+  const sunA = clamp01(p*4);
+  ctx.globalAlpha = sunA*0.6;
+  const sunG = ctx.createRadialGradient(W*0.72,H*0.18,0,W*0.72,H*0.18,90);
+  sunG.addColorStop(0,'rgba(212,170,85,0.8)'); sunG.addColorStop(1,'rgba(212,170,85,0)');
+  ctx.fillStyle=sunG; ctx.fillRect(0,0,W,H);
+  ctx.restore();
+
+  // Collines
+  ctx.save(); ctx.globalAlpha = 1;
+  ctx.fillStyle='#2a5c32';
+  ctx.beginPath(); ctx.moveTo(0,H*0.55);
+  for(let x=0;x<=W;x+=8) ctx.lineTo(x, H*0.55 - Math.sin(x*0.018+1)*22 - Math.sin(x*0.009)*18);
+  ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath(); ctx.fill();
+
+  ctx.fillStyle='#1e4a24';
+  ctx.beginPath(); ctx.moveTo(0,H*0.65);
+  for(let x=0;x<=W;x+=8) ctx.lineTo(x, H*0.65 - Math.sin(x*0.015)*28 - Math.sin(x*0.007+2)*14);
+  ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath(); ctx.fill();
+
+  ctx.fillStyle='#172f1a';
+  ctx.beginPath(); ctx.moveTo(0,H*0.78);
+  for(let x=0;x<=W;x+=8) ctx.lineTo(x, H*0.78 - Math.sin(x*0.012+0.5)*20);
+  ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath(); ctx.fill();
+  ctx.restore();
+
+  // Arbres stylisés
+  function tree(x,y,size,a) {
+    ctx.save(); ctx.globalAlpha=a;
+    ctx.fillStyle='#0f2211';
+    ctx.beginPath(); ctx.moveTo(x,y-size); ctx.lineTo(x-size*0.4,y); ctx.lineTo(x+size*0.4,y); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(x,y-size*1.3); ctx.lineTo(x-size*0.28,y-size*0.5); ctx.lineTo(x+size*0.28,y-size*0.5); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+  const treeA = clamp01(p*3);
+  [60,130,200,360,440,500].forEach((x,i)=>tree(x, H*0.68-i%3*8, 18+i%2*8, treeA));
+
+  // Drapeau golf
+  const flagA = clamp01((p-0.3)*4);
+  ctx.save(); ctx.globalAlpha=flagA;
+  ctx.strokeStyle='#888'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(W*0.55,H*0.58); ctx.lineTo(W*0.55,H*0.45); ctx.stroke();
+  ctx.fillStyle=C.or;
+  ctx.beginPath(); ctx.moveTo(W*0.55,H*0.45); ctx.lineTo(W*0.55+16,H*0.48); ctx.lineTo(W*0.55,H*0.51); ctx.fill();
+  ctx.restore();
+
+  // Overlay sombre bas
+  const grad2 = ctx.createLinearGradient(0,H*0.5,0,H);
+  grad2.addColorStop(0,'rgba(10,15,11,0)'); grad2.addColorStop(1,'rgba(10,15,11,0.75)');
+  ctx.fillStyle=grad2; ctx.fillRect(0,0,W,H);
+
+  // Texte hero
+  const txtA = clamp01((p-0.25)*3);
+  fillText('Vous approchez de la retraite.', W/2, H-78, 'bold 18px serif', C.blanc, 'center', txtA);
+  const itA = clamp01((p-0.45)*3);
+  fillText('Et si c\'était votre moment ?', W/2, H-52, 'italic 15px serif', C.orClair, 'center', itA);
+
+  const dotA = clamp01((p-0.65)*4);
+  roundRect(W/2-100,H-36,200,22,11,`rgba(184,148,58,${dotA*0.25})`);
+  fillText('Golf Club de Nantes · Vigneux de Bretagne', W/2, H-21, '9px sans-serif', C.orClair, 'center', dotA);
+
+  if(p>0.85){ ctx.fillStyle='#0d1e0e'; ctx.globalAlpha=(p-0.85)/0.15; ctx.fillRect(0,0,W,H); }
+}
+
+// ── SCÈNE 3 : 3 BÉNÉFICES
+function sceneBenefits(t) {
+  const p = sceneT(t, SCENES[2]);
+  drawGradBg('#0f1e10','#1a2e1c');
+  drawParticles(t/200, 12);
+
+  // Titre
+  const titA = clamp01(p*5);
+  fillText('3 RAISONS DE CHOISIR LE GOLF APRÈS 55 ANS', W/2, 38, 'bold 10px sans-serif', C.orClair, 'center', titA);
+  ctx.save(); ctx.globalAlpha=titA*0.5; ctx.strokeStyle=C.or; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(W/2-160,48); ctx.lineTo(W/2+160,48); ctx.stroke(); ctx.restore();
+
+  const benefits = [
+    { icon:'🌿', title:'Bien-être', sub:'5 à 7 km de marche douce\n56 hectares de nature', col:'#2a5c32', x: W*0.18 },
+    { icon:'🤝', title:'Réseau',   sub:'Liens sociaux durables\nCommunauté bienveillante', col:'#3a4a1e', x: W*0.5  },
+    { icon:'📈', title:'Progrès',  sub:'Progresser à tout âge\nAdult Golf Academy', col:'#1e3a4a', x: W*0.82 },
+  ];
+
+  benefits.forEach((b,i) => {
+    const delay = 0.2 + i*0.18;
+    const bA = clamp01((p-delay)*4);
+    const bY = lerp(H, H*0.5, easeOut(clamp01((p-delay)*4)));
+
+    ctx.save(); ctx.globalAlpha = bA;
+    // Carte
+    roundRect(b.x-62, bY-62, 124, 132, 10, `rgba(30,58,32,0.85)`);
+    // Bordure top or
+    ctx.fillStyle = C.or; ctx.fillRect(b.x-62, bY-62, 124, 3);
+    ctx.restore();
+
+    fillText(b.icon, b.x, bY-24, '28px serif', C.blanc, 'center', bA);
+    fillText(b.title, b.x, bY+6, 'bold 13px sans-serif', C.blanc, 'center', bA);
+
+    b.sub.split('\n').forEach((line,li) => {
+      fillText(line, b.x, bY+24+li*14, '9px sans-serif', C.orClair, 'center', bA*0.75);
+    });
+
+    // Barre animée
+    const barPct = clamp01((p-delay-0.1)*3);
+    ctx.save(); ctx.globalAlpha=bA*0.6;
+    animBar(b.x-44, bY+56, 88, 4, barPct, C.or);
+    ctx.restore();
+  });
+
+  if(p>0.85){ ctx.fillStyle='#0d1e0e'; ctx.globalAlpha=(p-0.85)/0.15; ctx.fillRect(0,0,W,H); }
+}
+
+// ── SCÈNE 4 : TÉMOIGNAGE
+function sceneTemoignage(t) {
+  const p = sceneT(t, SCENES[3]);
+  drawGradBg('#1e3a20','#0f1e10');
+  drawDotGrid(0.5);
+
+  // Grande guillemet
+  const gA = clamp01(p*4);
+  fillText('\u201C', 60, 100, 'bold 100px serif', C.or, 'left', gA*0.2);
+
+  // Citation
+  const lines = [
+    'J\'ai attendu la retraite pour commencer.',
+    'Deux ans plus tard, je joue trois fois',
+    'par semaine et j\'ai trouvé mes',
+    'meilleurs amis ici.'
+  ];
+  lines.forEach((line,i) => {
+    const lA = clamp01((p-(0.15+i*0.12))*5);
+    const lY = lerp(H*0.6, H*0.28+i*32, easeOut(lA));
+    fillText(line, W/2, lY, `italic ${i===0?'17':'15'}px serif`, C.blanc, 'center', lA);
+  });
+
+  // Auteur
+  const authA = clamp01((p-0.65)*4);
+  ctx.save(); ctx.globalAlpha=authA;
+  roundRect(W/2-120,H-68,240,44,8,`rgba(184,148,58,0.18)`);
+  ctx.restore();
+  fillText('— Michel D., 63 ans', W/2, H-48, 'bold 10px sans-serif', C.orClair, 'center', authA);
+  fillText('Ancien chef d\'entreprise · Membre depuis 2023', W/2, H-30, '9px sans-serif', C.vertClair, 'center', authA);
+
+  // Étoiles
+  const starA = clamp01((p-0.5)*4);
+  '★★★★★'.split('').forEach((s,i)=>{
+    fillText(s,W/2-40+i*20,H-78,'14px serif',C.or,'left',starA);
+  });
+
+  if(p>0.85){ ctx.fillStyle='#0d1e0e'; ctx.globalAlpha=(p-0.85)/0.15; ctx.fillRect(0,0,W,H); }
+}
+
+// ── SCÈNE 5 : JOURNÉE PORTES OUVERTES
+function sceneJournee(t) {
+  const p = sceneT(t, SCENES[4]);
+  clearCanvas('#0f1e10');
+  drawGrid(p);
+
+  // Titre
+  const titA = clamp01(p*5);
+  fillText('JOURNÉE PORTES OUVERTES SENIORS', W/2, 34, 'bold 11px sans-serif', C.orClair, 'center', titA);
+  fillText('Programme de la matinée', W/2, 52, 'italic 12px serif', C.blanc, 'center', titA*0.7);
+
+  const steps = [
+    { time:'9h00',  label:'Accueil & café au club-house', icon:'☕' },
+    { time:'9h30',  label:'Initiation sur le practice',   icon:'🏌️' },
+    { time:'10h30', label:'Visite du parcours 18 trous',  icon:'🚗' },
+    { time:'11h15', label:'Témoignages de membres',       icon:'🎤' },
+    { time:'12h00', label:'Tarif senior + déjeuner',      icon:'🍽️' },
+  ];
+
+  steps.forEach((step,i) => {
+    const d = 0.1+i*0.14;
+    const sA = clamp01((p-d)*5);
+    const sX = lerp(-80,42, easeOut(sA));
+    const sY = 78+i*38;
+
+    ctx.save(); ctx.globalAlpha=sA;
+    // Ligne timeline
+    if(i<steps.length-1) {
+      ctx.strokeStyle='rgba(184,148,58,0.3)'; ctx.lineWidth=1; ctx.setLineDash([3,3]);
+      ctx.beginPath(); ctx.moveTo(sX+12,sY+16); ctx.lineTo(sX+12,sY+38); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    // Dot
+    ctx.fillStyle=C.or;
+    ctx.beginPath(); ctx.arc(sX+12,sY+8,5,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+
+    fillText(step.time, sX+26, sY+12, 'bold 10px sans-serif', C.or, 'left', sA);
+    fillText(step.icon+' '+step.label, sX+72, sY+12, '11px sans-serif', C.blanc, 'left', sA);
+  });
+
+  // Badge Entrée libre
+  const badgeA = clamp01((p-0.75)*5);
+  ctx.save(); ctx.globalAlpha=badgeA;
+  roundRect(W-130,H-42,118,30,15,C.or);
+  ctx.restore();
+  fillText('Entrée libre', W-71, H-23, 'bold 11px sans-serif', C.blanc, 'center', badgeA);
+
+  if(p>0.85){ ctx.fillStyle='#0d1e0e'; ctx.globalAlpha=(p-0.85)/0.15; ctx.fillRect(0,0,W,H); }
+}
+
+// ── SCÈNE 6 : OFFRE SENIOR
+function sceneOffre(t) {
+  const p = sceneT(t, SCENES[5]);
+  drawGradBg('#0a1a0b','#1e3a20');
+
+  // Carte centrale
+  const cardA = clamp01(p*4);
+  const cardS = lerp(0.8,1,easeOut(clamp01(p*4)));
+  ctx.save();
+  ctx.globalAlpha=cardA;
+  ctx.translate(W/2,H/2);
+  ctx.scale(cardS,cardS);
+  ctx.translate(-W/2,-H/2);
+  roundRect(W/2-160,H/2-100,320,200,14,'rgba(255,255,255,0.05)');
+  ctx.strokeStyle=C.or; ctx.lineWidth=1.5;
+  ctx.strokeRect(W/2-160,H/2-100,320,200);
+  ctx.restore();
+
+  // Badge
+  const badA = clamp01((p-0.2)*4);
+  ctx.save(); ctx.globalAlpha=badA;
+  roundRect(W/2-80,H/2-118,160,24,12,C.or);
+  ctx.restore();
+  fillText('TARIF SENIOR DÉDIÉ', W/2, H/2-102, 'bold 9px sans-serif', C.blanc, 'center', badA);
+
+  fillText('Formule Découverte Senior', W/2, H/2-72, 'bold 16px serif', C.blanc, 'center', clamp01((p-0.25)*4));
+  fillText('+55 ans · Nouveaux membres', W/2, H/2-52, '10px sans-serif', C.orClair, 'center', clamp01((p-0.3)*4));
+
+  const items = [
+    '✓  Accès illimité au parcours 18 trous',
+    '✓  2 cours individuels offerts',
+    '✓  Équipement prêté au démarrage',
+    '✓  Invitation aux compétitions du club',
+  ];
+  items.forEach((item,i) => {
+    fillText(item, W/2, H/2-20+i*24, '10px sans-serif', i===0||i===1?C.blanc:'rgba(255,255,255,0.7)', 'center', clamp01((p-0.35-i*0.08)*5));
+  });
+
+  // Countdown
+  const urgA = clamp01((p-0.75)*5);
+  fillText('⏳ Offre valable 21 jours après la journée', W/2, H/2+110, 'italic 9px sans-serif', C.or, 'center', urgA);
+
+  if(p>0.85){ ctx.fillStyle='#0d1e0e'; ctx.globalAlpha=(p-0.85)/0.15; ctx.fillRect(0,0,W,H); }
+}
+
+// ── SCÈNE 7 : OUTRO CTA
+function sceneOutro(t) {
+  const p = sceneT(t, SCENES[6]);
+  drawGradBg('#0a1a0b','#1e3a20');
+
+  // Halo central
+  const haloG = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,180);
+  haloG.addColorStop(0,`rgba(184,148,58,${p*0.2})`);
+  haloG.addColorStop(1,'rgba(184,148,58,0)');
+  ctx.fillStyle=haloG; ctx.fillRect(0,0,W,H);
+
+  // Logo
+  const logoA = clamp01(p*6);
+  fillText('GOLF CLUB DE NANTES', W/2, H/2-40, 'bold 22px serif', C.blanc, 'center', logoA);
+  ctx.save(); ctx.globalAlpha=logoA*0.6; ctx.strokeStyle=C.or; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(W/2-130,H/2-24); ctx.lineTo(W/2+130,H/2-24); ctx.stroke(); ctx.restore();
+
+  // CTA Bouton
+  const ctaA = clamp01((p-0.3)*6);
+  ctx.save(); ctx.globalAlpha=ctaA;
+  roundRect(W/2-130,H/2-8,260,40,8,C.or);
+  ctx.restore();
+  fillText('→ Je réserve ma place gratuite', W/2, H/2+17, 'bold 13px sans-serif', C.blanc, 'center', ctaA);
+
+  // Sous-texte
+  const subA = clamp01((p-0.6)*6);
+  fillText('Samedi matin · Golf de Nantes Vigneux · Entrée libre', W/2, H/2+56, '9px sans-serif', C.orClair, 'center', subA);
+  fillText('Aucun engagement · Équipement prêté · Places limitées', W/2, H/2+72, '8px sans-serif', 'rgba(255,255,255,0.4)', 'center', subA);
+
+  // Pulse sur le bouton
+  if(p>0.5) {
+    const pulse = (Math.sin(t/120)*0.5+0.5);
+    ctx.save();
+    ctx.globalAlpha=pulse*0.15*ctaA;
+    ctx.strokeStyle=C.orClair; ctx.lineWidth=2;
+    ctx.strokeRect(W/2-134,H/2-12,268,48);
+    ctx.restore();
+  }
+
+  // APETIT mention
+  fillText('Opération pilotée par APETIT', W/2, H-18, '8px sans-serif', 'rgba(255,255,255,0.25)', 'center', clamp01((p-0.7)*6));
+}
+
+// ══════════════════════════════════════════════════════
+// MOTEUR D'ANIMATION
+// ══════════════════════════════════════════════════════
+let animStart = null;
+let animRAF   = null;
+let isRunning = false;
+
+function render(t) {
+  // Mettre à jour l'indicateur de scène
+  let currentScene = 0;
+  SCENES.forEach((s,i) => { if(t >= s.start) currentScene = i; });
+  SCENES.forEach((_,i) => document.getElementById('dot-'+i).classList.toggle('active', i===currentScene));
+
+  // Progress bar
+  document.getElementById('tl').style.width = (t/TOTAL_MS*100)+'%';
+
+  // Dessiner la scène active
+  SCENES.forEach(s => { if(t >= s.start && t <= s.end + 200) s.fn(t); });
+}
+
+function startPreview() {
+  if(isRunning) { cancelAnimationFrame(animRAF); isRunning=false; document.getElementById('btn-play').textContent='▶ Aperçu'; return; }
+  animStart = null; isRunning = true;
+  document.getElementById('btn-play').textContent='⏹ Stop';
+  document.getElementById('status').textContent='Aperçu en cours...';
+  document.getElementById('status').className='status';
+
+  function tick(ts) {
+    if(!animStart) animStart = ts;
+    const t = Math.min(ts - animStart, TOTAL_MS);
+    render(t);
+    if(t < TOTAL_MS && isRunning) animRAF = requestAnimationFrame(tick);
+    else { isRunning=false; document.getElementById('btn-play').textContent='▶ Aperçu'; document.getElementById('status').textContent='Aperçu terminé. Cliquez ⏺ pour exporter en MP4.'; }
+  }
+  animRAF = requestAnimationFrame(tick);
+}
+
+// ══════════════════════════════════════════════════════
+// ENREGISTREMENT MP4 via MediaRecorder
+// ══════════════════════════════════════════════════════
+let recordedChunks = [];
+let mediaRecorder  = null;
+let videoBlob      = null;
+
+function startRecording() {
+  if(!window.MediaRecorder) { alert('MediaRecorder non supporté. Utilisez Chrome ou Edge.'); return; }
+
+  recordedChunks = []; videoBlob = null;
+  document.getElementById('btn-dl').disabled = true;
+  document.getElementById('btn-rec').disabled = true;
+
+  // Choisir le meilleur codec disponible
+  const mimeTypes = ['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm','video/mp4'];
+  const mimeType  = mimeTypes.find(m => MediaRecorder.isTypeSupported(m)) || 'video/webm';
+
+  const stream = canvas.captureStream(FPS);
+  mediaRecorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 4000000 });
+
+  mediaRecorder.ondataavailable = e => { if(e.data.size>0) recordedChunks.push(e.data); };
+  mediaRecorder.onstop = () => {
+    videoBlob = new Blob(recordedChunks, { type: mimeType });
+    document.getElementById('btn-dl').disabled = false;
+    document.getElementById('btn-rec').disabled = false;
+    document.getElementById('status').textContent = '✅ Enregistrement terminé ! Cliquez ⬇ Télécharger.';
+    document.getElementById('status').className = 'status';
+  };
+
+  mediaRecorder.start(100); // chunk toutes les 100ms
+
+  // Lancer l'animation
+  animStart = null; isRunning = true;
+  document.getElementById('status').textContent = '⏺ Enregistrement en cours — 30 secondes...';
+  document.getElementById('status').className = 'status rec';
+
+  const recStart = performance.now();
+  function recTick(ts) {
+    const t = Math.min(ts - recStart, TOTAL_MS);
+    render(t);
+    if(t < TOTAL_MS) { animRAF = requestAnimationFrame(recTick); }
+    else { mediaRecorder.stop(); isRunning=false; }
+  }
+  animRAF = requestAnimationFrame(recTick);
+}
+
+function downloadVideo() {
+  if(!videoBlob) return;
+  const url = URL.createObjectURL(videoBlob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'demo-golf-vigneux-30s.webm';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+
+// ── INIT : dessiner la première frame
+render(0);
+</script>
+</body>
+</html>
