@@ -472,7 +472,7 @@
     <div class="hero-lb-meta">
       <span><strong>7</strong> chapitres</span>
       <div class="meta-sep"></div>
-      <span><strong>20 min</strong> de lecture</span>
+      <span>⏱ <strong>20 min</strong> de lecture</span>
       <div class="meta-sep"></div>
       <span><strong>PDF</strong> gratuit</span>
       <div class="meta-sep"></div>
@@ -481,17 +481,11 @@
   </div>
 </section>
 
-<!-- TABS NAV -->
-<div class="actions-band">
+<!-- TABS NAV (un seul onglet actif désormais) -->
+<div class="actions-band" style="display:none;">
   <div class="actions-inner">
     <button class="action-tab active" onclick="switchTab('lecture', this)">
       <span class="tab-icon">📖</span> Lire le livre blanc
-    </button>
-    <button class="action-tab" onclick="switchTab('emails', this)">
-      <span class="tab-icon">✉️</span> Séquence emails Brevo
-    </button>
-    <button class="action-tab" onclick="switchTab('video', this)">
-      <span class="tab-icon">🎬</span> Vidéo démo 30s
     </button>
   </div>
 </div>
@@ -671,358 +665,6 @@
 
     </div><!-- /tab-lecture -->
 
-    <!-- TAB : EMAILS BREVO -->
-    <div class="tab-content" id="tab-emails">
-
-      <div class="emails-intro">
-        <h2>Séquence emails Brevo</h2>
-        <p>5 emails automatisés envoyés après la capture du lead sur la landing page. Chaque email a un objectif précis dans l'entonnoir de conversion. Copiez-collez directement dans Brevo.</p>
-        <div class="emails-pipeline">
-          <div class="pipe-step">📋 Inscription</div>
-          <div class="pipe-arrow">→</div>
-          <div class="pipe-step">J+0 Confirmation</div>
-          <div class="pipe-arrow">→</div>
-          <div class="pipe-step">J+3 Crédibilité</div>
-          <div class="pipe-arrow">→</div>
-          <div class="pipe-step">J+7 Programme</div>
-          <div class="pipe-arrow">→</div>
-          <div class="pipe-step">J-2 Rappel</div>
-          <div class="pipe-arrow">→</div>
-          <div class="pipe-step">J+2 Offre</div>
-          <div class="pipe-arrow">→</div>
-          <div class="pipe-step">⛳ Membre</div>
-        </div>
-      </div>
-
-      <!-- EMAIL 1 -->
-      <div class="email-card" id="email1">
-        <div class="email-header" onclick="toggleEmail('email1')">
-          <div class="email-day"><div class="d">J+0</div><div class="n">0</div></div>
-          <div class="email-meta">
-            <strong>Confirmation + Livre Blanc</strong>
-            <span>Envoi immédiat après inscription · Objectif : rassurer et délivrer la valeur promise</span>
-          </div>
-          <span class="email-tag tag-engage">Engagement</span>
-          <span class="email-chevron">▼</span>
-        </div>
-        <div class="email-body">
-          <div class="email-simulate">
-            <div class="email-sim-toolbar">
-              <div class="sim-dot" style="background:#ff5f56"></div>
-              <div class="sim-dot" style="background:#ffbd2e"></div>
-              <div class="sim-dot" style="background:#27c93f"></div>
-              <span class="sim-label">Gmail — Boîte de réception</span>
-            </div>
-            <div class="email-sim-head">
-              <div class="field"><span class="lbl">De :</span><span class="val">Golf Club de Nantes &lt;contact@golfclubdenantes.com&gt;</span></div>
-              <div class="field"><span class="lbl">À :</span><span class="val">{{prénom}} {{nom}}</span></div>
-              <div class="email-sim-subject">⛳ Votre place est réservée, {{prénom}} — et votre guide vous attend</div>
-            </div>
-            <div class="email-sim-content">
-              <p>Bonjour {{prénom}},</p>
-              <p>Votre inscription à la <strong>Journée Portes Ouvertes Seniors</strong> du Golf Club de Nantes est bien confirmée. Nous sommes ravis de vous accueillir.</p>
-              <p>Comme promis, voici votre guide gratuit :</p>
-              <div class="e-highlight">
-                📘 <strong>« Le Golf &amp; l'Art de Vivre après 55 ans »</strong><br>
-                7 chapitres · 20 minutes de lecture<br>
-                <a href="#" class="e-btn" style="display:inline-block;margin-top:10px;padding:10px 22px;font-size:0.85rem;">→ Télécharger le guide (PDF)</a>
-              </div>
-              <p>Vous y trouverez tout ce qu'il faut savoir pour aborder la journée avec sérénité : ce qu'on va faire, ce que vous allez ressentir, et pourquoi des centaines de personnes comme vous ont franchi le pas.</p>
-              <p>On vous envoie les détails pratiques très bientôt. D'ici là, si vous avez la moindre question, répondez simplement à cet email.</p>
-              <p>À très bientôt sur le green,</p>
-              <div class="e-sig">
-                <strong>L'équipe du Golf Club de Nantes</strong><br>
-                Route départementale 81 · 44360 Vigneux de Bretagne<br>
-                02 40 63 25 82 · <a href="#">www.golfclubdenantes.com</a>
-              </div>
-            </div>
-          </div>
-          <div class="email-tip"><strong>💡 Réglage Brevo :</strong> Déclencheur = soumission du formulaire landing page. Délai = immédiat. Lien PDF = URL publique du fichier hébergé.</div>
-        </div>
-      </div>
-
-      <!-- EMAIL 2 -->
-      <div class="email-card" id="email2">
-        <div class="email-header" onclick="toggleEmail('email2')">
-          <div class="email-day"><div class="d">J+3</div><div class="n">3</div></div>
-          <div class="email-meta">
-            <strong>Témoignage membre</strong>
-            <span>3 jours après inscription · Objectif : crédibiliser et réduire l'hésitation</span>
-          </div>
-          <span class="email-tag tag-credib">Crédibilité</span>
-          <span class="email-chevron">▼</span>
-        </div>
-        <div class="email-body">
-          <div class="email-simulate">
-            <div class="email-sim-toolbar">
-              <div class="sim-dot" style="background:#ff5f56"></div>
-              <div class="sim-dot" style="background:#ffbd2e"></div>
-              <div class="sim-dot" style="background:#27c93f"></div>
-              <span class="sim-label">Gmail — Boîte de réception</span>
-            </div>
-            <div class="email-sim-head">
-              <div class="field"><span class="lbl">De :</span><span class="val">Golf Club de Nantes &lt;contact@golfclubdenantes.com&gt;</span></div>
-              <div class="field"><span class="lbl">À :</span><span class="val">{{prénom}} {{nom}}</span></div>
-              <div class="email-sim-subject">Michel a commencé à 60 ans. Voici ce qu'il dit aujourd'hui.</div>
-            </div>
-            <div class="email-sim-content">
-              <p>Bonjour {{prénom}},</p>
-              <p>Avant de vous retrouver samedi, nous voulions vous partager le témoignage d'un de nos membres qui, il y a trois ans, était exactement dans votre position.</p>
-              <div class="e-highlight">
-                <em>« J'attendais la retraite depuis des années pour commencer. Ma femme m'avait offert un cours pour mes 60 ans. Je pensais faire ça une fois, par politesse. Deux ans plus tard, je joue trois fois par semaine et j'ai trouvé mes meilleurs amis ici. »</em><br><br>
-                <strong>— Michel D., 63 ans · Ancien chef d'entreprise · Membre depuis 2023</strong>
-              </div>
-              <p>Ce que Michel ne savait pas encore, c'est que le golf allait lui apporter bien plus qu'un sport : une communauté, une structure, et quelque chose à améliorer chaque semaine.</p>
-              <p>Il sera présent lors de la Journée Portes Ouvertes pour répondre à vos questions — directement, sans langue de bois.</p>
-              <p>À samedi,</p>
-              <div class="e-sig">
-                <strong>L'équipe du Golf Club de Nantes</strong><br>
-                02 40 63 25 82 · accueil@golfclubdenantes.com
-              </div>
-            </div>
-          </div>
-          <div class="email-tip"><strong>💡 Réglage Brevo :</strong> Délai = 3 jours après J+0. Personnalisation = {{prénom}} en objet augmente le taux d'ouverture de ~18%. A/B tester avec prénom dans l'objet vs sans.</div>
-        </div>
-      </div>
-
-      <!-- EMAIL 3 -->
-      <div class="email-card" id="email3">
-        <div class="email-header" onclick="toggleEmail('email3')">
-          <div class="email-day"><div class="d">J+7</div><div class="n">7</div></div>
-          <div class="email-meta">
-            <strong>Programme détaillé + infos pratiques</strong>
-            <span>7 jours après inscription · Objectif : créer l'envie et préparer la venue</span>
-          </div>
-          <span class="email-tag tag-desire">Désir</span>
-          <span class="email-chevron">▼</span>
-        </div>
-        <div class="email-body">
-          <div class="email-simulate">
-            <div class="email-sim-toolbar">
-              <div class="sim-dot" style="background:#ff5f56"></div>
-              <div class="sim-dot" style="background:#ffbd2e"></div>
-              <div class="sim-dot" style="background:#27c93f"></div>
-              <span class="sim-label">Gmail — Boîte de réception</span>
-            </div>
-            <div class="email-sim-head">
-              <div class="field"><span class="lbl">De :</span><span class="val">Golf Club de Nantes &lt;contact@golfclubdenantes.com&gt;</span></div>
-              <div class="field"><span class="lbl">À :</span><span class="val">{{prénom}} {{nom}}</span></div>
-              <div class="email-sim-subject">Votre matinée du samedi — ce qui vous attend heure par heure</div>
-            </div>
-            <div class="email-sim-content">
-              <p>Bonjour {{prénom}},</p>
-              <p>Vous nous rejoignez bientôt et nous avons hâte de vous accueillir. Pour que vous arriviez serein(e), voici exactement ce qui vous attend :</p>
-              <div class="e-highlight">
-                <strong>🕘 9h00</strong> — Accueil café au club-house. Ambiance conviviale, rencontre avec l'équipe.<br><br>
-                <strong>🏌️ 9h30</strong> — Initiation sur le practice avec un pro. Groupes de 5 max. Aucun niveau requis.<br><br>
-                <strong>🚗 10h30</strong> — Visite du parcours 18 trous en voiturette. Vous verrez pourquoi on tombe amoureux.<br><br>
-                <strong>🎤 11h15</strong> — Table ronde avec des membres retraités. Questions libres, témoignages sincères.<br><br>
-                <strong>🍽️ 12h00</strong> — Présentation du tarif senior + déjeuner partagé.
-              </div>
-              <p><strong>Ce qu'il faut prévoir :</strong> une tenue confortable (pas besoin de polo de golf), des chaussures fermées. Tout le reste est fourni sur place.</p>
-              <p><strong>Comment venir :</strong> Route départementale 81, 44360 Vigneux de Bretagne. Parking gratuit à l'entrée du club.</p>
-              <p>Des questions ? Répondez directement à cet email ou appelez-nous au <strong>02 40 63 25 82</strong>.</p>
-              <p>On vous attend !</p>
-              <div class="e-sig">
-                <strong>L'équipe du Golf Club de Nantes</strong>
-              </div>
-            </div>
-          </div>
-          <div class="email-tip"><strong>💡 Réglage Brevo :</strong> Délai = 7 jours après J+0. Cet email a le taux de clic le plus élevé de la séquence — ajouter un bouton "Ajouter à mon calendrier" (lien .ics) pour réduire le no-show.</div>
-        </div>
-      </div>
-
-      <!-- EMAIL 4 -->
-      <div class="email-card" id="email4">
-        <div class="email-header" onclick="toggleEmail('email4')">
-          <div class="email-day"><div class="d">J-2</div><div class="n">-2</div></div>
-          <div class="email-meta">
-            <strong>Rappel anti no-show</strong>
-            <span>2 jours avant l'événement · Objectif : confirmer la présence et réduire les absences</span>
-          </div>
-          <span class="email-tag tag-urgence">Rappel</span>
-          <span class="email-chevron">▼</span>
-        </div>
-        <div class="email-body">
-          <div class="email-simulate">
-            <div class="email-sim-toolbar">
-              <div class="sim-dot" style="background:#ff5f56"></div>
-              <div class="sim-dot" style="background:#ffbd2e"></div>
-              <div class="sim-dot" style="background:#27c93f"></div>
-              <span class="sim-label">Gmail — Boîte de réception</span>
-            </div>
-            <div class="email-sim-head">
-              <div class="field"><span class="lbl">De :</span><span class="val">Golf Club de Nantes &lt;contact@golfclubdenantes.com&gt;</span></div>
-              <div class="field"><span class="lbl">À :</span><span class="val">{{prénom}} {{nom}}</span></div>
-              <div class="email-sim-subject">Dans 2 jours, {{prénom}} — on vous attend à 9h00 ☀️</div>
-            </div>
-            <div class="email-sim-content">
-              <p>Bonjour {{prénom}},</p>
-              <p>Votre matinée découverte au Golf Club de Nantes approche — c'est <strong>samedi à 9h00</strong>.</p>
-              <p>Juste un rappel pratique :</p>
-              <div class="e-highlight">
-                📍 <strong>Golf Club de Nantes</strong><br>
-                Route départementale 81 · 44360 Vigneux de Bretagne<br>
-                ☎️ 02 40 63 25 82<br><br>
-                👕 Tenue confortable · Chaussures fermées · Tout le reste est fourni<br>
-                🌤️ En cas de pluie : la matinée est maintenue (nous avons des équipements couverts)
-              </div>
-              <p>Si vous avez un empêchement de dernière minute, prévenez-nous — nous pourrons vous proposer la prochaine date.</p>
-              <p>À samedi matin !</p>
-              <div class="e-sig">
-                <strong>L'équipe du Golf Club de Nantes</strong><br>
-                02 40 63 25 82
-              </div>
-            </div>
-          </div>
-          <div class="email-tip"><strong>💡 Réglage Brevo :</strong> Déclencheur = date de l'événement - 2 jours. Cet email réduit le taux de no-show de 25 à 40%. L'emoji dans l'objet augmente l'ouverture sur mobile.</div>
-        </div>
-      </div>
-
-      <!-- EMAIL 5 -->
-      <div class="email-card" id="email5">
-        <div class="email-header" onclick="toggleEmail('email5')">
-          <div class="email-day"><div class="d">J+2</div><div class="n">+2</div></div>
-          <div class="email-meta">
-            <strong>Offre de conversion post-événement</strong>
-            <span>2 jours après l'événement · Objectif : convertir les participants en membres</span>
-          </div>
-          <span class="email-tag tag-convert">Conversion</span>
-          <span class="email-chevron">▼</span>
-        </div>
-        <div class="email-body">
-          <div class="email-simulate">
-            <div class="email-sim-toolbar">
-              <div class="sim-dot" style="background:#ff5f56"></div>
-              <div class="sim-dot" style="background:#ffbd2e"></div>
-              <div class="sim-dot" style="background:#27c93f"></div>
-              <span class="sim-label">Gmail — Boîte de réception</span>
-            </div>
-            <div class="email-sim-head">
-              <div class="field"><span class="lbl">De :</span><span class="val">Golf Club de Nantes &lt;contact@golfclubdenantes.com&gt;</span></div>
-              <div class="field"><span class="lbl">À :</span><span class="val">{{prénom}} {{nom}}</span></div>
-              <div class="email-sim-subject">{{prénom}}, votre offre senior est valable encore 19 jours</div>
-            </div>
-            <div class="email-sim-content">
-              <p>Bonjour {{prénom}},</p>
-              <p>Nous espérons que vous avez passé une belle matinée samedi. C'était un plaisir de vous accueillir sur le parcours.</p>
-              <p>Comme annoncé, voici votre <strong>offre de bienvenue senior</strong> — réservée aux participants de la Journée Portes Ouvertes :</p>
-              <div class="e-highlight">
-                <strong>🎁 Formule Découverte Senior — Offre exclusive</strong><br><br>
-                ✓ Adhésion annuelle au tarif senior dédié<br>
-                ✓ 2 cours individuels offerts avec un pro<br>
-                ✓ Équipement prêté pour vos 3 premières parties<br>
-                ✓ Invitation à la prochaine compétition débutants<br><br>
-                <strong>⏳ Offre valable jusqu'au {{date_expiration}}</strong>
-              </div>
-              <p>Pour rejoindre le club, il vous suffit de répondre à cet email ou d'appeler le <strong>02 40 63 25 82</strong>. Nous vous guidons pour les démarches en 10 minutes.</p>
-              <a href="#" class="e-btn">→ Je rejoins le Golf Club de Nantes</a>
-              <p style="font-size:0.85rem;color:#888;">Si vous avez encore des questions avant de décider, nous sommes disponibles pour un appel de 10 minutes. Répondez simplement à cet email en indiquant vos disponibilités.</p>
-              <div class="e-sig">
-                <strong>L'équipe du Golf Club de Nantes</strong><br>
-                02 40 63 25 82 · accueil@golfclubdenantes.com
-              </div>
-            </div>
-          </div>
-          <div class="email-tip"><strong>💡 Réglage Brevo :</strong> Variable {{date_expiration}} = date de l'événement + 21 jours. Envoyer à J+2 après l'événement (pas immédiatement). Si pas d'ouverture à J+5, relance avec objet différent : "On garde votre place encore un peu, {{prénom}} ?"</div>
-        </div>
-      </div>
-
-      <!-- KPIs -->
-      <div style="background:var(--blanc);border-radius:12px;border:1px solid rgba(0,0,0,0.07);padding:24px;margin-top:8px;">
-        <p style="font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--vert-clair);margin-bottom:14px;">Benchmarks à surveiller</p>
-        <div class="stat-grid">
-          <div class="stat-item"><div class="stat-big">&gt;40%</div><div class="stat-desc">Taux d'ouverture cible (vs 25% marché)</div></div>
-          <div class="stat-item"><div class="stat-big">&gt;8%</div><div class="stat-desc">Taux de clic cible sur les CTA</div></div>
-          <div class="stat-item"><div class="stat-big">10–15%</div><div class="stat-desc">Taux de conversion lead → membre</div></div>
-        </div>
-      </div>
-
-    </div><!-- /tab-emails -->
-
-    <!-- TAB : VIDÉO DÉMO -->
-    <div class="tab-content" id="tab-video">
-
-      <!-- INTRO -->
-      <div style="background:var(--blanc);border-radius:12px;border:1px solid rgba(0,0,0,0.07);padding:24px;margin-bottom:24px;">
-        <p style="font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--vert-clair);margin-bottom:10px;">Outil de communication</p>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;margin-bottom:8px;">Vidéo démo 30 secondes</h2>
-        <p style="font-size:0.9rem;color:var(--texte-doux);line-height:1.7;margin-bottom:14px;">Animation cinématique à partager sur LinkedIn, Meta Ads, Instagram Reels, et WhatsApp. 7 scènes, export WebM/MP4 directement depuis votre navigateur.</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <span style="background:var(--gris);border-radius:20px;padding:5px 12px;font-size:0.78rem;color:var(--texte-doux);">⏱ 30 secondes</span>
-          <span style="background:var(--gris);border-radius:20px;padding:5px 12px;font-size:0.78rem;color:var(--texte-doux);">🎬 7 scènes animées</span>
-          <span style="background:var(--gris);border-radius:20px;padding:5px 12px;font-size:0.78rem;color:var(--texte-doux);">📱 Format 16:9 · 540×304px</span>
-          <span style="background:rgba(74,124,82,0.12);border-radius:20px;padding:5px 12px;font-size:0.78rem;color:var(--vert-clair);font-weight:600;">✓ Export MP4 intégré</span>
-        </div>
-      </div>
-
-      <!-- PLAYER VIDÉO INTÉGRÉ -->
-      <div style="background:#0a0f0b;border-radius:14px;overflow:hidden;border:1px solid rgba(184,148,58,0.2);">
-
-        <!-- Header -->
-        <div style="background:var(--vert);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="display:flex;gap:5px;"><div style="width:10px;height:10px;border-radius:50%;background:#ff5f56;"></div><div style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;"></div><div style="width:10px;height:10px;border-radius:50%;background:#27c93f;"></div></div>
-            <span style="font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.1em;">DÉMO · Golf Club de Nantes × APETIT · 30s</span>
-          </div>
-          <span style="font-size:10px;color:var(--or-clair);font-weight:600;">⏱ 30:00</span>
-        </div>
-
-        <!-- Canvas embed -->
-        <div style="position:relative;background:#0a0f0b;display:flex;justify-content:center;padding:20px 0;">
-          <canvas id="demo-canvas" width="540" height="304" style="max-width:100%;border-radius:4px;"></canvas>
-        </div>
-
-        <!-- Scene dots -->
-        <div style="display:flex;justify-content:center;gap:6px;padding:0 0 12px;" id="demo-scene-dots"></div>
-
-        <!-- Timeline -->
-        <div style="padding:0 20px 12px;">
-          <div style="background:#1e3a20;border-radius:4px;height:5px;overflow:hidden;">
-            <div id="demo-tl" style="height:100%;background:linear-gradient(90deg,#b8943a,#d4aa55);width:0%;transition:width 0.1s linear;"></div>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:9px;color:#4a6a4c;margin-top:4px;">
-            <span>0s</span><span>5s</span><span>10s</span><span>15s</span><span>20s</span><span>25s</span><span>30s</span>
-          </div>
-        </div>
-
-        <!-- Controls -->
-        <div style="padding:12px 20px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid rgba(184,148,58,0.15);">
-          <button onclick="demoPlay()" id="demo-play-btn" style="background:var(--vert-mid);color:#fff;border:none;border-radius:6px;padding:10px 22px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:7px;">▶ Aperçu</button>
-          <button onclick="demoRecord()" id="demo-rec-btn" style="background:var(--or);color:#fff;border:none;border-radius:6px;padding:10px 22px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:7px;">⏺ Exporter MP4</button>
-          <button onclick="demoDl()" id="demo-dl-btn" disabled style="background:transparent;color:var(--or-clair);border:1px solid var(--or);border-radius:6px;padding:10px 22px;font-size:0.85rem;font-weight:600;cursor:pointer;font-family:inherit;opacity:0.4;display:flex;align-items:center;gap:7px;">⬇ Télécharger</button>
-          <span id="demo-status" style="font-size:0.78rem;color:#4a6a4c;flex:1;"></span>
-        </div>
-      </div>
-
-      <!-- Scènes description -->
-      <div style="margin-top:20px;background:var(--blanc);border-radius:12px;border:1px solid rgba(0,0,0,0.07);overflow:hidden;">
-        <div style="padding:16px 20px;border-bottom:1px solid var(--gris);">
-          <p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--texte-doux);">Découpage des 7 scènes</p>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-          <div style="padding:14px 18px;border-bottom:1px solid var(--gris);border-right:1px solid var(--gris);display:flex;gap:10px;align-items:center;"><span style="background:var(--or);color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:4px;flex-shrink:0;">0–4s</span><span style="font-size:0.82rem;color:var(--texte);">Intro Logo · Golf Club de Nantes × APETIT</span></div>
-          <div style="padding:14px 18px;border-bottom:1px solid var(--gris);display:flex;gap:10px;align-items:center;"><span style="background:var(--vert-clair);color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:4px;flex-shrink:0;">4–9s</span><span style="font-size:0.82rem;color:var(--texte);">Parcours · Paysage green, drapeau, accroche</span></div>
-          <div style="padding:14px 18px;border-bottom:1px solid var(--gris);border-right:1px solid var(--gris);display:flex;gap:10px;align-items:center;"><span style="background:var(--vert);color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:4px;flex-shrink:0;">9–14s</span><span style="font-size:0.82rem;color:var(--texte);">3 Bénéfices · Bien-être / Réseau / Progrès</span></div>
-          <div style="padding:14px 18px;border-bottom:1px solid var(--gris);display:flex;gap:10px;align-items:center;"><span style="background:#3a4a2e;color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:4px;flex-shrink:0;">14–19s</span><span style="font-size:0.82rem;color:var(--texte);">Témoignage · Citation membre + étoiles</span></div>
-          <div style="padding:14px 18px;border-bottom:1px solid var(--gris);border-right:1px solid var(--gris);display:flex;gap:10px;align-items:center;"><span style="background:var(--vert-mid);color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:4px;flex-shrink:0;">19–24s</span><span style="font-size:0.82rem;color:var(--texte);">Programme · Journée Portes Ouvertes heure/heure</span></div>
-          <div style="padding:14px 18px;border-bottom:1px solid var(--gris);display:flex;gap:10px;align-items:center;"><span style="background:#4a3a1e;color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:4px;flex-shrink:0;">24–28s</span><span style="font-size:0.82rem;color:var(--texte);">Offre Senior · Checklist avantages animée</span></div>
-          <div style="padding:14px 18px;grid-column:span 2;display:flex;gap:10px;align-items:center;"><span style="background:var(--or);color:#fff;font-size:9px;font-weight:700;padding:3px 7px;border-radius:4px;flex-shrink:0;">28–30s</span><span style="font-size:0.82rem;color:var(--texte);">CTA Final · Bouton pulsé "Je réserve ma place gratuite"</span></div>
-        </div>
-      </div>
-
-      <!-- Usage guide -->
-      <div style="background:rgba(30,58,32,0.08);border-radius:12px;padding:20px;margin-top:16px;border:1px solid rgba(30,58,32,0.15);">
-        <p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--vert-clair);margin-bottom:12px;">Où diffuser cette vidéo ?</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="font-size:0.82rem;color:var(--texte);line-height:1.6;"><strong style="color:var(--vert);">📘 LinkedIn</strong><br>Post organique + Sponsored Content. Cibler 55–65 ans Loire-Atlantique.</div>
-          <div style="font-size:0.82rem;color:var(--texte);line-height:1.6;"><strong style="color:var(--vert);">📸 Instagram / Facebook</strong><br>Reel + Story. Audience : intérêts golf, retraite, plein air.</div>
-          <div style="font-size:0.82rem;color:var(--texte);line-height:1.6;"><strong style="color:var(--vert);">💬 WhatsApp</strong><br>Partage direct aux réseaux des membres actuels. Bouche à oreille numérique.</div>
-          <div style="font-size:0.82rem;color:var(--texte);line-height:1.6;"><strong style="color:var(--vert);">📧 Email Brevo J+0</strong><br>En-tête de l'email de confirmation. Augmente le taux d'engagement de ~35%.</div>
-        </div>
-      </div>
-
-    </div><!-- /tab-video -->
 
   </main>
 
@@ -1066,15 +708,17 @@
         <div class="audio-header-icon">🎧</div>
         <div class="audio-header-txt">
           <strong>Version audio</strong>
-          <span>Synthèse vocale · Web Speech API</span>
+          <span>Voix narrée · ElevenLabs (Roger)</span>
         </div>
       </div>
       <div class="audio-body">
         <div class="player" id="player">
 
+          <audio id="audio-el" preload="metadata" src="audio/livre-blanc-audio.mp3"></audio>
+
           <div class="player-track-info">
-            <div class="player-chapter" id="player-chapter-label">Chapitre 1</div>
-            <div class="player-title" id="player-title">Pourquoi le golf est fait pour vous</div>
+            <div class="player-chapter" id="player-chapter-label">Lecture intégrale</div>
+            <div class="player-title" id="player-title">Le Golf & l'Art de Vivre après 55 ans</div>
           </div>
 
           <div class="waveform" id="waveform">
@@ -1093,13 +737,13 @@
           </div>
           <div class="player-times">
             <span id="time-cur">0:00</span>
-            <span id="time-tot">~20:00</span>
+            <span id="time-tot">5:29</span>
           </div>
 
           <div class="player-controls">
-            <button class="ctrl-btn" title="Précédent" onclick="prevChapter()">⏮</button>
+            <button class="ctrl-btn" title="Reculer 15s" onclick="skipAudio(-15)">⏮</button>
             <button class="ctrl-play" id="play-btn" onclick="togglePlay()">▶</button>
-            <button class="ctrl-btn" title="Suivant" onclick="nextChapter()">⏭</button>
+            <button class="ctrl-btn" title="Avancer 15s" onclick="skipAudio(15)">⏭</button>
           </div>
 
           <div class="player-speed">
@@ -1111,13 +755,13 @@
           </div>
 
           <div class="chapters-list">
-            <div class="chapters-label">Chapitres</div>
+            <div class="chapters-label">Repères dans la lecture</div>
             <div id="chapters-list-container"></div>
           </div>
         </div>
 
         <div id="speech-unsupported" style="display:none;background:var(--gris);border-radius:8px;padding:12px;font-size:0.82rem;color:var(--texte-doux);margin-top:8px;">
-          ⚠️ La synthèse vocale n'est pas supportée par votre navigateur. Essayez Chrome ou Edge pour profiter de cette fonctionnalité.
+          ⚠️ Lecture audio non disponible sur ce navigateur.
         </div>
       </div>
     </div>
@@ -1130,13 +774,18 @@
         <button onclick="shareEmail()" style="flex:1;background:var(--gris);border:none;border-radius:6px;padding:9px 12px;font-size:0.8rem;font-weight:600;color:var(--texte);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#ddd8ce'" onmouseout="this.style.background='var(--gris)'">Email</button>
         <button onclick="copyLink()" style="flex:1;background:var(--gris);border:none;border-radius:6px;padding:9px 12px;font-size:0.8rem;font-weight:600;color:var(--texte);cursor:pointer;transition:background 0.15s;" id="copy-btn" onmouseover="this.style.background='#ddd8ce'" onmouseout="this.style.background='var(--gris)'">Copier lien</button>
       </div>
+      <!-- Lien Instagram -->
+      <a href="https://www.instagram.com/golfdenantesvigneuxmembres/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:7px;margin-top:10px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;font-size:0.8rem;font-weight:600;padding:9px 12px;border-radius:6px;text-decoration:none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none"/></svg>
+        @golfdenantesvigneuxmembres
+      </a>
     </div>
 
     <!-- CARD CTA SIDEBAR -->
     <div style="background:var(--vert);border-radius:12px;padding:22px;text-align:center;">
       <p style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--or-clair);margin-bottom:10px;">Prêt à passer à l'action ?</p>
       <p style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--blanc);line-height:1.3;margin-bottom:14px;">Réservez votre place à la Journée Découverte</p>
-      <a href="golf-vigneux-landing-v2.html" style="display:block;background:var(--or);color:var(--blanc);font-weight:600;font-size:0.88rem;padding:13px;border-radius:7px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#a07e2e'" onmouseout="this.style.background='var(--or)'">→ Entrée gratuite</a>
+      <a href="index.html" style="display:block;background:var(--or);color:var(--blanc);font-weight:600;font-size:0.88rem;padding:13px;border-radius:7px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#a07e2e'" onmouseout="this.style.background='var(--or)'">→ Entrée gratuite</a>
       <p style="font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:10px;">Places limitées · Aucun engagement</p>
     </div>
 
@@ -1209,9 +858,13 @@
       Route dép. 81 · 44360 Vigneux de Bretagne<br>
       <a href="tel:0240632582" style="color:var(--or-clair);text-decoration:none;">02 40 63 25 82</a> · <a href="mailto:accueil@golfclubdenantes.com" style="color:var(--or-clair);text-decoration:none;">accueil@golfclubdenantes.com</a>
     </div>
-    <div style="display:flex;gap:16px;">
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+      <a href="https://www.instagram.com/golfdenantesvigneuxmembres/" target="_blank" style="display:flex;align-items:center;gap:5px;font-size:0.78rem;color:rgba(255,255,255,0.6);text-decoration:none;font-weight:600;" onmouseover="this.style.color='#d4aa55'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
       <a href="https://www.golfclubdenantes.com" style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;">Site officiel</a>
-      <a href="#" style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;">Mentions légales</a>
+      <a href="https://www.golfclubdenantes.com/mentions-legales/" style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;">Mentions légales</a>
       <a href="#" style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;">Se désinscrire</a>
     </div>
   </div>
@@ -1219,81 +872,8 @@
 </footer>
 
 <script>
-/* ══════════════════════════════════════════
-   DÉMO VIDÉO — Canvas Engine (intégré)
-══════════════════════════════════════════ */
-(function(){
-  const canvas2=document.getElementById('demo-canvas');
-  if(!canvas2)return;
-  const ctx2=canvas2.getContext('2d');
-  const W2=540,H2=304,TOTAL=30000,FPS2=30;
-  const VC={vert:'#1e3a20',vertMid:'#2e5430',vertClair:'#4a7c52',or:'#b8943a',orClair:'#d4aa55',blanc:'#ffffff'};
-  const SCENES2=[{start:0,end:4500},{start:4500,end:9000},{start:9000,end:14000},{start:14000,end:19000},{start:19000,end:24000},{start:24000,end:28000},{start:28000,end:30000}];
-  const dotsEl=document.getElementById('demo-scene-dots');
-  if(dotsEl)SCENES2.forEach((_,i)=>{const d=document.createElement('div');d.id='ddot-'+i;d.style.cssText='width:8px;height:8px;border-radius:50%;background:#2e5430;transition:background 0.3s;';dotsEl.appendChild(d);});
-  function c01(v){return Math.max(0,Math.min(1,v));}
-  function eo(t){return 1-(1-t)*(1-t);}
-  function lp(a,b,t){return a+(b-a)*t;}
-  function sT(t,s){return c01((t-s.start)/(s.end-s.start));}
-  function fg(text,x,y,font,color,align,alpha){ctx2.save();ctx2.globalAlpha=alpha??1;ctx2.font=font;ctx2.fillStyle=color;ctx2.textAlign=align||'left';ctx2.fillText(text,x,y);ctx2.restore();}
-  function rr(x,y,w,h,r,fill){ctx2.beginPath();ctx2.moveTo(x+r,y);ctx2.lineTo(x+w-r,y);ctx2.quadraticCurveTo(x+w,y,x+w,y+r);ctx2.lineTo(x+w,y+h-r);ctx2.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx2.lineTo(x+r,y+h);ctx2.quadraticCurveTo(x,y+h,x,y+h-r);ctx2.lineTo(x,y+r);ctx2.quadraticCurveTo(x,y,x+r,y);ctx2.closePath();ctx2.fillStyle=fill;ctx2.fill();}
-  function gBg(c1,c2){const g=ctx2.createLinearGradient(0,0,W2,H2);g.addColorStop(0,c1);g.addColorStop(1,c2);ctx2.fillStyle=g;ctx2.fillRect(0,0,W2,H2);}
-  function dotGrid(a){ctx2.save();ctx2.globalAlpha=a*0.12;ctx2.fillStyle=VC.orClair;for(let x=20;x<W2;x+=22)for(let y=20;y<H2;y+=22){ctx2.beginPath();ctx2.arc(x,y,1,0,Math.PI*2);ctx2.fill();}ctx2.restore();}
-  function fd(p,th){if(p>th){ctx2.fillStyle='#0d1e0e';ctx2.globalAlpha=(p-th)/(1-th);ctx2.fillRect(0,0,W2,H2);ctx2.globalAlpha=1;}}
-  function s1(t){const p=sT(t,SCENES2[0]);gBg('#0d1e0e','#1e3a20');dotGrid(p);const r=lp(0,88,eo(c01(p*3)));ctx2.save();ctx2.globalAlpha=c01(p*3)*0.14;ctx2.strokeStyle=VC.or;ctx2.lineWidth=1;ctx2.beginPath();ctx2.arc(W2/2,H2/2,r,0,Math.PI*2);ctx2.stroke();ctx2.restore();fg('GOLF CLUB DE NANTES',W2/2,H2/2-14,'bold 20px serif',VC.blanc,'center',c01((p-0.2)*4));fg('— depuis 1921 —',W2/2,H2/2+8,'11px sans-serif',VC.orClair,'center',c01((p-0.3)*4)*0.7);const lw=lp(0,W2-80,eo(c01((p-0.4)*3)));ctx2.save();ctx2.globalAlpha=c01((p-0.4)*3);ctx2.strokeStyle=VC.or;ctx2.lineWidth=1.5;ctx2.beginPath();ctx2.moveTo(W2/2-lw/2,H2/2+22);ctx2.lineTo(W2/2+lw/2,H2/2+22);ctx2.stroke();ctx2.restore();fg('× APETIT · Opération Seniors 2026',W2/2,H2/2+44,'10px sans-serif',VC.vertClair,'center',c01((p-0.6)*4));fd(p,0.85);}
-  function s2(t){const p=sT(t,SCENES2[1]);const sky=ctx2.createLinearGradient(0,0,0,H2*0.55);sky.addColorStop(0,'#1a3d6e');sky.addColorStop(1,'#2e6e4a');ctx2.fillStyle=sky;ctx2.fillRect(0,0,W2,H2);ctx2.save();ctx2.globalAlpha=c01(p*4)*0.55;const sg=ctx2.createRadialGradient(W2*0.72,H2*0.18,0,W2*0.72,H2*0.18,88);sg.addColorStop(0,'rgba(212,170,85,0.8)');sg.addColorStop(1,'rgba(212,170,85,0)');ctx2.fillStyle=sg;ctx2.fillRect(0,0,W2,H2);ctx2.restore();[{y:0.55,c:'#2a5c32'},{y:0.65,c:'#1e4a24'},{y:0.78,c:'#172f1a'}].forEach((h,hi)=>{ctx2.fillStyle=h.c;ctx2.beginPath();ctx2.moveTo(0,H2*h.y);for(let x=0;x<=W2;x+=8)ctx2.lineTo(x,H2*h.y-Math.sin(x*0.015+hi)*22-Math.sin(x*0.008+hi)*14);ctx2.lineTo(W2,H2);ctx2.lineTo(0,H2);ctx2.closePath();ctx2.fill();});ctx2.save();ctx2.globalAlpha=c01(p*3)*0.8;ctx2.strokeStyle='#999';ctx2.lineWidth=1.5;ctx2.beginPath();ctx2.moveTo(W2*0.55,H2*0.58);ctx2.lineTo(W2*0.55,H2*0.45);ctx2.stroke();ctx2.fillStyle=VC.or;ctx2.beginPath();ctx2.moveTo(W2*0.55,H2*0.45);ctx2.lineTo(W2*0.55+15,H2*0.48);ctx2.lineTo(W2*0.55,H2*0.51);ctx2.fill();ctx2.restore();const g2=ctx2.createLinearGradient(0,H2*0.5,0,H2);g2.addColorStop(0,'rgba(10,15,11,0)');g2.addColorStop(1,'rgba(10,15,11,0.78)');ctx2.fillStyle=g2;ctx2.fillRect(0,0,W2,H2);fg('Vous approchez de la retraite.',W2/2,H2-74,'bold 17px serif',VC.blanc,'center',c01((p-0.25)*3));fg("Et si c'était votre moment ?",W2/2,H2-50,'italic 14px serif',VC.orClair,'center',c01((p-0.45)*3));fg('Golf Club de Nantes · Vigneux de Bretagne',W2/2,H2-22,'9px sans-serif',VC.orClair,'center',c01((p-0.65)*4));fd(p,0.85);}
-  function s3(t){const p=sT(t,SCENES2[2]);gBg('#0f1e10','#1a2e1c');fg('3 RAISONS DE CHOISIR LE GOLF APRÈS 55 ANS',W2/2,36,'bold 9.5px sans-serif',VC.orClair,'center',c01(p*5));[{icon:'🌿',title:'Bien-être',sub:'5–7 km marche douce\n56 ha nature',x:W2*0.18},{icon:'🤝',title:'Réseau',sub:'Liens durables\nCommunauté active',x:W2*0.5},{icon:'📈',title:'Progrès',sub:'À tout âge\nAdult Golf Academy',x:W2*0.82}].forEach((b,i)=>{const d=0.2+i*0.18,bA=c01((p-d)*4),bY=lp(H2,H2*0.5,eo(c01((p-d)*4)));ctx2.save();ctx2.globalAlpha=bA;rr(b.x-58,bY-58,116,128,10,'rgba(30,58,32,0.88)');ctx2.fillStyle=VC.or;ctx2.fillRect(b.x-58,bY-58,116,3);ctx2.restore();fg(b.icon,b.x,bY-22,'24px serif',VC.blanc,'center',bA);fg(b.title,b.x,bY+4,'bold 11px sans-serif',VC.blanc,'center',bA);b.sub.split('\n').forEach((l,li)=>fg(l,b.x,bY+21+li*13,'8px sans-serif',VC.orClair,'center',bA*0.75));ctx2.save();ctx2.globalAlpha=bA*0.6;rr(b.x-40,bY+50,80,4,2,'rgba(255,255,255,0.1)');if(c01((p-d-0.1)*3)>0)rr(b.x-40,bY+50,80*c01((p-d-0.1)*3),4,2,VC.or);ctx2.restore();});fd(p,0.85);}
-  function s4(t){const p=sT(t,SCENES2[3]);gBg('#1e3a20','#0f1e10');dotGrid(0.5);fg('\u201C',58,98,'bold 96px serif',VC.or,'left',c01(p*4)*0.2);["J'ai attendu la retraite pour commencer.",'Deux ans plus tard, je joue trois fois',"par semaine — mes meilleurs amis sont ici."].forEach((l,i)=>{const lA=c01((p-(0.15+i*0.13))*5),lY=lp(H2*0.6,H2*0.28+i*30,eo(lA));fg(l,W2/2,lY,`italic ${i===0?'15':'13'}px serif`,VC.blanc,'center',lA);});const aA=c01((p-0.65)*4);ctx2.save();ctx2.globalAlpha=aA;rr(W2/2-116,H2-64,232,42,8,'rgba(184,148,58,0.18)');ctx2.restore();fg("— Michel D., 63 ans · Ancien chef d'entreprise",W2/2,H2-44,'bold 9px sans-serif',VC.orClair,'center',aA);fg('Membre depuis 2023 · Golf Club de Nantes',W2/2,H2-27,'8px sans-serif',VC.vertClair,'center',aA);'★★★★★'.split('').forEach((s,i)=>fg(s,W2/2-36+i*18,H2-74,'12px serif',VC.or,'left',c01((p-0.5)*4)));fd(p,0.85);}
-  function s5(t){const p=sT(t,SCENES2[4]);ctx2.fillStyle='#0f1e10';ctx2.fillRect(0,0,W2,H2);fg('JOURNÉE PORTES OUVERTES SENIORS',W2/2,32,'bold 10px sans-serif',VC.orClair,'center',c01(p*5));fg('Samedi matin · Golf de Nantes Vigneux',W2/2,48,'italic 11px serif',VC.blanc,'center',c01(p*4)*0.7);[{h:'9h00',l:'Accueil & café au club-house',ic:'☕'},{h:'9h30',l:'Initiation sur le practice',ic:'🏌️'},{h:'10h30',l:'Visite du parcours 18 trous',ic:'🚗'},{h:'11h15',l:'Table ronde avec des membres',ic:'🎤'},{h:'12h00',l:'Tarif senior + déjeuner',ic:'🍽️'}].forEach((s,i)=>{const d=0.1+i*0.13,sA=c01((p-d)*5),sX=lp(-80,42,eo(sA)),sY=66+i*36;ctx2.save();ctx2.globalAlpha=sA;if(i<4){ctx2.strokeStyle='rgba(184,148,58,0.3)';ctx2.lineWidth=1;ctx2.setLineDash([3,3]);ctx2.beginPath();ctx2.moveTo(sX+12,sY+13);ctx2.lineTo(sX+12,sY+36);ctx2.stroke();ctx2.setLineDash([]);}ctx2.fillStyle=VC.or;ctx2.beginPath();ctx2.arc(sX+12,sY+6,5,0,Math.PI*2);ctx2.fill();ctx2.restore();fg(s.h,sX+26,sY+10,'bold 9px sans-serif',VC.or,'left',sA);fg(s.ic+' '+s.l,sX+66,sY+10,'10px sans-serif',VC.blanc,'left',sA);});const bA=c01((p-0.78)*5);ctx2.save();ctx2.globalAlpha=bA;rr(W2-120,H2-36,108,26,13,VC.or);ctx2.restore();fg('Entrée libre',W2-66,H2-19,'bold 9.5px sans-serif',VC.blanc,'center',bA);fd(p,0.85);}
-  function s6(t){const p=sT(t,SCENES2[5]);gBg('#0a1a0b','#1e3a20');const cA=c01(p*4),cS=lp(0.82,1,eo(cA));ctx2.save();ctx2.globalAlpha=cA;ctx2.translate(W2/2,H2/2);ctx2.scale(cS,cS);ctx2.translate(-W2/2,-H2/2);rr(W2/2-152,H2/2-92,304,186,14,'rgba(255,255,255,0.05)');ctx2.strokeStyle=VC.or;ctx2.lineWidth=1.5;ctx2.strokeRect(W2/2-152,H2/2-92,304,186);ctx2.restore();const bA=c01((p-0.2)*4);ctx2.save();ctx2.globalAlpha=bA;rr(W2/2-76,H2/2-108,152,21,10,VC.or);ctx2.restore();fg('TARIF SENIOR DÉDIÉ',W2/2,H2/2-93,'bold 8px sans-serif',VC.blanc,'center',bA);fg('Formule Découverte Senior',W2/2,H2/2-66,'bold 14px serif',VC.blanc,'center',c01((p-0.25)*4));fg('+55 ans · Nouveaux membres',W2/2,H2/2-48,'9px sans-serif',VC.orClair,'center',c01((p-0.3)*4));['✓  Accès illimité 18 trous','✓  2 cours individuels offerts','✓  Équipement prêté','✓  Invitations compétitions'].forEach((it,i)=>fg(it,W2/2,H2/2-18+i*22,'9px sans-serif',i<2?VC.blanc:'rgba(255,255,255,0.65)','center',c01((p-0.35-i*0.08)*5)));fg('⏳ Offre valable 21 jours après la journée',W2/2,H2/2+100,'italic 8px sans-serif',VC.or,'center',c01((p-0.78)*5));fd(p,0.85);}
-  function s7(t){const p=sT(t,SCENES2[6]);gBg('#0a1a0b','#1e3a20');const hG=ctx2.createRadialGradient(W2/2,H2/2,0,W2/2,H2/2,170);hG.addColorStop(0,`rgba(184,148,58,${p*0.2})`);hG.addColorStop(1,'rgba(184,148,58,0)');ctx2.fillStyle=hG;ctx2.fillRect(0,0,W2,H2);const lA=c01(p*6);fg('GOLF CLUB DE NANTES',W2/2,H2/2-36,'bold 21px serif',VC.blanc,'center',lA);ctx2.save();ctx2.globalAlpha=lA*0.55;ctx2.strokeStyle=VC.or;ctx2.lineWidth=1;ctx2.beginPath();ctx2.moveTo(W2/2-122,H2/2-20);ctx2.lineTo(W2/2+122,H2/2-20);ctx2.stroke();ctx2.restore();const cA=c01((p-0.3)*6);ctx2.save();ctx2.globalAlpha=cA;rr(W2/2-122,H2/2-6,244,38,7,VC.or);ctx2.restore();fg('→ Je réserve ma place gratuite',W2/2,H2/2+17,'bold 12px sans-serif',VC.blanc,'center',cA);const sA=c01((p-0.6)*6);fg('Samedi matin · Golf de Nantes Vigneux · Entrée libre',W2/2,H2/2+54,'8.5px sans-serif',VC.orClair,'center',sA);fg('Aucun engagement · Équipement prêté · Places limitées',W2/2,H2/2+70,'7.5px sans-serif','rgba(255,255,255,0.38)','center',sA);if(p>0.5){const pulse=(Math.sin(t/110)*0.5+0.5);ctx2.save();ctx2.globalAlpha=pulse*0.14*cA;ctx2.strokeStyle=VC.orClair;ctx2.lineWidth=2;ctx2.strokeRect(W2/2-126,H2/2-10,252,46);ctx2.restore();}fg('Opération pilotée par APETIT',W2/2,H2-16,'7.5px sans-serif','rgba(255,255,255,0.22)','center',c01((p-0.7)*6));}
-
-  const RFNS=[s1,s2,s3,s4,s5,s6,s7];
-  function renderDemo(t){
-    let cur=0;SCENES2.forEach((s,i)=>{if(t>=s.start)cur=i;});
-    if(dotsEl)SCENES2.forEach((_,i)=>{const d=document.getElementById('ddot-'+i);if(d)d.style.background=i===cur?'#d4aa55':'#2e5430';});
-    const tlEl=document.getElementById('demo-tl');if(tlEl)tlEl.style.width=(t/TOTAL*100)+'%';
-    SCENES2.forEach((s,i)=>{if(t>=s.start&&t<=s.end+200)RFNS[i](t);});
-  }
-
-  let dRAF=null,dRunning=false,dStart=null,dChunks=[],dMR=null,dBlob=null;
-
-  window.demoPlay=function(){
-    if(dRunning){cancelAnimationFrame(dRAF);dRunning=false;document.getElementById('demo-play-btn').innerHTML='▶ Aperçu';document.getElementById('demo-status').textContent='';return;}
-    dStart=null;dRunning=true;
-    document.getElementById('demo-play-btn').innerHTML='⏹ Stop';
-    document.getElementById('demo-status').textContent='Aperçu en cours...';
-    function tick(ts){if(!dStart)dStart=ts;const t=Math.min(ts-dStart,TOTAL);renderDemo(t);if(t<TOTAL&&dRunning)dRAF=requestAnimationFrame(tick);else{dRunning=false;document.getElementById('demo-play-btn').innerHTML='▶ Aperçu';document.getElementById('demo-status').textContent='Terminé. Cliquez ⏺ pour exporter.';}}
-    dRAF=requestAnimationFrame(tick);
-  };
-
-  window.demoRecord=function(){
-    if(!window.MediaRecorder){alert('MediaRecorder non supporté. Utilisez Chrome.');return;}
-    dChunks=[];dBlob=null;
-    document.getElementById('demo-dl-btn').disabled=true;document.getElementById('demo-dl-btn').style.opacity='0.4';
-    document.getElementById('demo-rec-btn').disabled=true;
-    const types=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm','video/mp4'];
-    const mime=types.find(m=>MediaRecorder.isTypeSupported(m))||'video/webm';
-    const stream=canvas2.captureStream(FPS2);
-    dMR=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:4000000});
-    dMR.ondataavailable=e=>{if(e.data.size>0)dChunks.push(e.data);};
-    dMR.onstop=()=>{dBlob=new Blob(dChunks,{type:mime});document.getElementById('demo-dl-btn').disabled=false;document.getElementById('demo-dl-btn').style.opacity='1';document.getElementById('demo-rec-btn').disabled=false;document.getElementById('demo-status').textContent='✅ Prêt ! Cliquez ⬇ Télécharger.';};
-    dMR.start(100);dStart=null;dRunning=true;
-    document.getElementById('demo-status').innerHTML='<span style="color:#e05050">⏺ Enregistrement 30s...</span>';
-    const rs=performance.now();
-    function recTick(ts){const t=Math.min(ts-rs,TOTAL);renderDemo(t);if(t<TOTAL)dRAF=requestAnimationFrame(recTick);else{dMR.stop();dRunning=false;}}
-    dRAF=requestAnimationFrame(recTick);
-  };
-
-  window.demoDl=function(){
-    if(!dBlob)return;
-    const url=URL.createObjectURL(dBlob);const a=document.createElement('a');a.href=url;a.download='demo-golf-vigneux-30s.webm';a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);
-  };
-
-  renderDemo(0);
-})();
-
 /* ── PROGRESS BAR ── */
+window.addEventListener('scroll', () => {
   const el = document.documentElement;
   const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
   document.getElementById('progress').style.width = pct + '%';
@@ -1305,12 +885,6 @@ function switchTab(id, btn) {
   document.querySelectorAll('.action-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
-}
-
-/* ── EMAILS ACCORDION ── */
-function toggleEmail(id) {
-  const card = document.getElementById(id);
-  card.classList.toggle('open');
 }
 
 /* ── PDF PREVIEW ── */
@@ -1336,121 +910,51 @@ function copyLink() {
 }
 
 /* ══════════════════════════════════════════
-   PLAYER AUDIO — Web Speech API (corrigé)
+   PLAYER AUDIO — Fichier MP3 réel (ElevenLabs)
 ══════════════════════════════════════════ */
 (function() {
 
-const CHAPTERS = [
-  { label:"Chapitre 1", title:"Pourquoi le golf est fait pour vous", dur:"~3 min",
-    text:"Pourquoi le golf est fait pour vous. Le golf souffre d'une réputation qui ne lui ressemble plus. Né dans l'Écosse des Highlands au quinzième siècle comme loisir populaire, il est devenu le sport de plein air le plus pratiqué en France par les plus de cinquante ans. La vérité est plus simple et plus belle : le golf est l'un des rares sports où vous pouvez commencer à soixante ans et devenir compétitif en deux ans. Cinq idées reçues à briser. Première : ce serait élitiste. Faux. Les formules modernes ont profondément démocratisé le golf. Deuxième : il faudrait être en forme. Une partie représente quatre à six kilomètres de marche douce, moins intense qu'un footing. Troisième : ce serait long et ennuyeux. Neuf trous durent moins de deux heures, et chaque trou est différent. Quatrième : ce serait solitaire. On joue toujours en groupe, générant des conversations naturelles pendant des heures. Cinquième : ce serait trop technique pour commencer tard. L'âge est un avantage — patience, discipline, et concentration."
-  },
-  { label:"Chapitre 2", title:"Les bienfaits prouvés après 55 ans", dur:"~3 min",
-    text:"Les bienfaits prouvés après cinquante-cinq ans. Ce n'est pas qu'une question de plaisir. La science confirme ce que les golfeurs savent depuis longtemps. Pour le corps, une partie de dix-huit trous représente entre huit mille et douze mille pas. Le swing de golf mobilise plus de trente groupes musculaires distincts. Des recherches scandinaves ont montré une espérance de vie supérieure de cinq ans chez les golfeurs réguliers. Le risque cardiovasculaire est réduit de quarante pour cent pour ceux qui jouent deux fois par semaine. Pour l'esprit, le golf est un sport cognitif autant qu'athlétique. Chaque coup requiert analyse du terrain, évaluation du vent, calcul de distance, décision stratégique. Cette stimulation mentale continue est un facteur reconnu de prévention du déclin cognitif. Pour les liens sociaux, trente pour cent des hommes retraités se sentent isolés dans les dix-huit mois suivant leur départ. Le golf est l'un des antidotes les plus efficaces à ce phénomène."
-  },
-  { label:"Chapitre 3", title:"Le golf, art de vivre à la française", dur:"~2 min",
-    text:"Le golf, art de vivre à la française. Il y a dans le golf quelque chose qui dépasse le sport. Une façon d'habiter le temps, de cultiver le soin du détail, d'apprécier ce qui est lent et beau. Le golf est un art de vivre social, dans la grande tradition française qui mêle nature, table et conversation. Le club-house est un lieu à part, ni restaurant ordinaire, ni café, ni salle de sport. C'est un espace de décompression où se construisent les amitiés durables. Le parcours du Golf Club de Nantes, dessiné par l'architecte Franck Pennink et entretenu depuis plus de cinquante ans, serpente entre arbres centenaires, étangs et vallons dans un équilibre parfait entre défi technique et contemplation. Le restaurant du club propose une cuisine traditionnelle de qualité, et le menu homard du dernier vendredi du mois est devenu un rendez-vous gastronomique incontournable de la région nantaise."
-  },
-  { label:"Chapitre 4", title:"Votre première année au club", dur:"~3 min",
-    text:"Votre première année au club. De la première balle frappée sur le practice à votre premier scorecard rempli avec fierté. Les premières séances se déroulent sur le practice, un espace sécurisé où vous frappez des balles à votre rythme, encadré par un professionnel. Le Golf Club de Nantes propose une Adult Golf Academy spécifiquement conçue pour les nouveaux membres adultes. Après une dizaine d'heures de cours, vous êtes prêt pour votre première sortie sur le parcours. Tous les membres se rappellent ce moment avec précision. Vous jouez généralement neuf trous, accompagné d'un membre expérimenté. Entre six mois et un an, vous serez prêt pour votre première compétition. Le club propose un calendrier riche, du Trophée des Familles aux Coupes de l'Été."
-  },
-  { label:"Chapitre 5", title:"Le Golf Club de Nantes, votre maison", dur:"~2 min",
-    text:"Le Golf Club de Nantes, votre maison. Fondé en mil neuf cent vingt et un, le Golf Club de Nantes est le premier golf de la région nantaise. Un club à taille humaine, où l'on se connaît par prénom, où les anciennes et les nouvelles générations se retrouvent autour de l'amour du jeu. Le parcours s'étend sur cinquante-six hectares de nature préservée à Vigneux de Bretagne. Dessiné par l'architecte Franck Pennink, il offre un défi technique constant tout en restant accessible. Greens soigneusement entretenus, fairways bordés d'arbres centenaires, allées de pins et de cèdres. Le club propose également un restaurant gastronomique, un proshop complet, un simulateur Trackman, et le Nantes Business Club pour les dirigeants souhaitant développer leur réseau."
-  },
-  { label:"Chapitre 6", title:"Ils ont franchi le pas — Témoignages", dur:"~3 min",
-    text:"Témoignages. Trois membres racontent comment ils ont commencé le golf après cinquante-cinq ans. Michel D., soixante-trois ans, ancien chef d'entreprise : j'ai attendu la retraite pour commencer. Ma femme m'avait offert un cours pour mes soixante ans. Je pensais faire ça une fois, par politesse. Deux ans plus tard, je joue trois fois par semaine et j'ai trouvé mes meilleurs amis ici. Brigitte L., cinquante-huit ans, ancienne directrice commerciale : ce qui m'a surprise, c'est la dimension intellectuelle. Je pensais que le golf c'était frapper une balle. En fait c'est un jeu d'échecs en plein air. Chaque trou est un problème à résoudre. Hervé T., soixante-sept ans, ancien médecin hospitalier : je suis arrivé au club six mois après ma retraite, au moment où je me demandais ce que j'allais faire de mes journées. Le golf m'a donné une structure, des rendez-vous, des progrès à suivre. Il m'a redonné un projet."
-  },
-  { label:"Chapitre 7", title:"Votre guide pratique pour commencer", dur:"~2 min",
-    text:"Votre guide pratique pour commencer. Concernant le budget, un demi-set d'occasion de huit clubs coûte entre quatre-vingts et cent cinquante euros. Le budget total réaliste est de huit cents à quinze cents euros la première année, puis cinq cents à huit cents euros les années suivantes. Faut-il passer un permis ? Oui, un index de départ est nécessaire pour jouer seul, obtenu en six à dix heures de cours. À quelle fréquence joue-t-on ? Deux sorties par semaine est optimal, mais une seule suffit pour progresser. Le golf s'adapte à votre rythme de vie. Pour rejoindre le club ou en savoir plus, contactez le Golf Club de Nantes au zéro deux quarante soixante-trois vingt-cinq quatre-vingt-deux. La Journée Portes Ouvertes est gratuite et sans engagement. Nous avons hâte de vous accueillir."
-  }
+const audio = document.getElementById('audio-el');
+if (!audio) return;
+
+// Repères approximatifs dans la lecture (basés sur la structure du livre blanc)
+// Ces timestamps sont des points de navigation, pas des chapitres séparés
+const MARKERS = [
+  { time: 0,   label: "Introduction",                         title: "Pourquoi le golf est fait pour vous" },
+  { time: 45,  label: "Chapitre 2",                            title: "Les bienfaits prouvés après 55 ans" },
+  { time: 105, label: "Chapitre 3",                            title: "Le golf, art de vivre à la française" },
+  { time: 155, label: "Chapitre 4",                            title: "Votre première année au club" },
+  { time: 205, label: "Chapitre 5",                            title: "Le Golf Club de Nantes, votre maison" },
+  { time: 250, label: "Chapitre 6",                            title: "Ils ont franchi le pas — Témoignages" },
+  { time: 295, label: "Chapitre 7",                            title: "Votre guide pratique pour commencer" },
 ];
 
-const EST_DURATIONS = [180,180,120,180,120,180,120];
+let isPlaying = false;
 
-let currentChapter = 0;
-let isPlaying      = false;
-let utterance      = null;
-let elapsed        = 0;
-let timerInterval  = null;
-let playbackRate   = 1;
-let frVoice        = null;
-let voicesLoaded   = false;
-
-// ── Chargement des voix (asynchrone, nécessite un délai sur Chrome) ──
-function loadVoices() {
-  const voices = window.speechSynthesis.getVoices();
-  if (voices.length > 0) {
-    frVoice = voices.find(v => v.lang.startsWith('fr')) || voices[0];
-    voicesLoaded = true;
-    updateUnsupportedMsg();
-  }
+function fmt(s) {
+  s = Math.max(0, Math.floor(s));
+  return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
 }
 
-function updateUnsupportedMsg() {
-  const el = document.getElementById('speech-unsupported');
-  if (!el) return;
-  if (!('speechSynthesis' in window)) {
-    el.style.display = 'block';
-    el.textContent = '⚠️ Synthèse vocale non supportée. Essayez Chrome ou Edge.';
-  } else {
-    el.style.display = 'none';
-  }
-}
-
-if ('speechSynthesis' in window) {
-  // Chrome charge les voix de façon asynchrone
-  window.speechSynthesis.onvoiceschanged = loadVoices;
-  loadVoices(); // tentative immédiate (Firefox/Safari)
-  // Relance après 500ms si non chargées
-  setTimeout(loadVoices, 500);
-  setTimeout(loadVoices, 1500);
-} else {
-  const el = document.getElementById('speech-unsupported');
-  if (el) { el.style.display = 'block'; }
-}
-
-// ── Construction de la liste des chapitres ──
-function buildChaptersList() {
+function buildMarkersList() {
   const container = document.getElementById('chapters-list-container');
   if (!container) return;
-  container.innerHTML = CHAPTERS.map((ch, i) => `
-    <div class="ch-item ${i===0?'active':''}" id="ch-item-${i}" onclick="goToChapter(${i})">
+  container.innerHTML = MARKERS.map((m, i) => `
+    <div class="ch-item" id="ch-item-${i}" onclick="jumpToMarker(${i})">
       <div class="ch-num-badge">${i+1}</div>
-      <div class="ch-item-title">${ch.title}</div>
-      <div class="ch-item-dur">${ch.dur}</div>
+      <div class="ch-item-title">${m.title}</div>
+      <div class="ch-item-dur">${fmt(m.time)}</div>
     </div>
   `).join('');
 }
 
-function updateChapterUI(idx) {
+function updateActiveMarker() {
+  const t = audio.currentTime;
+  let activeIdx = 0;
+  MARKERS.forEach((m, i) => { if (t >= m.time) activeIdx = i; });
+  document.querySelectorAll('.ch-item').forEach((el, i) => el.classList.toggle('active', i === activeIdx));
   const lbl = document.getElementById('player-chapter-label');
-  const tit = document.getElementById('player-title');
-  const tot = document.getElementById('time-tot');
-  const cur = document.getElementById('time-cur');
-  const pf  = document.getElementById('progress-fill');
-  if (lbl) lbl.textContent = CHAPTERS[idx].label;
-  if (tit) tit.textContent = CHAPTERS[idx].title;
-  if (tot) tot.textContent = '~' + Math.floor(EST_DURATIONS[idx]/60) + ':' + String(EST_DURATIONS[idx]%60).padStart(2,'0');
-  if (cur) cur.textContent = '0:00';
-  if (pf)  pf.style.width  = '0%';
-  document.querySelectorAll('.ch-item').forEach((el,i) => el.classList.toggle('active', i===idx));
-}
-
-function startTimer() {
-  const start = Date.now() - elapsed * 1000;
-  timerInterval = setInterval(() => {
-    elapsed = (Date.now() - start) / 1000;
-    const tot = EST_DURATIONS[currentChapter];
-    const pct = Math.min(100, (elapsed / tot) * 100);
-    const pf  = document.getElementById('progress-fill');
-    const cur = document.getElementById('time-cur');
-    if (pf)  pf.style.width  = pct + '%';
-    if (cur) { const s = Math.floor(elapsed); cur.textContent = Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
-  }, 500);
-}
-
-function stopTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
+  if (lbl) lbl.textContent = MARKERS[activeIdx].label;
 }
 
 function setPlayBtn(playing) {
@@ -1460,147 +964,75 @@ function setPlayBtn(playing) {
   if (wf)  wf.classList.toggle('playing', playing);
 }
 
-// ── Lecture d'un chapitre ──
-function playChapter(idx) {
-  if (!('speechSynthesis' in window)) return;
+// ── Métadonnées chargées ──
+audio.addEventListener('loadedmetadata', () => {
+  const tot = document.getElementById('time-tot');
+  if (tot) tot.textContent = fmt(audio.duration);
+});
 
-  // Annuler tout ce qui joue
-  window.speechSynthesis.cancel();
-  stopTimer();
-  elapsed = 0;
+// ── Progression ──
+audio.addEventListener('timeupdate', () => {
+  const pct = (audio.currentTime / audio.duration) * 100;
+  const pf  = document.getElementById('progress-fill');
+  const cur = document.getElementById('time-cur');
+  if (pf)  pf.style.width = pct + '%';
+  if (cur) cur.textContent = fmt(audio.currentTime);
+  updateActiveMarker();
+});
 
-  currentChapter = idx;
-  updateChapterUI(idx);
-
-  utterance = new SpeechSynthesisUtterance(CHAPTERS[idx].text);
-  utterance.lang  = 'fr-FR';
-  utterance.rate  = playbackRate;
-  utterance.pitch = 1;
-  utterance.volume = 1;
-
-  // Appliquer la voix FR si disponible
-  if (frVoice) {
-    utterance.voice = frVoice;
-  } else {
-    // Dernier essai de chargement
-    loadVoices();
-    if (frVoice) utterance.voice = frVoice;
+audio.addEventListener('play',  () => { isPlaying = true;  setPlayBtn(true); });
+audio.addEventListener('pause', () => { isPlaying = false; setPlayBtn(false); });
+audio.addEventListener('ended', () => {
+  isPlaying = false;
+  setPlayBtn(false);
+  const pf = document.getElementById('progress-fill');
+  if (pf) pf.style.width = '100%';
+});
+audio.addEventListener('error', () => {
+  const el = document.getElementById('speech-unsupported');
+  if (el) {
+    el.style.display = 'block';
+    el.textContent = '⚠️ Impossible de charger le fichier audio. Vérifiez que audio/livre-blanc-audio.mp3 est bien présent.';
   }
-
-  utterance.onstart = () => {
-    isPlaying = true;
-    setPlayBtn(true);
-    startTimer();
-  };
-
-  utterance.onend = () => {
-    isPlaying = false;
-    stopTimer();
-    setPlayBtn(false);
-    // Passer au chapitre suivant automatiquement
-    if (currentChapter < CHAPTERS.length - 1) {
-      setTimeout(() => playChapter(currentChapter + 1), 600);
-    } else {
-      const pf = document.getElementById('progress-fill');
-      if (pf) pf.style.width = '100%';
-    }
-  };
-
-  utterance.onerror = (e) => {
-    console.warn('SpeechSynthesis error:', e.error);
-    isPlaying = false;
-    stopTimer();
-    setPlayBtn(false);
-    // 'interrupted' est normal lors d'un changement de chapitre — ignorer
-    if (e.error !== 'interrupted' && e.error !== 'canceled') {
-      const el = document.getElementById('speech-unsupported');
-      if (el) {
-        el.style.display = 'block';
-        el.textContent = '⚠️ Erreur audio (' + e.error + '). Essayez Chrome ou Edge.';
-      }
-    }
-  };
-
-  // Workaround Chrome : la synthèse vocale s'arrête parfois après ~15s
-  // On relance périodiquement si nécessaire
-  window.speechSynthesis.speak(utterance);
-
-  // Keepalive Chrome (bug connu : la synthèse se met en pause après 15s)
-  const keepalive = setInterval(() => {
-    if (!isPlaying) { clearInterval(keepalive); return; }
-    if (window.speechSynthesis.paused) {
-      window.speechSynthesis.resume();
-    }
-  }, 10000);
-}
+});
 
 // ── Contrôles publics ──
 window.togglePlay = function() {
-  if (!('speechSynthesis' in window)) {
-    const el = document.getElementById('speech-unsupported');
-    if (el) { el.style.display = 'block'; }
-    return;
-  }
-
-  if (isPlaying) {
-    window.speechSynthesis.cancel();
-    isPlaying = false;
-    stopTimer();
-    setPlayBtn(false);
+  if (audio.paused) {
+    audio.play().catch(() => {
+      const el = document.getElementById('speech-unsupported');
+      if (el) { el.style.display = 'block'; el.textContent = '⚠️ Cliquez à nouveau pour lancer la lecture.'; }
+    });
   } else {
-    playChapter(currentChapter);
+    audio.pause();
   }
 };
 
-window.goToChapter = function(idx) {
-  const wasPlaying = isPlaying;
-  window.speechSynthesis.cancel();
-  isPlaying = false;
-  stopTimer();
-  elapsed = 0;
-  currentChapter = idx;
-  updateChapterUI(idx);
-  setPlayBtn(false);
-  if (wasPlaying) {
-    setTimeout(() => playChapter(idx), 150);
-  }
+window.skipAudio = function(seconds) {
+  audio.currentTime = Math.max(0, Math.min(audio.duration || 0, audio.currentTime + seconds));
 };
 
-window.prevChapter = function() {
-  if (currentChapter > 0) window.goToChapter(currentChapter - 1);
-};
-
-window.nextChapter = function() {
-  if (currentChapter < CHAPTERS.length - 1) window.goToChapter(currentChapter + 1);
+window.jumpToMarker = function(idx) {
+  audio.currentTime = MARKERS[idx].time;
+  if (audio.paused) audio.play().catch(() => {});
 };
 
 window.setSpeed = function(rate) {
-  playbackRate = rate;
+  audio.playbackRate = rate;
   document.querySelectorAll('.speed-btn').forEach(btn => {
     btn.classList.toggle('active', parseFloat(btn.textContent) === rate);
   });
-  if (isPlaying) {
-    window.speechSynthesis.cancel();
-    isPlaying = false;
-    stopTimer();
-    setTimeout(() => playChapter(currentChapter), 150);
-  }
 };
 
 window.seekAudio = function(e) {
   const wrap = document.getElementById('progress-wrap');
-  if (!wrap) return;
+  if (!wrap || !audio.duration) return;
   const pct = Math.max(0, Math.min(1, e.offsetX / wrap.offsetWidth));
-  elapsed = pct * EST_DURATIONS[currentChapter];
-  const pf = document.getElementById('progress-fill');
-  const cur = document.getElementById('time-cur');
-  if (pf) pf.style.width = (pct * 100) + '%';
-  if (cur) { const s = Math.floor(elapsed); cur.textContent = Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
+  audio.currentTime = pct * audio.duration;
 };
 
 // ── Init ──
-buildChaptersList();
-updateChapterUI(0);
+buildMarkersList();
 
 })();
 </script>
