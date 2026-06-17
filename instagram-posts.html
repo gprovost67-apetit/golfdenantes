@@ -89,12 +89,8 @@
 <div class="page-header">
   <img src="https://www.golfclubdenantes.com/wp-content/uploads/2019/02/Logo_white_Golfclubdenantes-since.png" alt="Golf Club de Nantes"/>
   <h1>20 Posts Instagram<br><em>Stratégie Recrutement Seniors 2026</em></h1>
-  <p>Contenus prêts à publier pour le compte <a href="https://www.instagram.com/golfdenantesvigneuxmembres/" target="_blank" style="color:var(--orc);font-weight:600;">@golfdenantesvigneuxmembres</a>. Couvrent 5 semaines de communication, de la notoriété à la conversion. Cliquez sur chaque visuel pour l'agrandir.</p>
+  <p>Contenus prêts à publier pour le compte @golfclubdenantes. Couvrent 5 semaines de communication, de la notoriété à la conversion. Cliquez sur chaque visuel pour l'agrandir.</p>
   <div class="header-tags">
-    <a href="https://www.instagram.com/golfdenantesvigneuxmembres/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);border-radius:20px;padding:6px 16px;font-size:0.78rem;font-weight:600;color:#fff;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none"/></svg>
-      Ouvrir le compte Instagram
-    </a>
     <span class="htag">📸 20 posts</span>
     <span class="htag">📅 5 semaines</span>
     <span class="htag">🎯 Cible 55–65 ans</span>
@@ -175,7 +171,7 @@ const POSTS = [
       ctx.font='italic 15px serif';ctx.fillStyle='rgba(255,255,255,0.6)';ctx.fillText('Le moment que vous attendiez.',W/2,H-90);
       ctx.font='bold 22px serif';ctx.fillStyle='#fff';ctx.fillText('Votre retraite commence',W/2,H-64);
       ctx.font='bold italic 22px serif';ctx.fillStyle='#d4aa55';ctx.fillText('sur un green. 🌅',W/2,H-38);
-      ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.3)';ctx.fillText('Golf Club de Nantes · @golfdenantesvigneuxmembres',W/2,H-14);
+      ctx.font='9px sans-serif';ctx.fillStyle='rgba(255,255,255,0.3)';ctx.fillText('Golf Club de Nantes · @golfclubdenantes',W/2,H-14);
     },
     caption:`🌅 7h30 du matin. La rosée sur le fairway, le soleil qui se lève sur Vigneux, et la journée entière devant vous.\n\nC'est ça, la retraite au Golf Club de Nantes.\n\nEt si on vous réservait une matinée découverte ? ☀️\n\n🔗 Lien en bio`,
     hashtags:'#GolfMatin #RetraiteActive #GolfNantes #LevéDeSoleil #NouveauDépart',
@@ -624,7 +620,7 @@ function buildPosts(filter='all') {
     metaBar.className = 'post-meta-bar';
     metaBar.innerHTML = `
       <div class="ig-avatar">GCN</div>
-      <div><div class="ig-name">golfdenantesvigneuxmembres</div><div class="ig-handle">@golfdenantesvigneuxmembres</div></div>
+      <div><div class="ig-name">golfclubdenantes</div><div class="ig-handle">@golfclubdenantes</div></div>
       <div class="post-num">#${String(post.id).padStart(2,'0')}</div>
     `;
 
@@ -643,7 +639,7 @@ function buildPosts(filter='all') {
     caption.className = 'post-caption';
     const preview = post.caption.substring(0,100)+'...';
     caption.innerHTML = `
-      <div class="caption-text"><strong>golfdenantesvigneuxmembres</strong> ${preview}</div>
+      <div class="caption-text"><strong>golfclubdenantes</strong> ${preview}</div>
       <div class="caption-hashtags">${post.hashtags}</div>
     `;
 
@@ -696,7 +692,7 @@ function openPreview(post, cv) {
       <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#d4aa55;">Post #${post.id} · ${post.timing}</div>
       <button onclick="document.getElementById('preview-modal').remove()" style="background:rgba(255,255,255,0.1);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:1rem;">✕</button>
     </div>
-    <div style="font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:14px;white-space:pre-line;"><strong style="color:#fff;">golfdenantesvigneuxmembres</strong> ${post.caption}</div>
+    <div style="font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:14px;white-space:pre-line;"><strong style="color:#fff;">golfclubdenantes</strong> ${post.caption}</div>
     <div style="font-size:0.78rem;color:rgba(100,160,110,0.9);margin-bottom:16px;">${post.hashtags}</div>
     <div style="background:rgba(30,58,32,0.4);border-radius:8px;padding:10px;font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:14px;">🎯 ${post.objectif}</div>
     <button onclick="window.copyCaption(${post.id})" style="width:100%;background:#b8943a;color:#fff;border:none;border-radius:8px;padding:12px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Copier la caption complète</button>
